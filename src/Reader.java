@@ -12,13 +12,6 @@ public class Reader {
 		this.bonusPoints = bonusPoints;
 	}
 	
-	Reader(DbAccess db, String lastName, String phoneNumber, int bonusPoints) {
-		this.readerId = db.insertReader(lastName, phoneNumber, bonusPoints);
-		this.lastName = lastName;
-		this.phoneNumber = phoneNumber;
-		this.bonusPoints = bonusPoints;
-	}
-	
 	public int getReaderId() { return readerId; }
 	public String getLastName() { return lastName; }
 	public String getPhoneNumber() { return phoneNumber; }

@@ -37,6 +37,7 @@ public class LibraryWindow {
 	private JButton readerReaderTakeCopyBtn;
 
 	private String readerReaderSearchQuery;
+	private String bookSearchQuery;
 
 	public LibraryWindow() {
 		window = this;
@@ -47,6 +48,7 @@ public class LibraryWindow {
 		db.connect("Library", "root", "root");
 
 		fillReaderReaderTable();
+		fillBookTable();
 	}
 	
 	JComponent makeReaderReaderPanel() {
@@ -93,7 +95,6 @@ public class LibraryWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int selectedReaderId = Integer.parseInt(readerReaderTable.getValueAt(readerReaderTable.getSelectedRow(), 0).toString());
-				System.out.println(selectedReaderId);
 				new EditReaderWindow(window, db, selectedReaderId);
 			}
 		});
@@ -220,44 +221,47 @@ public class LibraryWindow {
 		searchPanel.add(searchField);
 		
 		JButton searchBtn = new JButton("Шукати");
+		searchBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				bookSearchQuery = searchField.getText();
+				fillBookTable();
+			}
+		});
 		searchPanel.add(searchBtn);
 
 		JPanel actionPanel = new JPanel();
 		controlPanel.add(actionPanel, BorderLayout.LINE_END);
-		
-		JButton insertCopyBtn = new JButton("Додати примірники");
-		actionPanel.add(insertCopyBtn);
 
 		JButton insertBookBtn = new JButton("Додати");
 		insertBookBtn.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new InsertBookWindow();
+				new InsertBookWindow(window, db);
 			}
-			
 		});
 		actionPanel.add(insertBookBtn);
 
 		bookPanel.add(controlPanel, BorderLayout.NORTH);
 		
-		JPanel listPanel = new JPanel();
-		listPanel.setLayout(new GridLayout());
-
-        String[][] data = { 
-            { "1", "11.08.2018", "C++ for Beginners", "посібник", "255", "ні" },
-        };
-
-        String[] columnNames = { "ID", "Дата", "Назва", "Тип", "Об'єм", "Електронна копія" }; 
-
-		bookTable = new JTable(data, columnNames);
+		
+		JPanel tablePanel = new JPanel();
+		tablePanel.setLayout(new GridLayout());
+		
+		bookTable = new JTable();
 		bookTable.setFillsViewportHeight(true);
+		bookTable.setDefaultEditor(Object.class, null);
+		bookTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		String[] columnNames = { "ID", "Дата", "Назва", "Тип", "Об'єм", "Електронна копія" };
+		DefaultTableModel readerReaderTableModel = (DefaultTableModel) bookTable.getModel();
+		readerReaderTableModel.setColumnIdentifiers(columnNames);
 
 		JScrollPane scrollPane = new JScrollPane(bookTable);
-		listPanel.add(scrollPane);
-
-		bookPanel.add(listPanel, BorderLayout.CENTER);
+		tablePanel.add(scrollPane);
+	
+		bookPanel.add(tablePanel, BorderLayout.CENTER);
 
 		return bookPanel;
 	}
@@ -300,6 +304,26 @@ public class LibraryWindow {
 		}
 		
 		readerReaderTable.setModel(readerReaderTableModel);
+	}
+	
+	public void fillBookTable() {
+		DefaultTableModel bookTableModel = (DefaultTableModel) bookTable.getModel();
+		bookTableModel.setRowCount(0);
+
+		ArrayList<Book> books = db.getBooks(bookSearchQuery);
+
+		for (Book book: books) {
+			String[] tableRow = new String[6];
+        	tableRow[0] = Integer.toString(book.getBookId());
+        	tableRow[1] = book.getDateOfPublication();
+        	tableRow[2] = book.getTitle();
+        	tableRow[3] = book.getType();
+        	tableRow[4] = Integer.toString(book.getSize());
+        	tableRow[5] = Integer.toString(book.getHasElectronicCopy());
+        	bookTableModel.addRow(tableRow);
+		}
+		
+		bookTable.setModel(bookTableModel);
 	}
 	
 	public static void main(String[] args) {
