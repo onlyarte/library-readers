@@ -49,7 +49,7 @@ public class DbAccess {
     	return i + 1;
     }
     
-    public Reader findReaderById(int readerId) {
+    public Reader getReader(int readerId) {
     	Reader reader = null;
     	try {
             sql = "SELECT readerId, lastName, phoneNumber, bonusPoints FROM Readers WHERE readerId = " + readerId;
@@ -68,7 +68,7 @@ public class DbAccess {
         return reader;
     }
 
-    public ArrayList<Reader> findReaders(String query) {
+    public ArrayList<Reader> getReaders(String query) {
     	ArrayList<Reader> readers = new ArrayList<Reader>();
     	try {
     		sql = "SELECT readerId, lastName, phoneNumber, bonusPoints FROM Readers";
@@ -99,7 +99,7 @@ public class DbAccess {
         	preparedStatement = connection.prepareStatement("INSERT INTO Readers VALUES(" + readerId + ",?,?,?)");
         	preparedStatement.setString(1, lastName);
         	preparedStatement.setString(2, phoneNumber);
-        	preparedStatement.setInt(3, 5);
+        	preparedStatement.setInt(3, bonusPoints);
             rows = preparedStatement.executeUpdate();
             if (rows == 0) readerId = 0;
         } catch (SQLException e) {
@@ -108,8 +108,7 @@ public class DbAccess {
         return readerId;
     }
     
-    public Reader findByIdAndUpdate(int readerId, String lastName, String phoneNumber, int bonusPoints) {
-    	Reader updatedReader = null;
+    public void updateReader(int readerId, String lastName, String phoneNumber, int bonusPoints) {
     	try {
     		sql = "UPDATE Readers SET";
     		boolean updatesDefined = false;
@@ -131,14 +130,12 @@ public class DbAccess {
     		if (updatesDefined) {
     			statement.executeUpdate(sql);
     		}
-    		updatedReader = findReaderById(readerId);
     	} catch (SQLException e) {
             System.out.println(e.getMessage());
     	}
-    	return updatedReader;
     }
 
-    public void findByIdAndDelete(int readerId) {
+    public void deleteReader(int readerId) {
     	try {
     		sql = "delete from Readers where readerId = " + readerId;
     		statement.executeUpdate(sql);

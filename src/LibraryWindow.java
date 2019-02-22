@@ -81,7 +81,7 @@ public class LibraryWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new InsertReaderWindow(db, window);
+				new InsertReaderWindow(window, db);
 			}
 			
 		});
@@ -94,12 +94,12 @@ public class LibraryWindow {
 			public void actionPerformed(ActionEvent e) {
 				int selectedReaderId = Integer.parseInt(readerReaderTable.getValueAt(readerReaderTable.getSelectedRow(), 0).toString());
 				System.out.println(selectedReaderId);
-				new EditReaderWindow(db, selectedReaderId);
+				new EditReaderWindow(window, db, selectedReaderId);
 			}
 		});
 		actionPanel.add(readerReaderEditBtn);
 		
-		JButton readerReaderTakeCopyBtn = new JButton("Взяти прим.");
+		readerReaderTakeCopyBtn = new JButton("Взяти прим.");
 		readerReaderTakeCopyBtn.setToolTipText("Взяти примірник");
 		readerReaderTakeCopyBtn.setVisible(false);
 		readerReaderTakeCopyBtn.addActionListener(new ActionListener() {
@@ -132,8 +132,10 @@ public class LibraryWindow {
 		readerReaderTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				readerReaderEditBtn.setVisible(true);
-				readerReaderTakeCopyBtn.setVisible(true);
+				if (readerReaderTable.getSelectedRow() != -1) {
+					readerReaderEditBtn.setVisible(true);
+					readerReaderTakeCopyBtn.setVisible(true);
+				}
 			}
 	    });
 
@@ -280,10 +282,13 @@ public class LibraryWindow {
 	}
 	
 	public void fillReaderReaderTable() {
+		readerReaderEditBtn.setVisible(false);
+		readerReaderTakeCopyBtn.setVisible(false);
+		
 		DefaultTableModel readerReaderTableModel = (DefaultTableModel) readerReaderTable.getModel();
 		readerReaderTableModel.setRowCount(0);
 
-		ArrayList<Reader> readers = db.findReaders(readerReaderSearchQuery);
+		ArrayList<Reader> readers = db.getReaders(readerReaderSearchQuery);
 
 		for (Reader reader: readers) {
 			String[] tableRow = new String[4];
