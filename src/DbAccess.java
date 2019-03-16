@@ -1,4 +1,6 @@
 import java.sql.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class DbAccess {
@@ -18,7 +20,7 @@ public class DbAccess {
 
     public boolean connect(String db, String user, String passwd) {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/" + db + "?useSSL=false&allowPublicKeyRetrieval=true", user, passwd);
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/" + db + "?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", user, passwd);
             statement = connection.createStatement();
             return true;
         } catch (SQLException e) {
@@ -90,6 +92,51 @@ public class DbAccess {
             System.out.println("findReaders> " + e.getMessage());
         }
     	return readers;
+    }
+    
+    private boolean isStringNumeric(String str) {  
+      try {  
+        Double.parseDouble(str);  
+      } catch(NumberFormatException nfe) {  
+        return false;  
+      }  
+      return true;  
+    }
+    
+    public ArrayList<Debtor> getDebtors(String query) {
+    	ArrayList<Debtor> debtors = new ArrayList<Debtor>();
+    	try {
+    		sql = "SELECT RG.readingId, R.readerId, R.lastName as readerLastName, B.title, EC.editionCopyId, RG.dateReceived "
+    			+ "FROM Readings RG "
+    				+ "INNER JOIN EditionCopies EC ON RG.editionCopyId = EC.editionCopyId "
+    				+ "INNER JOIN Editions E ON EC.editionId = E.editionId "
+    				+ "INNER JOIN Books B ON E.editionId = B.editionId "
+    				+ "INNER JOIN Readers R ON RG.readerId = R.readerId "
+    				+ "WHERE dateReturned IS NULL ";
+    		if (query != null && !query.equals("")) {
+    			if (isStringNumeric(query)) {
+    				sql += " AND YEAR(dateReceived) = " + query;
+    			} else {
+    				sql += " AND (R.lastName LIKE '%" + query + "%' OR B.title LIKE '%" + query + "%')";
+    			}
+    		}
+    		statement.execute(sql);
+    		ResultSet resultSet = statement.getResultSet();
+    		if (resultSet != null) {
+    			while (resultSet.next()) {
+    				debtors.add(new Debtor(
+    						resultSet.getInt(1),
+    						resultSet.getInt(2),
+    						resultSet.getString(3),
+    						resultSet.getString(4),
+    						resultSet.getInt(5),
+    						resultSet.getString(6)));
+    			}
+    		}
+    	} catch (SQLException e) {
+            System.out.println("findDebtors> " + e.getMessage());
+        }
+    	return debtors;
     }
 
     public int insertReader(String lastName, String phoneNumber, int bonusPoints) {
@@ -173,6 +220,31 @@ public class DbAccess {
     	return books;
     }
     
+    public ArrayList<Integer> getFreeEditionCopies(int bookId) {
+    	ArrayList<Integer> freeCopies = new ArrayList<Integer>();
+    	try {
+    		sql = "SELECT EC.editionCopyId "
+				+ "FROM Books B "
+					+ "INNER JOIN Editions E ON B.editionId = E.editionId "
+					+ "INNER JOIN EditionCopies EC ON E.editionId = EC.editionId "
+				+ "WHERE B.bookId = " + bookId + " AND EC.editionCopyId NOT IN ("
+					+ "SELECT EC1.editionCopyId "
+					+ "FROM EditionCopies EC1 INNER JOIN Readings R1 ON EC1.editionCopyId = R1.editionCopyId "
+					+ "WHERE R1.dateReturned IS NULL"
+				+ ")";
+    		statement.execute(sql);
+    		ResultSet resultSet = statement.getResultSet();
+    		if (resultSet != null) {
+    			while (resultSet.next()) {
+    				freeCopies.add(resultSet.getInt(1));
+    			}
+    		}
+    	}catch (SQLException e) {
+            System.out.println("findReaders> " + e.getMessage());
+        }
+    	return freeCopies;
+    }
+    
     public int insertBook(String dateOfPublication, String title, String type, int size, int hasElectronicCopy, int numberOfCopies) {
     	int editionId = getNextId("Editions", "editionId");
     	int bookId = getNextId("Books", "bookId");
@@ -210,5 +282,35 @@ public class DbAccess {
             System.out.println("insertBook> " + e.getMessage());
         }
         return bookId;
+    }
+    
+    public int insertReading(int readerId, int editionCopyId) {
+    	int readingId = getNextId("Readings", "readingId");
+    	int rows = 0;
+        try {
+        	String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        	preparedStatement = connection.prepareStatement(
+        		"INSERT INTO Readings (readingId, readerId, editionCopyId, dateReceived) VALUES(?,?,?,?)"
+        	);
+        	preparedStatement.setInt(1, readingId);
+        	preparedStatement.setInt(2, readerId);
+        	preparedStatement.setInt(3, editionCopyId);
+        	preparedStatement.setString(4, date);
+            rows = preparedStatement.executeUpdate();
+            if (rows == 0) readerId = 0;
+        } catch (SQLException e) {
+            System.out.println("insertReading> " + e.getMessage());
+        }
+        return readingId;
+    }
+    
+    public void setReadingReturnDate(int readingId) {
+    	try {
+    		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    		sql = "UPDATE Readings SET dateReturned = '" + date + "' WHERE readingId = " + readingId;
+    		statement.executeUpdate(sql);
+    	} catch (SQLException e) {
+            System.out.println(e.getMessage());
+    	}
     }
 }

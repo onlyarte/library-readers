@@ -34,9 +34,6 @@ public class InsertBookWindow {
 		panel.setLayout(new GridLayout(7,2));
 		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
-		JLabel message = new JLabel();
-		message.setForeground(Color.red);
-		
 		JLabel dateLbl = new JLabel("Дата (yyyy-mm-dd):");
 		panel.add(dateLbl);
 		
@@ -75,6 +72,8 @@ public class InsertBookWindow {
 	    JTextField copiesField = new JTextField();
 	    panel.add(copiesField);
 		
+	    JLabel message = new JLabel();
+		message.setForeground(Color.red);
 		panel.add(message);
 		
 		JButton submitBtn = new JButton("Додати");

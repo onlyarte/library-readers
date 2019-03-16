@@ -35,8 +35,11 @@ public class LibraryWindow {
 	
 	private JButton readerReaderEditBtn;
 	private JButton readerReaderTakeCopyBtn;
+	
+	private JButton readerDebtorReturnCopyBtn;
 
 	private String readerReaderSearchQuery;
+	private String readerDebtorSearchQuery;
 	private String bookSearchQuery;
 
 	public LibraryWindow() {
@@ -45,9 +48,10 @@ public class LibraryWindow {
 		initialize();
 
 		db = new DbAccess();
-		db.connect("Library", "root", "root");
+		db.connect("Library", "root", "12345");
 
 		fillReaderReaderTable();
+		fillReaderDebtorTable();
 		fillBookTable();
 	}
 	
@@ -104,13 +108,11 @@ public class LibraryWindow {
 		readerReaderTakeCopyBtn.setToolTipText("Взяти примірник");
 		readerReaderTakeCopyBtn.setVisible(false);
 		readerReaderTakeCopyBtn.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				new TakeBookWindow();
+				int selectedReaderId = Integer.parseInt(readerReaderTable.getValueAt(readerReaderTable.getSelectedRow(), 0).toString());
+				new TakeBookWindow(window, db, selectedReaderId);
 			}
-			
 		});
 		actionPanel.add(readerReaderTakeCopyBtn);
 		
@@ -149,8 +151,8 @@ public class LibraryWindow {
 	}
 	
 	JComponent makeReaderDebtorPanel() {
-		JPanel debtorPanel = new JPanel(false);
-		debtorPanel.setLayout(new BorderLayout(0, 0));
+		JPanel readerDebtorPanel = new JPanel(false);
+		readerDebtorPanel.setLayout(new BorderLayout(0, 0));
 		
 		JPanel controlPanel = new JPanel();
 		controlPanel.setLayout(new BorderLayout());
@@ -162,34 +164,62 @@ public class LibraryWindow {
 		searchPanel.add(searchField);
 		
 		JButton searchBtn = new JButton("Шукати");
+		searchBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				readerDebtorSearchQuery = searchField.getText();
+				fillReaderDebtorTable();
+			}
+		});
 		searchPanel.add(searchBtn);
 
 		JPanel actionPanel = new JPanel();
 		controlPanel.add(actionPanel, BorderLayout.LINE_END);
 
-		JButton insertReaderBtn = new JButton("Повернути");
-		actionPanel.add(insertReaderBtn);
+		readerDebtorReturnCopyBtn = new JButton("Повернути");
+		readerDebtorReturnCopyBtn.setVisible(false);
+		readerDebtorReturnCopyBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int selectedReadingId = Integer.parseInt(readerDebtorTable.getValueAt(readerDebtorTable.getSelectedRow(), 0).toString());
+				db.setReadingReturnDate(selectedReadingId);
+				fillReaderDebtorTable();
+			}
+		});
+		actionPanel.add(readerDebtorReturnCopyBtn);
 
-		debtorPanel.add(controlPanel, BorderLayout.NORTH);
+		readerDebtorPanel.add(controlPanel, BorderLayout.NORTH);
 		
 		JPanel listPanel = new JPanel();
 		listPanel.setLayout(new GridLayout());
-
-        String[][] data = { 
-            { "1", "Пурій", "C++ for beginners", "1", "14.01.2019" },
-        };
-
-        String[] columnNames = { "ID", "Прізвище", "Видання", "Примірник", "Видано" }; 
-
-		readerDebtorTable = new JTable(data, columnNames);
+		
+		JPanel tablePanel = new JPanel();
+		tablePanel.setLayout(new GridLayout());
+		
+		readerDebtorTable = new JTable();
 		readerDebtorTable.setFillsViewportHeight(true);
+		readerDebtorTable.setDefaultEditor(Object.class, null);
+		readerDebtorTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		String[] columnNames = { "ID транзакції", "ID читача", "Прізвище", "Видання", "Примірник", "Видано" };
+		DefaultTableModel readerDebtorTableModel = (DefaultTableModel) readerDebtorTable.getModel();
+		readerDebtorTableModel.setColumnIdentifiers(columnNames);
+		
+		readerDebtorTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (readerDebtorTable.getSelectedRow() != -1) {
+					readerDebtorReturnCopyBtn.setVisible(true);
+				}
+			}
+	    });
 
 		JScrollPane scrollPane = new JScrollPane(readerDebtorTable);
-		listPanel.add(scrollPane);
+		tablePanel.add(scrollPane);
+		
+		readerDebtorPanel.add(tablePanel, BorderLayout.CENTER);
 
-		debtorPanel.add(listPanel, BorderLayout.CENTER);
-
-		return debtorPanel;
+		return readerDebtorPanel;
 	}
 	
 	JComponent makeReaderPanel() {
@@ -304,6 +334,29 @@ public class LibraryWindow {
 		}
 		
 		readerReaderTable.setModel(readerReaderTableModel);
+	}
+	
+	public void fillReaderDebtorTable() {
+		readerDebtorReturnCopyBtn.setVisible(false);
+		
+		DefaultTableModel readerDebtorTableModel = (DefaultTableModel) readerDebtorTable.getModel();
+		readerDebtorTableModel.setRowCount(0);
+
+		ArrayList<Debtor> debtors = db.getDebtors(readerDebtorSearchQuery);
+		// { "ID", "Прізвище", "Видання", "Примірник", "Видано" }
+
+		for (Debtor debtor: debtors) {
+			String[] tableRow = new String[6];
+			tableRow[0] = Integer.toString(debtor.getReadingId());
+        	tableRow[1] = Integer.toString(debtor.getReaderId());
+        	tableRow[2] = debtor.getReaderLastName();
+        	tableRow[3] = debtor.getEditionTitle();
+        	tableRow[4] = Integer.toString(debtor.getEditionCopyId());
+        	tableRow[5] = debtor.getDateReceived();
+        	readerDebtorTableModel.addRow(tableRow);
+		}
+		
+		readerDebtorTable.setModel(readerDebtorTableModel);
 	}
 	
 	public void fillBookTable() {
