@@ -3,12 +3,10 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.Console;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,9 +15,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.EmptyBorder;
 
 import java.awt.BorderLayout;
-import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +30,8 @@ public class LibraryWindow {
 	private JTable readerReaderTable;
 	private JTable readerDebtorTable;
 	private JTable bookTable;
+	private JTable seriesTable;
+	private JTable searchTable;
 	
 	private JButton readerReaderEditBtn;
 	private JButton readerReaderTakeCopyBtn;
@@ -52,7 +52,7 @@ public class LibraryWindow {
 
 		fillReaderReaderTable();
 		fillReaderDebtorTable();
-		fillBookTable();
+//		fillBookTable();
 	}
 	
 	JComponent makeReaderReaderPanel() {
@@ -86,7 +86,6 @@ public class LibraryWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				new InsertReaderWindow(window, db);
 			}
 			
@@ -110,8 +109,8 @@ public class LibraryWindow {
 		readerReaderTakeCopyBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int selectedReaderId = Integer.parseInt(readerReaderTable.getValueAt(readerReaderTable.getSelectedRow(), 0).toString());
-				new TakeBookWindow(window, db, selectedReaderId);
+//				int selectedReaderId = Integer.parseInt(readerReaderTable.getValueAt(readerReaderTable.getSelectedRow(), 0).toString());
+//				new TakeBookWindow(window, db, selectedReaderId);
 			}
 		});
 		actionPanel.add(readerReaderTakeCopyBtn);
@@ -181,9 +180,9 @@ public class LibraryWindow {
 		readerDebtorReturnCopyBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int selectedReadingId = Integer.parseInt(readerDebtorTable.getValueAt(readerDebtorTable.getSelectedRow(), 0).toString());
-				db.setReadingReturnDate(selectedReadingId);
-				fillReaderDebtorTable();
+//				int selectedReadingId = Integer.parseInt(readerDebtorTable.getValueAt(readerDebtorTable.getSelectedRow(), 0).toString());
+//				db.setReadingReturnDate(selectedReadingId);
+//				fillReaderDebtorTable();
 			}
 		});
 		actionPanel.add(readerDebtorReturnCopyBtn);
@@ -254,8 +253,8 @@ public class LibraryWindow {
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				bookSearchQuery = searchField.getText();
-				fillBookTable();
+//				bookSearchQuery = searchField.getText();
+//				fillBookTable();
 			}
 		});
 		searchPanel.add(searchBtn);
@@ -267,7 +266,6 @@ public class LibraryWindow {
 		insertBookBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				new InsertBookWindow(window, db);
 			}
 		});
@@ -295,6 +293,148 @@ public class LibraryWindow {
 
 		return bookPanel;
 	}
+	
+	JComponent makeSeriesPanel() {
+		JPanel seriesPanel = new JPanel(false);
+		seriesPanel.setLayout(new BorderLayout(0, 0));
+		
+		JPanel controlPanel = new JPanel();
+		controlPanel.setLayout(new BorderLayout());
+		
+		JPanel searchPanel = new JPanel();
+		controlPanel.add(searchPanel, BorderLayout.LINE_START);
+		
+		JTextField searchField = new JTextField(20);
+		searchPanel.add(searchField);
+		
+		JButton searchBtn = new JButton("Шукати");
+		searchBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// see examples in the reader table
+			}
+		});
+		searchPanel.add(searchBtn);
+
+		JPanel actionPanel = new JPanel();
+		controlPanel.add(actionPanel, BorderLayout.LINE_END);
+
+		JButton insertSeriesBtn = new JButton("Додати");
+		insertSeriesBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new InsertSeriesWindow(window, db);
+			}
+		});
+		actionPanel.add(insertSeriesBtn);
+
+		seriesPanel.add(controlPanel, BorderLayout.NORTH);
+		
+		
+		JPanel tablePanel = new JPanel();
+		tablePanel.setLayout(new GridLayout());
+		
+		seriesTable = new JTable();
+		seriesTable.setFillsViewportHeight(true);
+		seriesTable.setDefaultEditor(Object.class, null);
+		seriesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		String[] columnNames = { "ID", "Дата", "Назва", "Кількість публ.", "Публікації", "Електр. копія" };
+		DefaultTableModel seariesTableModel = (DefaultTableModel) seriesTable.getModel();
+		seariesTableModel.setColumnIdentifiers(columnNames);
+
+		JScrollPane scrollPane = new JScrollPane(seriesTable);
+		tablePanel.add(scrollPane);
+	
+		seriesPanel.add(tablePanel, BorderLayout.CENTER);
+
+		return seriesPanel;
+	}
+	
+	JComponent makeSearchPanel() {
+		JPanel searchPanel = new JPanel(false);
+		searchPanel.setLayout(new BorderLayout(0, 0));
+		
+		JPanel controlPanel = new JPanel();
+		controlPanel.setLayout(new GridLayout(7,2));
+		controlPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		JLabel authorLbl = new JLabel("Автор:");
+		controlPanel.add(authorLbl);
+		
+		JTextField authorField = new JTextField();
+		controlPanel.add(authorField);
+		
+		JLabel topicLbl = new JLabel("Тема:");
+		controlPanel.add(topicLbl);
+		
+		JTextField topicField = new JTextField();
+		controlPanel.add(topicField);
+		
+		JLabel typeLbl = new JLabel("Тип:");
+		controlPanel.add(typeLbl);
+		
+		JTextField typeField = new JTextField();
+		controlPanel.add(typeField);
+		
+		JLabel keyWordLbl = new JLabel("Ключове слово:");
+		controlPanel.add(keyWordLbl);
+		
+		JTextField keyWordField = new JTextField();
+		controlPanel.add(keyWordField);
+		
+		JLabel fromLbl = new JLabel("З:");
+		controlPanel.add(fromLbl);
+		
+		JTextField fromField = new JTextField();
+		controlPanel.add(fromField);
+		
+		JLabel toLbl = new JLabel("До:");
+		controlPanel.add(toLbl);
+		
+		JTextField toField = new JTextField();
+		controlPanel.add(toField);
+		
+		JButton searchBtn = new JButton("Шукати");
+		searchBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// see examples in the reader table
+			}
+		});
+		controlPanel.add(searchBtn);
+		
+		JButton rateBtn = new JButton("Рейтинг");
+		rateBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		controlPanel.add(rateBtn);
+
+		searchPanel.add(controlPanel, BorderLayout.NORTH);
+		
+		
+		JPanel tablePanel = new JPanel();
+		tablePanel.setLayout(new GridLayout());
+		
+		searchTable = new JTable();
+		searchTable.setFillsViewportHeight(true);
+		searchTable.setDefaultEditor(Object.class, null);
+		searchTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		String[] columnNames = { "ID", "Дата", "Назва" };
+		DefaultTableModel searchTableModel = (DefaultTableModel) searchTable.getModel();
+		searchTableModel.setColumnIdentifiers(columnNames);
+
+		JScrollPane scrollPane = new JScrollPane(searchTable);
+		tablePanel.add(scrollPane);
+	
+		searchPanel.add(tablePanel, BorderLayout.CENTER);
+
+		return searchPanel;
+	}
 
 	private void initialize() {
 		frame = new JFrame();
@@ -313,6 +453,14 @@ public class LibraryWindow {
 		JComponent panel2 = makeBookPanel();
 		tabbedPane.addTab("Книжки", panel2);
 		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
+		
+		JComponent panel3 = makeSeriesPanel();
+		tabbedPane.addTab("Збірники", panel3);
+		tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
+		
+		JComponent panel4 = makeSearchPanel();
+		tabbedPane.addTab("Пошук", panel4);
+		tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
 	}
 	
 	public void fillReaderReaderTable() {
@@ -359,25 +507,25 @@ public class LibraryWindow {
 		readerDebtorTable.setModel(readerDebtorTableModel);
 	}
 	
-	public void fillBookTable() {
-		DefaultTableModel bookTableModel = (DefaultTableModel) bookTable.getModel();
-		bookTableModel.setRowCount(0);
-
-		ArrayList<Book> books = db.getBooks(bookSearchQuery);
-
-		for (Book book: books) {
-			String[] tableRow = new String[6];
-        	tableRow[0] = Integer.toString(book.getBookId());
-        	tableRow[1] = book.getDateOfPublication();
-        	tableRow[2] = book.getTitle();
-        	tableRow[3] = book.getType();
-        	tableRow[4] = Integer.toString(book.getSize());
-        	tableRow[5] = Integer.toString(book.getHasElectronicCopy());
-        	bookTableModel.addRow(tableRow);
-		}
-		
-		bookTable.setModel(bookTableModel);
-	}
+//	public void fillBookTable() {
+//		DefaultTableModel bookTableModel = (DefaultTableModel) bookTable.getModel();
+//		bookTableModel.setRowCount(0);
+//
+//		ArrayList<Book> books = db.getBooks(bookSearchQuery);
+//
+//		for (Book book: books) {
+//			String[] tableRow = new String[6];
+//        	tableRow[0] = Integer.toString(book.getBookId());
+//        	tableRow[1] = book.getDateOfPublication();
+//        	tableRow[2] = book.getTitle();
+//        	tableRow[3] = book.getType();
+//        	tableRow[4] = Integer.toString(book.getSize());
+//        	tableRow[5] = Integer.toString(book.getHasElectronicCopy());
+//        	bookTableModel.addRow(tableRow);
+//		}
+//		
+//		bookTable.setModel(bookTableModel);
+//	}
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

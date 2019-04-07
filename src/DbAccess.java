@@ -106,13 +106,15 @@ public class DbAccess {
     public ArrayList<Debtor> getDebtors(String query) {
     	ArrayList<Debtor> debtors = new ArrayList<Debtor>();
     	try {
-    		sql = "SELECT RG.readingId, R.readerId, R.lastName as readerLastName, B.title, EC.editionCopyId, RG.dateReceived "
-    			+ "FROM Readings RG "
-    				+ "INNER JOIN EditionCopies EC ON RG.editionCopyId = EC.editionCopyId "
-    				+ "INNER JOIN Editions E ON EC.editionId = E.editionId "
-    				+ "INNER JOIN Books B ON E.editionId = B.editionId "
-    				+ "INNER JOIN Readers R ON RG.readerId = R.readerId "
-    				+ "WHERE dateReturned IS NULL ";
+    		sql = "SELECT Readings.readingId, Readers.readerId, Readers.lastName AS readerLastName, IFNULL(Series.title, Publications.title) AS title, EditionCopies.editionCopyId, Readings.dateReceived "
+				+ "FROM Readings "
+					+ "INNER JOIN Readers ON Readings.readerId = Readers.readerId "
+					+ "INNER JOIN EditionCopies ON Readings.editionCopyId = EditionCopies.editionCopyId "
+					+ "INNER JOIN Editions ON EditionCopies.editionId = Editions.editionId "
+					+ "LEFT OUTER JOIN Series ON Editions.editionId = Series.editionId "
+					+ "LEFT OUTER JOIN Books ON Editions.editionId = Books.bookId "
+					+ "LEFT OUTER JOIN Publications ON Books.bookId = Publications.bookId "
+				+ "WHERE Readings.dateReturned IS NULL ";
     		if (query != null && !query.equals("")) {
     			if (isStringNumeric(query)) {
     				sql += " AND YEAR(dateReceived) = " + query;
@@ -193,96 +195,96 @@ public class DbAccess {
         }
     }
     
-    public ArrayList<Book> getBooks(String query) {
-    	ArrayList<Book> books = new ArrayList<Book>();
-    	try {
-    		sql = "SELECT bookId, dateOfPublication, title, type, size, hasElectronicCopy FROM Books T1 "
-				+ "INNER JOIN Editions T2 ON T1.editionId = T2.editionId";
-    		if (query != null && !query.equals("")) {
-    			sql += " WHERE title LIKE '%" + query + "%'";
-    		}
-    		statement.execute(sql);
-    		ResultSet resultSet = statement.getResultSet();
-    		if (resultSet != null) {
-    			while (resultSet.next()) {
-    				books.add(new Book(
-    						resultSet.getInt(1),
-    						resultSet.getString(2),
-    						resultSet.getString(3),
-    						resultSet.getString(4),
-    						resultSet.getInt(5),
-    						resultSet.getInt(6)));
-    			}
-    		}
-    	} catch (SQLException e) {
-            System.out.println("findReaders> " + e.getMessage());
-        }
-    	return books;
-    }
+//    public ArrayList<Book> getBooks(String query) {
+//    	ArrayList<Book> books = new ArrayList<Book>();
+//    	try {
+//    		sql = "SELECT bookId, dateOfPublication, title, type, size, hasElectronicCopy FROM Books T1 "
+//				+ "INNER JOIN Editions T2 ON T1.editionId = T2.editionId";
+//    		if (query != null && !query.equals("")) {
+//    			sql += " WHERE title LIKE '%" + query + "%'";
+//    		}
+//    		statement.execute(sql);
+//    		ResultSet resultSet = statement.getResultSet();
+//    		if (resultSet != null) {
+//    			while (resultSet.next()) {
+//    				books.add(new Book(
+//    						resultSet.getInt(1),
+//    						resultSet.getString(2),
+//    						resultSet.getString(3),
+//    						resultSet.getString(4),
+//    						resultSet.getInt(5),
+//    						resultSet.getInt(6)));
+//    			}
+//    		}
+//    	} catch (SQLException e) {
+//            System.out.println("findReaders> " + e.getMessage());
+//        }
+//    	return books;
+//    }
     
-    public ArrayList<Integer> getFreeEditionCopies(int bookId) {
-    	ArrayList<Integer> freeCopies = new ArrayList<Integer>();
-    	try {
-    		sql = "SELECT EC.editionCopyId "
-				+ "FROM Books B "
-					+ "INNER JOIN Editions E ON B.editionId = E.editionId "
-					+ "INNER JOIN EditionCopies EC ON E.editionId = EC.editionId "
-				+ "WHERE B.bookId = " + bookId + " AND EC.editionCopyId NOT IN ("
-					+ "SELECT EC1.editionCopyId "
-					+ "FROM EditionCopies EC1 INNER JOIN Readings R1 ON EC1.editionCopyId = R1.editionCopyId "
-					+ "WHERE R1.dateReturned IS NULL"
-				+ ")";
-    		statement.execute(sql);
-    		ResultSet resultSet = statement.getResultSet();
-    		if (resultSet != null) {
-    			while (resultSet.next()) {
-    				freeCopies.add(resultSet.getInt(1));
-    			}
-    		}
-    	}catch (SQLException e) {
-            System.out.println("findReaders> " + e.getMessage());
-        }
-    	return freeCopies;
-    }
+//    public ArrayList<Integer> getFreeEditionCopies(int bookId) {
+//    	ArrayList<Integer> freeCopies = new ArrayList<Integer>();
+//    	try {
+//    		sql = "SELECT EC.editionCopyId "
+//				+ "FROM Books B "
+//					+ "INNER JOIN Editions E ON B.editionId = E.editionId "
+//					+ "INNER JOIN EditionCopies EC ON E.editionId = EC.editionId "
+//				+ "WHERE B.bookId = " + bookId + " AND EC.editionCopyId NOT IN ("
+//					+ "SELECT EC1.editionCopyId "
+//					+ "FROM EditionCopies EC1 INNER JOIN Readings R1 ON EC1.editionCopyId = R1.editionCopyId "
+//					+ "WHERE R1.dateReturned IS NULL"
+//				+ ")";
+//    		statement.execute(sql);
+//    		ResultSet resultSet = statement.getResultSet();
+//    		if (resultSet != null) {
+//    			while (resultSet.next()) {
+//    				freeCopies.add(resultSet.getInt(1));
+//    			}
+//    		}
+//    	}catch (SQLException e) {
+//            System.out.println("findReaders> " + e.getMessage());
+//        }
+//    	return freeCopies;
+//    }
     
-    public int insertBook(String dateOfPublication, String title, String type, int size, int hasElectronicCopy, int numberOfCopies) {
-    	int editionId = getNextId("Editions", "editionId");
-    	int bookId = getNextId("Books", "bookId");
-    	int rows = 0;
-        try {
-        	preparedStatement = connection.prepareStatement(
-        		"INSERT INTO Editions (editionId, dateOfPublication, hasElectronicCopy) VALUES(?,?,?)"
-        	);
-        	preparedStatement.setInt(1, editionId);
-        	preparedStatement.setString(2, dateOfPublication);
-        	preparedStatement.setInt(3, hasElectronicCopy);
-            rows = preparedStatement.executeUpdate();
-            if (rows == 0) editionId = 0;
-            rows = 0;
-            
-            preparedStatement = connection.prepareStatement(
-        		"INSERT INTO Books (bookId, title, type, size, editionId) VALUES(?,?,?,?,?)"
-        	);
-        	preparedStatement.setInt(1, bookId);
-        	preparedStatement.setString(2, title);
-        	preparedStatement.setString(3, type);
-        	preparedStatement.setInt(4, size);
-        	preparedStatement.setInt(5, editionId);
-            rows = preparedStatement.executeUpdate();
-            if (rows == 0) bookId = 0;
-            
-            for (int i = 0; i < numberOfCopies; i++) {
-            	preparedStatement = connection.prepareStatement(
-            		"INSERT INTO EditionCopies (editionId) VALUES(?)"
-            	);
-            	preparedStatement.setInt(1, editionId);
-            	preparedStatement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            System.out.println("insertBook> " + e.getMessage());
-        }
-        return bookId;
-    }
+//    public int insertBook(String dateOfPublication, String title, String type, int size, int hasElectronicCopy, int numberOfCopies) {
+//    	int editionId = getNextId("Editions", "editionId");
+//    	int bookId = getNextId("Books", "bookId");
+//    	int rows = 0;
+//        try {
+//        	preparedStatement = connection.prepareStatement(
+//        		"INSERT INTO Editions (editionId, dateOfPublication, hasElectronicCopy) VALUES(?,?,?)"
+//        	);
+//        	preparedStatement.setInt(1, editionId);
+//        	preparedStatement.setString(2, dateOfPublication);
+//        	preparedStatement.setInt(3, hasElectronicCopy);
+//            rows = preparedStatement.executeUpdate();
+//            if (rows == 0) editionId = 0;
+//            rows = 0;
+//            
+//            preparedStatement = connection.prepareStatement(
+//        		"INSERT INTO Books (bookId, title, type, size, editionId) VALUES(?,?,?,?,?)"
+//        	);
+//        	preparedStatement.setInt(1, bookId);
+//        	preparedStatement.setString(2, title);
+//        	preparedStatement.setString(3, type);
+//        	preparedStatement.setInt(4, size);
+//        	preparedStatement.setInt(5, editionId);
+//            rows = preparedStatement.executeUpdate();
+//            if (rows == 0) bookId = 0;
+//            
+//            for (int i = 0; i < numberOfCopies; i++) {
+//            	preparedStatement = connection.prepareStatement(
+//            		"INSERT INTO EditionCopies (editionId) VALUES(?)"
+//            	);
+//            	preparedStatement.setInt(1, editionId);
+//            	preparedStatement.executeUpdate();
+//            }
+//        } catch (SQLException e) {
+//            System.out.println("insertBook> " + e.getMessage());
+//        }
+//        return bookId;
+//    }
     
     public int insertReading(int readerId, int editionCopyId) {
     	int readingId = getNextId("Readings", "readingId");

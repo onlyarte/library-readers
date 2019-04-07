@@ -12,12 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class InsertBookWindow {
+public class InsertSeriesWindow {
 	private JFrame frame;
 	private LibraryWindow mainWindow;
 	private DbAccess db;
 
-	public InsertBookWindow(LibraryWindow mainWindow, DbAccess db) {
+	public InsertSeriesWindow(LibraryWindow mainWindow, DbAccess db) {
 		this.mainWindow = mainWindow;
 		this.db = db;
 		initialize();
@@ -25,8 +25,8 @@ public class InsertBookWindow {
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("Додати книгу");
-		frame.setSize(400, 240);
+		frame.setTitle("Додати збірник");
+		frame.setSize(400, 270);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
 		
@@ -46,19 +46,17 @@ public class InsertBookWindow {
 		JTextField titleField = new JTextField();
 		panel.add(titleField);
 		
-		JLabel typeLbl = new JLabel("Тип:");
-		panel.add(typeLbl);
+		JLabel numOfPublLbl = new JLabel("Кількість публ.:");
+		panel.add(numOfPublLbl);
 		
-		JComboBox<String> typeField = new JComboBox<String>();
-		typeField.addItem("посібник");
-		typeField.addItem("підручник");
-		panel.add(typeField);
+		JTextField numOfPublField = new JTextField();
+		panel.add(numOfPublField);
 		
-		JLabel sizeLbl = new JLabel("Об'єм:");
-		panel.add(sizeLbl);
+		JLabel publNamesLbl = new JLabel("Публікації (через кому):");
+		panel.add(publNamesLbl);
 		
-		JTextField sizeField = new JTextField();
-		panel.add(sizeField);
+		JTextField authorField = new JTextField();
+		panel.add(authorField);
 		
 		JLabel eVersionLbl = new JLabel("Е-копія:");
 		panel.add(eVersionLbl);
