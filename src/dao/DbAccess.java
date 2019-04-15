@@ -215,7 +215,7 @@ public class DbAccess {
     	try {
     		sql = SqlQueries.GetBooksQuery;
     		if (query != null && !query.equals("")) {
-    			sql += " WHERE title LIKE '%" + query + "%'";
+    			sql += " WHERE title LIKE '%" + query + "%' OR topic like '%"+ query +"%' OR type like '%"+ query+"%'";
     		}
     		statement.execute(sql);
     		ResultSet resultSet = statement.getResultSet();
@@ -224,6 +224,7 @@ public class DbAccess {
     				books.add(new Book(
     						resultSet.getInt("bookId"),
     						resultSet.getString("dateOfPublication"),
+							resultSet.getString("topic"),
 							resultSet.getString("title"),
     						resultSet.getString("type"),
     						resultSet.getInt("size"),
@@ -235,6 +236,36 @@ public class DbAccess {
         }
     	return books;
     }
+
+	public ArrayList<Series> getSeries(String query) {
+		ArrayList<Series> series = new ArrayList<Series>();
+		try {
+			sql = SqlQueries.GetSeriesQuery;
+			if (query != null && !query.equals("")) {
+				sql += " WHERE SeriesTitle LIKE '%" + query + "%' OR PublicationTitle like '%"+ query +"%'\n" +
+				"order by T1.seriesId";
+			}
+			statement.execute(sql);
+			ResultSet resultSet = statement.getResultSet();
+			if (resultSet != null) {
+				int previousSeriesID = -1;
+				while (resultSet.next()) {
+					Series series1 = new Series(resultSet.getInt("seriesId"),
+							resultSet.getString("dateOfPublication"),
+							resultSet.getString("SeriesTitle"),
+							resultSet.getInt("numberOfBooks"),
+							resultSet.getString("PublicationTitle"),
+							resultSet.getInt("hasElectronicCopy"));
+
+					series.add(series1);
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("getBooks> " + e.getMessage());
+		}
+		return series;
+	}
+
 
     public ArrayList<Integer> getFreeEditionCopies(int bookId) {
     	ArrayList<Integer> freeCopies = new ArrayList<Integer>();
@@ -261,8 +292,10 @@ public class DbAccess {
     	return freeCopies;
     }
 
-    public int insertBook(String dateOfPublication, String title, String type, int size, int hasElectronicCopy, int numberOfCopies) {
+    public int insertBook(String dateOfPublication, String topic, String title, String type, int size, int hasElectronicCopy, int numberOfCopies) {
     	int editionId = getNextId("Editions", "editionId");
+		int editionTopicId = getNextId("EditionTopics", "editionTopicId");
+		int publicationId = getNextId("Publications", "publicationId");
     	int bookId = getNextId("Books", "bookId");
     	int rows = 0;
         try {
@@ -276,14 +309,31 @@ public class DbAccess {
             if (rows == 0) editionId = 0;
             rows = 0;
 
+            // Insert into EditionTopics
+			preparedStatement = connection.prepareStatement(
+					"INSERT INTO EditionTopics (editionTopicId, editionId, topic) VALUES(?,?,?)"
+			);
+			preparedStatement.setInt(1, editionTopicId);
+			preparedStatement.setInt(2, editionId);
+			preparedStatement.setString(3, topic);
+			preparedStatement.executeUpdate();
+
+			// Insert into Publications
+			preparedStatement = connection.prepareStatement(
+					"INSERT INTO Publications (publicationId, title, bookId) VALUES(?,?,?)"
+			);
+			preparedStatement.setInt(1, publicationId);
+			preparedStatement.setString(2, title);
+			preparedStatement.setInt(3, bookId);
+			preparedStatement.executeUpdate();
+
             preparedStatement = connection.prepareStatement(
-        		"INSERT INTO Books (bookId, title, type, size, editionId) VALUES(?,?,?,?,?)"
+        		"INSERT INTO Books (bookId, type, size, editionId) VALUES(?,?,?,?)"
         	);
         	preparedStatement.setInt(1, bookId);
-        	preparedStatement.setString(2, title);
-        	preparedStatement.setString(3, type);
-        	preparedStatement.setInt(4, size);
-        	preparedStatement.setInt(5, editionId);
+        	preparedStatement.setString(2, type);
+        	preparedStatement.setInt(3, size);
+        	preparedStatement.setInt(4, editionId);
             rows = preparedStatement.executeUpdate();
             if (rows == 0) bookId = 0;
 
@@ -330,7 +380,10 @@ public class DbAccess {
     	}
     }
 
-	private void initDatabaseCredentials(){
+
+
+
+    private void initDatabaseCredentials(){
 		BufferedReader reader=null;
 		FileInputStream fis = null;
 		try {

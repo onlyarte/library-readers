@@ -1,6 +1,7 @@
 package ui;
 
 import dao.DbAccess;
+import models.Book;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -30,12 +31,12 @@ public class InsertBookWindow {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Додати книгу");
-		frame.setSize(400, 240);
+		frame.setSize(400, 280);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
 		
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(7,2));
+		panel.setLayout(new GridLayout(8,2));
 		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		JLabel dateLbl = new JLabel("Дата (yyyy-mm-dd):");
@@ -43,6 +44,12 @@ public class InsertBookWindow {
 		
 		JTextField dateField = new JTextField();
 		panel.add(dateField);
+
+		JLabel topicLbl = new JLabel("Тема:");
+		panel.add(topicLbl);
+
+		JTextField topicField = new JTextField();
+		panel.add(topicField);
 		
 		JLabel titleLbl = new JLabel("Назва:");
 		panel.add(titleLbl);
@@ -54,8 +61,9 @@ public class InsertBookWindow {
 		panel.add(typeLbl);
 		
 		JComboBox<String> typeField = new JComboBox<String>();
-		typeField.addItem("посібник");
-		typeField.addItem("підручник");
+		typeField.addItem("monographia");
+		typeField.addItem("posibnyk");
+		typeField.addItem("pidruchnyk");
 		panel.add(typeField);
 		
 		JLabel sizeLbl = new JLabel("Об'єм:");
@@ -85,32 +93,33 @@ public class InsertBookWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-//					String dateOfPublication = dateField.getText();
-//					String title = titleField.getText();
-//					String type = typeField.getSelectedItem().toString();
-//					int size = Integer.parseInt(sizeField.getText());
-//					int hasElectronicCopy = eVersion.isSelected() ? 1 : 0;
-//					int numberOfCopies = Integer.parseInt(copiesField.getText());
-//
-//					if (title.length() < 1) throw new Exception("Назва закоротка");
-//					if (size < 1) throw new Exception("Неправильний розмір");
-//					if (numberOfCopies < 1) throw new Exception("Щонайменше одна копія");
-//
-//					db.insertBook(dateOfPublication, title, type, size, hasElectronicCopy, numberOfCopies);
-//
-//					message.setText("Додано!");
-//
-//					dateField.setEditable(false);
-//					titleField.setEditable(false);
-//					typeField.setEnabled(false);
-//					sizeField.setEditable(false);
-//					eVersion.setEnabled(false);
-//					copiesField.setEditable(false);
-//					submitBtn.setEnabled(false);
-//
-//					mainWindow.fillBookTable();
+					String dateOfPublication = dateField.getText();
+					String topic = topicField.getText();
+					String title = titleField.getText();
+					String type = typeField.getSelectedItem().toString();
+					int size = Integer.parseInt(sizeField.getText());
+					int hasElectronicCopy = eVersion.isSelected() ? 1 : 0;
+					int numberOfCopies = Integer.parseInt(copiesField.getText());
+
+					if (title.length() < 1) throw new Exception("Назва закоротка");
+					if (size < 1) throw new Exception("Неправильний розмір");
+					if (numberOfCopies < 1) throw new Exception("Щонайменше одна копія");
+
+					db.insertBook(dateOfPublication,topic, title, type, size, hasElectronicCopy, numberOfCopies);
+
+					message.setText("Додано!");
+
+					dateField.setEditable(false);
+					titleField.setEditable(false);
+					typeField.setEnabled(false);
+					sizeField.setEditable(false);
+					eVersion.setEnabled(false);
+					copiesField.setEditable(false);
+					submitBtn.setEnabled(false);
+
+					mainWindow.fillBookTable(title);
 				} catch (Exception exc) {
-					message.setText("Щось неправильно!");
+					message.setText("Щось неправильно!" + exc.getMessage());
 				}
 			}
 		});

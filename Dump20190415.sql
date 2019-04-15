@@ -7,7 +7,7 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- SET NAMES utf8 ;
+SET NAMES utf8 ;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -16,16 +16,16 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-CREATE DATABASE if not exists LibraryTest;
+CREATE DATABASE if not exists LibraryTest1;
 
-use LibraryTest;
+use LibraryTest1;
 --
 -- Table structure for table `Authors`
 --
 
 DROP TABLE IF EXISTS `Authors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `Authors` (
   `authorId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
@@ -49,15 +49,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Books`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `Books` (
   `bookId` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(45) NOT NULL,
   `size` int(11) NOT NULL,
   `editionId` int(11) NOT NULL,
   PRIMARY KEY (`bookId`),
-  KEY `editionId_idx` (`editionId`),
-  CONSTRAINT `BookToEdition` FOREIGN KEY (`editionId`) REFERENCES `editions` (`editionId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `editionId_idx` (`editionId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -77,7 +76,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Downloads`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `Downloads` (
   `downloadId` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
@@ -85,9 +84,7 @@ CREATE TABLE `Downloads` (
   `editionId` int(11) NOT NULL,
   PRIMARY KEY (`downloadId`),
   KEY `DowloadToReader_idx` (`readerId`),
-  KEY `DowloadToEdition_idx` (`editionId`),
-  CONSTRAINT `DowloadToEdition` FOREIGN KEY (`editionId`) REFERENCES `editions` (`editionId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `DowloadToReader` FOREIGN KEY (`readerId`) REFERENCES `readers` (`readerId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `DowloadToEdition_idx` (`editionId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -106,13 +103,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `EditionCopies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `EditionCopies` (
   `editionCopyId` int(11) NOT NULL AUTO_INCREMENT,
   `editionId` int(11) NOT NULL,
   PRIMARY KEY (`editionCopyId`),
-  KEY `editionId_idx` (`editionId`),
-  CONSTRAINT `EditionCopyToEdition` FOREIGN KEY (`editionId`) REFERENCES `editions` (`editionId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `editionId_idx` (`editionId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -132,7 +128,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Editions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `Editions` (
   `editionId` int(11) NOT NULL AUTO_INCREMENT,
   `dateOfPublication` date NOT NULL,
@@ -157,14 +153,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `EditionTopics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `EditionTopics` (
   `editionTopicId` int(11) NOT NULL AUTO_INCREMENT,
   `editionId` int(11) NOT NULL,
   `topic` varchar(45) NOT NULL,
   PRIMARY KEY (`editionTopicId`),
-  KEY `EtToEdition_idx` (`editionId`),
-  CONSTRAINT `EtToEdition` FOREIGN KEY (`editionId`) REFERENCES `editions` (`editionId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `EtToEdition_idx` (`editionId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -175,6 +170,7 @@ CREATE TABLE `EditionTopics` (
 LOCK TABLES `EditionTopics` WRITE;
 /*!40000 ALTER TABLE `EditionTopics` DISABLE KEYS */;
 INSERT INTO `EditionTopics` VALUES (1,5,'Programming');
+Insert into `EditionTopics` values(2, 6, 'Programming');
 /*!40000 ALTER TABLE `EditionTopics` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +180,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `Orders` (
   `orderId` int(11) NOT NULL AUTO_INCREMENT,
   `dateReceived` date NOT NULL,
@@ -194,9 +190,7 @@ CREATE TABLE `Orders` (
   `readerId` int(11) NOT NULL,
   PRIMARY KEY (`orderId`),
   KEY `OrderToEditionCopy_idx` (`editionCopyId`),
-  KEY `OrderToReader_idx` (`readerId`),
-  CONSTRAINT `OrderToEditionCopy` FOREIGN KEY (`editionCopyId`) REFERENCES `editioncopies` (`editionCopyId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `OrderToReader` FOREIGN KEY (`readerId`) REFERENCES `readers` (`readerId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `OrderToReader_idx` (`readerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -215,16 +209,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `PublicationAuthors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `PublicationAuthors` (
   `publicationAuthorId` int(11) NOT NULL AUTO_INCREMENT,
   `publicationId` int(11) NOT NULL,
   `authorId` int(11) NOT NULL,
   PRIMARY KEY (`publicationAuthorId`),
   KEY `PaToPublication_idx` (`publicationId`),
-  KEY `PaToAuthor_idx` (`authorId`),
-  CONSTRAINT `PaToAuthor` FOREIGN KEY (`authorId`) REFERENCES `authors` (`authorId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `PaToPublication` FOREIGN KEY (`publicationId`) REFERENCES `publications` (`publicationId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `PaToAuthor_idx` (`authorId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -244,14 +236,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `PublicationKeyWords`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `PublicationKeyWords` (
   `publicationKeyWordId` int(11) NOT NULL AUTO_INCREMENT,
   `publicationId` int(11) NOT NULL,
   `keyWord` varchar(45) NOT NULL,
   PRIMARY KEY (`publicationKeyWordId`),
-  KEY `PkwToPublication_idx` (`publicationId`),
-  CONSTRAINT `PkwToPublication` FOREIGN KEY (`publicationId`) REFERENCES `publications` (`publicationId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `PkwToPublication_idx` (`publicationId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -271,7 +262,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Publications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `Publications` (
   `publicationId` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
@@ -279,9 +270,7 @@ CREATE TABLE `Publications` (
   `bookId` int(11) DEFAULT NULL,
   PRIMARY KEY (`publicationId`),
   KEY `seriesId_idx` (`seriesId`),
-  KEY `bookId_idx` (`bookId`),
-  CONSTRAINT `PublicationToBook` FOREIGN KEY (`bookId`) REFERENCES `books` (`bookId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `PublicationToSeries` FOREIGN KEY (`seriesId`) REFERENCES `series` (`seriesId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `bookId_idx` (`bookId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -301,7 +290,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Readers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `Readers` (
   `readerId` int(11) NOT NULL AUTO_INCREMENT,
   `lastName` varchar(45) NOT NULL,
@@ -327,7 +316,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Readings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `Readings` (
   `readingId` int(11) NOT NULL AUTO_INCREMENT,
   `readerId` int(11) NOT NULL,
@@ -336,9 +325,7 @@ CREATE TABLE `Readings` (
   `dateReturned` date DEFAULT NULL,
   PRIMARY KEY (`readingId`),
   KEY `ReadingToReader_idx` (`readerId`),
-  KEY `ReadingToEditionCopy_idx` (`editionCopyId`),
-  CONSTRAINT `ReadingToEditionCopy` FOREIGN KEY (`editionCopyId`) REFERENCES `editioncopies` (`editionCopyId`),
-  CONSTRAINT `ReadingToReader` FOREIGN KEY (`readerId`) REFERENCES `readers` (`readerId`)
+  KEY `ReadingToEditionCopy_idx` (`editionCopyId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -358,15 +345,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Series`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `Series` (
   `seriesId` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
   `numberOfBooks` int(11) NOT NULL,
   `editionId` int(11) NOT NULL,
   PRIMARY KEY (`seriesId`),
-  KEY `SeriesToEdition_idx` (`editionId`),
-  CONSTRAINT `SeriesToEdition` FOREIGN KEY (`editionId`) REFERENCES `editions` (`editionId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `SeriesToEdition_idx` (`editionId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -386,7 +372,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Uploads`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+SET character_set_client = utf8mb4 ;
 CREATE TABLE `Uploads` (
   `uploadId` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
@@ -394,9 +380,7 @@ CREATE TABLE `Uploads` (
   `editionId` int(11) NOT NULL,
   PRIMARY KEY (`uploadId`),
   KEY `UploadToReader_idx` (`readerId`),
-  KEY `UploadToEdition_idx` (`editionId`),
-  CONSTRAINT `UploadToEdition` FOREIGN KEY (`editionId`) REFERENCES `editions` (`editionId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `UploadToReader` FOREIGN KEY (`readerId`) REFERENCES `readers` (`readerId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `UploadToEdition_idx` (`editionId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

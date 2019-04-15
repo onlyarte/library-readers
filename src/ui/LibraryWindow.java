@@ -56,7 +56,7 @@ public class LibraryWindow {
 
 		fillReaderReaderTable();
 		fillReaderDebtorTable();
-//		fillBookTable();
+		//fillBookTable();
 	}
 	
 	JComponent makeReaderReaderPanel() {
@@ -286,7 +286,7 @@ public class LibraryWindow {
 		bookTable.setDefaultEditor(Object.class, null);
 		bookTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		String[] columnNames = { "ID", "Дата", "Назва", "Тип", "Об'єм", "Електронна копія" };
+		String[] columnNames = { "ID", "Дата", "Тема", "Назва", "Тип", "Об'єм", "Електронна копія" };
 		DefaultTableModel readerReaderTableModel = (DefaultTableModel) bookTable.getModel();
 		readerReaderTableModel.setColumnIdentifiers(columnNames);
 
@@ -315,7 +315,8 @@ public class LibraryWindow {
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// see examples in the reader table
+				String seriesSearchQuery = searchField.getText();
+				fillSeriesTable(seriesSearchQuery);
 			}
 		});
 		searchPanel.add(searchBtn);
@@ -518,17 +519,38 @@ public class LibraryWindow {
 		ArrayList<models.Book> books = db.getBooks(bookSearchQuery);
 
 		for (models.Book book: books) {
-			String[] tableRow = new String[6];
+			String[] tableRow = new String[7];
         	tableRow[0] = Integer.toString(book.getBookId());
         	tableRow[1] = book.getDateOfPublication();
-        	tableRow[2] = book.getTitle();
-        	tableRow[3] = book.getType();
-        	tableRow[4] = Integer.toString(book.getSize());
-        	tableRow[5] = Integer.toString(book.getHasElectronicCopy());
+			tableRow[2] = book.getTopic();
+        	tableRow[3] = book.getTitle();
+        	tableRow[4] = book.getType();
+        	tableRow[5] = Integer.toString(book.getSize());
+        	tableRow[6] = book.getHasElectronicCopy() == 1 ? "Так" : "Ні";
         	bookTableModel.addRow(tableRow);
 		}
 
 		bookTable.setModel(bookTableModel);
+	}
+
+	public void fillSeriesTable(String seriesSearchQuery) {
+		DefaultTableModel seriesTableModel = (DefaultTableModel) seriesTable.getModel();
+		seriesTableModel.setRowCount(0);
+
+		ArrayList<Series> series = db.getSeries(seriesSearchQuery);
+
+		for (Series series1: series) {
+			String[] tableRow = new String[6];
+			tableRow[0] = Integer.toString(series1.getSeriesId());
+			tableRow[1] = series1.getDateOfPublication();
+			tableRow[2] = series1.getTitle();
+			tableRow[3] = Integer.toString(series1.getNumberOfPublications());
+			tableRow[4] = series1.getPublicationNames();
+			tableRow[5] = series1.getHasElectronicCopy() == 1 ? "Так" : "Ні";
+			seriesTableModel.addRow(tableRow);
+		}
+
+		seriesTable.setModel(seriesTableModel);
 	}
 
 }
