@@ -2,32 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c272c0bf-215f-40a0-bc24-903fa0a0563b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/DbAccess.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/EditReaderWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/InsertBookWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/InsertReaderWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/InsertReaderWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/LibraryWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/LibraryWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/LibraryWindow$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/LibraryWindow$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/LibraryWindow$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/LibraryWindow$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/LibraryWindow$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/LibraryWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Reader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/TakeBookWindow.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Book.java" afterPath="$PROJECT_DIR$/src/models/Book.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/DbAccess.java" afterPath="$PROJECT_DIR$/src/dao/DbAccess.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Debtor.java" afterPath="$PROJECT_DIR$/src/models/Debtor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/EditReaderWindow.java" afterPath="$PROJECT_DIR$/src/ui/EditReaderWindow.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/InsertBookWindow.java" afterPath="$PROJECT_DIR$/src/ui/InsertBookWindow.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/InsertReaderWindow.java" afterPath="$PROJECT_DIR$/src/ui/InsertReaderWindow.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/InsertSeriesWindow.java" afterPath="$PROJECT_DIR$/src/ui/InsertSeriesWindow.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/LibraryWindow.java" afterPath="$PROJECT_DIR$/src/ui/LibraryWindow.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Reader.java" afterPath="$PROJECT_DIR$/src/models/Reader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/TakeBookWindow.java" afterPath="$PROJECT_DIR$/src/ui/TakeBookWindow.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/dao/SqlQueries.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dump20190415.sql" afterPath="$PROJECT_DIR$/Dump20190415.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dao/DbAccess.java" afterPath="$PROJECT_DIR$/src/dao/DbAccess.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/LibraryWindow.java" afterPath="$PROJECT_DIR$/src/ui/LibraryWindow.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,8 +21,8 @@
       <file leaf-file-name="TakeBookWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/TakeBookWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="61" column="39" lean-forward="false" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+            <state relative-caret-position="153">
+              <caret line="60" column="8" lean-forward="true" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,8 +33,8 @@
       <file leaf-file-name="DbAccess.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dao/DbAccess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="342" column="48" lean-forward="true" selection-start-line="342" selection-start-column="48" selection-end-line="342" selection-end-column="48" />
+            <state relative-caret-position="118">
+              <caret line="216" column="53" lean-forward="true" selection-start-line="216" selection-start-column="53" selection-end-line="216" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#disconnect#0;class#DbAccess#0" expanded="false" />
@@ -69,37 +48,35 @@
                 <element signature="method#insertReader#0;class#DbAccess#0" expanded="false" />
                 <element signature="method#updateReader#0;class#DbAccess#0" expanded="false" />
                 <element signature="method#deleteReader#0;class#DbAccess#0" expanded="false" />
-                <element signature="method#getBooks#0;class#DbAccess#0" expanded="false" />
                 <element signature="e#7242#7248#0" expanded="true" />
                 <element signature="method#getFreeEditionCopies#0;class#DbAccess#0" expanded="false" />
                 <element signature="method#insertBook#0;class#DbAccess#0" expanded="false" />
                 <element signature="method#insertReading#0;class#DbAccess#0" expanded="false" />
                 <element signature="method#setReadingReturnDate#0;class#DbAccess#0" expanded="false" />
-                <marker date="1555356700277" expanded="false" signature="1580:1617" ph="SELECT MAX(m... missingValue" />
-                <marker date="1555356700277" expanded="false" signature="2035:2117" ph="SELECT reade... Readers" />
-                <marker date="1555356700277" expanded="false" signature="2768:2832" ph="SELECT reade... Readers" />
-                <marker date="1555356700277" expanded="false" signature="3805:4513" ph="SELECT Readi... Readings" />
-                <marker date="1555356700277" expanded="false" signature="5552:5649" ph="INSERT INTO Readers... " />
-                <marker date="1555356700277" expanded="false" signature="6185:6203" ph="UPDATE Reade... " />
-                <marker date="1555356700277" expanded="false" signature="6960:6997" ph="delete from " />
-                <marker date="1555356700277" expanded="false" signature="7276:7423" ph="SELECT bookI... " />
-                <marker date="1555356700277" expanded="false" signature="8212:8637" ph="SELECT EC.ed... Books" />
-                <marker date="1555356700277" expanded="false" signature="8467:8627" ph="SELECT EC1.e... EditionCopies" />
-                <marker date="1555356700277" expanded="false" signature="9330:9414" ph="INSERT INTO Editions... " />
-                <marker date="1555356700277" expanded="false" signature="9785:9859" ph="INSERT INTO Books... " />
-                <marker date="1555356700277" expanded="false" signature="10333:10380" ph="INSERT INTO EditionCopies... " />
-                <marker date="1555356700277" expanded="false" signature="10958:11045" ph="INSERT INTO Readings... " />
-                <marker date="1555356700277" expanded="false" signature="11654:11722" ph="UPDATE Readi... " />
+                <marker date="1555359985955" expanded="false" signature="1580:1617" ph="SELECT MAX(m... missingValue" />
+                <marker date="1555359985955" expanded="false" signature="2035:2117" ph="SELECT reade... Readers" />
+                <marker date="1555359985955" expanded="false" signature="2768:2832" ph="SELECT reade... Readers" />
+                <marker date="1555359985955" expanded="true" signature="3805:4513" ph="SELECT Readi... Readings" />
+                <marker date="1555359985955" expanded="false" signature="5552:5649" ph="INSERT INTO Readers... " />
+                <marker date="1555359985955" expanded="false" signature="6185:6203" ph="UPDATE Reade... " />
+                <marker date="1555359985955" expanded="false" signature="6960:6997" ph="delete from " />
+                <marker date="1555359985955" expanded="false" signature="8140:8565" ph="SELECT EC.ed... Books" />
+                <marker date="1555359985955" expanded="false" signature="8395:8555" ph="SELECT EC1.e... EditionCopies" />
+                <marker date="1555359985955" expanded="false" signature="9258:9342" ph="INSERT INTO Editions... " />
+                <marker date="1555359985955" expanded="false" signature="9713:9787" ph="INSERT INTO Books... " />
+                <marker date="1555359985955" expanded="false" signature="10261:10308" ph="INSERT INTO EditionCopies... " />
+                <marker date="1555359985955" expanded="false" signature="10886:10973" ph="INSERT INTO Readings... " />
+                <marker date="1555359985955" expanded="false" signature="11582:11650" ph="UPDATE Readi... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="database.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database.properties">
+      <file leaf-file-name="SqlQueries.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dao/SqlQueries.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="9" lean-forward="true" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+              <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -128,18 +105,8 @@
       <file leaf-file-name="Book.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/models/Book.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InsertReaderWindow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/InsertReaderWindow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+            <state relative-caret-position="160">
+              <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -158,13 +125,12 @@
       <file leaf-file-name="LibraryWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/LibraryWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+            <state relative-caret-position="223">
+              <caret line="252" column="28" lean-forward="false" selection-start-line="252" selection-start-column="28" selection-end-line="252" selection-end-column="28" />
               <folding>
                 <element signature="method#makeReaderReaderPanel#0;class#LibraryWindow#0" expanded="false" />
                 <element signature="method#makeReaderDebtorPanel#0;class#LibraryWindow#0" expanded="false" />
                 <element signature="method#makeReaderPanel#0;class#LibraryWindow#0" expanded="false" />
-                <element signature="method#makeBookPanel#0;class#LibraryWindow#0" expanded="false" />
                 <element signature="method#makeSeriesPanel#0;class#LibraryWindow#0" expanded="false" />
                 <element signature="method#makeSearchPanel#0;class#LibraryWindow#0" expanded="false" />
                 <element signature="method#initialize#0;class#LibraryWindow#0" expanded="false" />
@@ -200,6 +166,9 @@
     <findStrings>
       <find>getbook</find>
       <find>connection</find>
+      <find>bookSearchQuery</find>
+      <find>fillBookTable</find>
+      <find>Books</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -225,7 +194,9 @@
         <option value="$PROJECT_DIR$/src/models/Book.java" />
         <option value="$PROJECT_DIR$/src/models/Debtor.java" />
         <option value="$PROJECT_DIR$/database.properties" />
+        <option value="$PROJECT_DIR$/Dump20190415.sql" />
         <option value="$PROJECT_DIR$/src/ui/LibraryWindow.java" />
+        <option value="$PROJECT_DIR$/src/dao/SqlQueries.java" />
         <option value="$PROJECT_DIR$/src/dao/DbAccess.java" />
       </list>
     </option>
@@ -276,12 +247,6 @@
               <item name="library-readers" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LibraryReaders" type="b2602c69:ProjectViewProjectNode" />
-              <item name="library-readers" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -449,12 +414,12 @@
       <option name="presentableId" value="Default" />
       <updated>1555353403335</updated>
       <workItem from="1555353414182" duration="503000" />
-      <workItem from="1555353944825" duration="2764000" />
+      <workItem from="1555353944825" duration="6047000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3267000" />
+    <option name="totallyTimeSpent" value="6550000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
@@ -468,7 +433,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.42084327" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.122977346" sideWeight="0.5791567" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.04368932" sideWeight="0.5791567" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -480,7 +445,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967638" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22006473" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -499,12 +464,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dao/DbAccess.java</url>
-          <line>28</line>
+          <url>file://$PROJECT_DIR$/src/ui/TakeBookWindow.java</url>
+          <line>61</line>
           <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/dao/DbAccess.java</url>
+          <line>213</line>
+          <properties />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -552,28 +524,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/TakeBookWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="61" column="39" lean-forward="false" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/Debtor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="11" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Book.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -596,23 +550,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/Reader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="27" lean-forward="false" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/database.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="9" lean-forward="true" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+        <state relative-caret-position="0">
+          <caret line="0" column="41" lean-forward="false" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="41" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dump20190415.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="43" lean-forward="true" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/TakeBookWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="60" column="8" lean-forward="true" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/LibraryWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+        <state relative-caret-position="223">
+          <caret line="252" column="28" lean-forward="false" selection-start-line="252" selection-start-column="28" selection-end-line="252" selection-end-column="28" />
           <folding>
             <element signature="method#makeReaderReaderPanel#0;class#LibraryWindow#0" expanded="false" />
             <element signature="method#makeReaderDebtorPanel#0;class#LibraryWindow#0" expanded="false" />
             <element signature="method#makeReaderPanel#0;class#LibraryWindow#0" expanded="false" />
-            <element signature="method#makeBookPanel#0;class#LibraryWindow#0" expanded="false" />
             <element signature="method#makeSeriesPanel#0;class#LibraryWindow#0" expanded="false" />
             <element signature="method#makeSearchPanel#0;class#LibraryWindow#0" expanded="false" />
             <element signature="method#initialize#0;class#LibraryWindow#0" expanded="false" />
@@ -622,18 +609,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Reader.java">
+    <entry file="file://$PROJECT_DIR$/src/dao/SqlQueries.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="27" lean-forward="false" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        <state relative-caret-position="34">
+          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/DbAccess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="342" column="48" lean-forward="true" selection-start-line="342" selection-start-column="48" selection-end-line="342" selection-end-column="48" />
+        <state relative-caret-position="118">
+          <caret line="216" column="53" lean-forward="true" selection-start-line="216" selection-start-column="53" selection-end-line="216" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#disconnect#0;class#DbAccess#0" expanded="false" />
@@ -647,27 +634,25 @@
             <element signature="method#insertReader#0;class#DbAccess#0" expanded="false" />
             <element signature="method#updateReader#0;class#DbAccess#0" expanded="false" />
             <element signature="method#deleteReader#0;class#DbAccess#0" expanded="false" />
-            <element signature="method#getBooks#0;class#DbAccess#0" expanded="false" />
             <element signature="e#7242#7248#0" expanded="true" />
             <element signature="method#getFreeEditionCopies#0;class#DbAccess#0" expanded="false" />
             <element signature="method#insertBook#0;class#DbAccess#0" expanded="false" />
             <element signature="method#insertReading#0;class#DbAccess#0" expanded="false" />
             <element signature="method#setReadingReturnDate#0;class#DbAccess#0" expanded="false" />
-            <marker date="1555356700277" expanded="false" signature="1580:1617" ph="SELECT MAX(m... missingValue" />
-            <marker date="1555356700277" expanded="false" signature="2035:2117" ph="SELECT reade... Readers" />
-            <marker date="1555356700277" expanded="false" signature="2768:2832" ph="SELECT reade... Readers" />
-            <marker date="1555356700277" expanded="false" signature="3805:4513" ph="SELECT Readi... Readings" />
-            <marker date="1555356700277" expanded="false" signature="5552:5649" ph="INSERT INTO Readers... " />
-            <marker date="1555356700277" expanded="false" signature="6185:6203" ph="UPDATE Reade... " />
-            <marker date="1555356700277" expanded="false" signature="6960:6997" ph="delete from " />
-            <marker date="1555356700277" expanded="false" signature="7276:7423" ph="SELECT bookI... " />
-            <marker date="1555356700277" expanded="false" signature="8212:8637" ph="SELECT EC.ed... Books" />
-            <marker date="1555356700277" expanded="false" signature="8467:8627" ph="SELECT EC1.e... EditionCopies" />
-            <marker date="1555356700277" expanded="false" signature="9330:9414" ph="INSERT INTO Editions... " />
-            <marker date="1555356700277" expanded="false" signature="9785:9859" ph="INSERT INTO Books... " />
-            <marker date="1555356700277" expanded="false" signature="10333:10380" ph="INSERT INTO EditionCopies... " />
-            <marker date="1555356700277" expanded="false" signature="10958:11045" ph="INSERT INTO Readings... " />
-            <marker date="1555356700277" expanded="false" signature="11654:11722" ph="UPDATE Readi... " />
+            <marker date="1555359985955" expanded="false" signature="1580:1617" ph="SELECT MAX(m... missingValue" />
+            <marker date="1555359985955" expanded="false" signature="2035:2117" ph="SELECT reade... Readers" />
+            <marker date="1555359985955" expanded="false" signature="2768:2832" ph="SELECT reade... Readers" />
+            <marker date="1555359985955" expanded="true" signature="3805:4513" ph="SELECT Readi... Readings" />
+            <marker date="1555359985955" expanded="false" signature="5552:5649" ph="INSERT INTO Readers... " />
+            <marker date="1555359985955" expanded="false" signature="6185:6203" ph="UPDATE Reade... " />
+            <marker date="1555359985955" expanded="false" signature="6960:6997" ph="delete from " />
+            <marker date="1555359985955" expanded="false" signature="8140:8565" ph="SELECT EC.ed... Books" />
+            <marker date="1555359985955" expanded="false" signature="8395:8555" ph="SELECT EC1.e... EditionCopies" />
+            <marker date="1555359985955" expanded="false" signature="9258:9342" ph="INSERT INTO Editions... " />
+            <marker date="1555359985955" expanded="false" signature="9713:9787" ph="INSERT INTO Books... " />
+            <marker date="1555359985955" expanded="false" signature="10261:10308" ph="INSERT INTO EditionCopies... " />
+            <marker date="1555359985955" expanded="false" signature="10886:10973" ph="INSERT INTO Readings... " />
+            <marker date="1555359985955" expanded="false" signature="11582:11650" ph="UPDATE Readi... " />
           </folding>
         </state>
       </provider>

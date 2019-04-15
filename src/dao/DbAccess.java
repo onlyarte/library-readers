@@ -213,8 +213,7 @@ public class DbAccess {
     public ArrayList<Book> getBooks(String query) {
     	ArrayList<Book> books = new ArrayList<Book>();
     	try {
-    		sql = "SELECT bookId, dateOfPublication, title, type, size, hasElectronicCopy FROM Books T1 "
-				+ "INNER JOIN Editions T2 ON T1.editionId = T2.editionId";
+    		sql = SqlQueries.GetBooksQuery;
     		if (query != null && !query.equals("")) {
     			sql += " WHERE title LIKE '%" + query + "%'";
     		}
@@ -223,16 +222,16 @@ public class DbAccess {
     		if (resultSet != null) {
     			while (resultSet.next()) {
     				books.add(new Book(
-    						resultSet.getInt(1),
-    						resultSet.getString(2),
-    						resultSet.getString(3),
-    						resultSet.getString(4),
-    						resultSet.getInt(5),
-    						resultSet.getInt(6)));
+    						resultSet.getInt("bookId"),
+    						resultSet.getString("dateOfPublication"),
+							resultSet.getString("title"),
+    						resultSet.getString("type"),
+    						resultSet.getInt("size"),
+    						resultSet.getInt("hasElectronicCopy")));
     			}
     		}
     	} catch (SQLException e) {
-            System.out.println("findReaders> " + e.getMessage());
+            System.out.println("getBooks> " + e.getMessage());
         }
     	return books;
     }

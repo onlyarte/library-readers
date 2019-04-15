@@ -45,7 +45,6 @@ public class LibraryWindow {
 
 	private String readerReaderSearchQuery;
 	private String readerDebtorSearchQuery;
-	private String bookSearchQuery;
 
 	public LibraryWindow() {
 		window = this;
@@ -258,8 +257,8 @@ public class LibraryWindow {
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				bookSearchQuery = searchField.getText();
-//				fillBookTable();
+				String bookSearchQuery = searchField.getText();
+				fillBookTable(bookSearchQuery);
 			}
 		});
 		searchPanel.add(searchBtn);
@@ -512,24 +511,24 @@ public class LibraryWindow {
 		readerDebtorTable.setModel(readerDebtorTableModel);
 	}
 	
-//	public void fillBookTable() {
-//		DefaultTableModel bookTableModel = (DefaultTableModel) bookTable.getModel();
-//		bookTableModel.setRowCount(0);
-//
-//		ArrayList<models.Book> books = db.getBooks(bookSearchQuery);
-//
-//		for (models.Book book: books) {
-//			String[] tableRow = new String[6];
-//        	tableRow[0] = Integer.toString(book.getBookId());
-//        	tableRow[1] = book.getDateOfPublication();
-//        	tableRow[2] = book.getTitle();
-//        	tableRow[3] = book.getType();
-//        	tableRow[4] = Integer.toString(book.getSize());
-//        	tableRow[5] = Integer.toString(book.getHasElectronicCopy());
-//        	bookTableModel.addRow(tableRow);
-//		}
-//		
-//		bookTable.setModel(bookTableModel);
-//	}
+	public void fillBookTable(String bookSearchQuery) {
+		DefaultTableModel bookTableModel = (DefaultTableModel) bookTable.getModel();
+		bookTableModel.setRowCount(0);
+
+		ArrayList<models.Book> books = db.getBooks(bookSearchQuery);
+
+		for (models.Book book: books) {
+			String[] tableRow = new String[6];
+        	tableRow[0] = Integer.toString(book.getBookId());
+        	tableRow[1] = book.getDateOfPublication();
+        	tableRow[2] = book.getTitle();
+        	tableRow[3] = book.getType();
+        	tableRow[4] = Integer.toString(book.getSize());
+        	tableRow[5] = Integer.toString(book.getHasElectronicCopy());
+        	bookTableModel.addRow(tableRow);
+		}
+
+		bookTable.setModel(bookTableModel);
+	}
 
 }

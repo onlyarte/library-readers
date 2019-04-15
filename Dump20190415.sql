@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.15, for macos10.14 (x86_64)
 --
--- Host: localhost    Database: Library
+-- Host: localhost    Database: LibraryTest
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -15,6 +15,10 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+CREATE DATABASE if not exists LibraryTest;
+
+use LibraryTest;
 --
 -- Table structure for table `Authors`
 --
