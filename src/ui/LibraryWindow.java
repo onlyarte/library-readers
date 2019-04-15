@@ -1,3 +1,8 @@
+package ui;
+
+import dao.*;
+import models.*;
+
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -40,7 +45,6 @@ public class LibraryWindow {
 
 	private String readerReaderSearchQuery;
 	private String readerDebtorSearchQuery;
-	private String bookSearchQuery;
 
 	public LibraryWindow() {
 		window = this;
@@ -48,11 +52,11 @@ public class LibraryWindow {
 		initialize();
 
 		db = new DbAccess();
-		db.connect("Library", "root", "12345");
+		db.connect();
 
 		fillReaderReaderTable();
 		fillReaderDebtorTable();
-//		fillBookTable();
+		//fillBookTable();
 	}
 	
 	JComponent makeReaderReaderPanel() {
@@ -110,7 +114,7 @@ public class LibraryWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 //				int selectedReaderId = Integer.parseInt(readerReaderTable.getValueAt(readerReaderTable.getSelectedRow(), 0).toString());
-//				new TakeBookWindow(window, db, selectedReaderId);
+//				new ui.TakeBookWindow(window, db, selectedReaderId);
 			}
 		});
 		actionPanel.add(readerReaderTakeCopyBtn);
@@ -253,8 +257,8 @@ public class LibraryWindow {
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				bookSearchQuery = searchField.getText();
-//				fillBookTable();
+				String bookSearchQuery = searchField.getText();
+				fillBookTable(bookSearchQuery);
 			}
 		});
 		searchPanel.add(searchBtn);
@@ -282,7 +286,7 @@ public class LibraryWindow {
 		bookTable.setDefaultEditor(Object.class, null);
 		bookTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		String[] columnNames = { "ID", "Дата", "Назва", "Тип", "Об'єм", "Електронна копія" };
+		String[] columnNames = { "ID", "Дата", "Тема", "Назва", "Тип", "Об'єм", "Електронна копія" };
 		DefaultTableModel readerReaderTableModel = (DefaultTableModel) bookTable.getModel();
 		readerReaderTableModel.setColumnIdentifiers(columnNames);
 
@@ -311,7 +315,8 @@ public class LibraryWindow {
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// see examples in the reader table
+				String seriesSearchQuery = searchField.getText();
+				fillSeriesTable(seriesSearchQuery);
 			}
 		});
 		searchPanel.add(searchBtn);
@@ -507,35 +512,45 @@ public class LibraryWindow {
 		readerDebtorTable.setModel(readerDebtorTableModel);
 	}
 	
-//	public void fillBookTable() {
-//		DefaultTableModel bookTableModel = (DefaultTableModel) bookTable.getModel();
-//		bookTableModel.setRowCount(0);
-//
-//		ArrayList<Book> books = db.getBooks(bookSearchQuery);
-//
-//		for (Book book: books) {
-//			String[] tableRow = new String[6];
-//        	tableRow[0] = Integer.toString(book.getBookId());
-//        	tableRow[1] = book.getDateOfPublication();
-//        	tableRow[2] = book.getTitle();
-//        	tableRow[3] = book.getType();
-//        	tableRow[4] = Integer.toString(book.getSize());
-//        	tableRow[5] = Integer.toString(book.getHasElectronicCopy());
-//        	bookTableModel.addRow(tableRow);
-//		}
-//		
-//		bookTable.setModel(bookTableModel);
-//	}
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LibraryWindow window = new LibraryWindow();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public void fillBookTable(String bookSearchQuery) {
+		DefaultTableModel bookTableModel = (DefaultTableModel) bookTable.getModel();
+		bookTableModel.setRowCount(0);
+
+		ArrayList<models.Book> books = db.getBooks(bookSearchQuery);
+
+		for (models.Book book: books) {
+			String[] tableRow = new String[7];
+        	tableRow[0] = Integer.toString(book.getBookId());
+        	tableRow[1] = book.getDateOfPublication();
+			tableRow[2] = book.getTopic();
+        	tableRow[3] = book.getTitle();
+        	tableRow[4] = book.getType();
+        	tableRow[5] = Integer.toString(book.getSize());
+        	tableRow[6] = book.getHasElectronicCopy() == 1 ? "Так" : "Ні";
+        	bookTableModel.addRow(tableRow);
+		}
+
+		bookTable.setModel(bookTableModel);
 	}
+
+	public void fillSeriesTable(String seriesSearchQuery) {
+		DefaultTableModel seriesTableModel = (DefaultTableModel) seriesTable.getModel();
+		seriesTableModel.setRowCount(0);
+
+		ArrayList<Series> series = db.getSeries(seriesSearchQuery);
+
+		for (Series series1: series) {
+			String[] tableRow = new String[6];
+			tableRow[0] = Integer.toString(series1.getSeriesId());
+			tableRow[1] = series1.getDateOfPublication();
+			tableRow[2] = series1.getTitle();
+			tableRow[3] = Integer.toString(series1.getNumberOfPublications());
+			tableRow[4] = series1.getPublicationNames();
+			tableRow[5] = series1.getHasElectronicCopy() == 1 ? "Так" : "Ні";
+			seriesTableModel.addRow(tableRow);
+		}
+
+		seriesTable.setModel(seriesTableModel);
+	}
+
 }
