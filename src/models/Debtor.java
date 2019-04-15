@@ -1,3 +1,4 @@
+package models;
 
 public class Debtor {
 	private int readingId;
@@ -7,7 +8,7 @@ public class Debtor {
 	private int editionCopyId;
 	private String dateReceived;
 	
-	Debtor(int readingId, int readerId, String readerLastName, String editionTitle, int editionCopyId, String dateReceived) {
+	public Debtor(int readingId, int readerId, String readerLastName, String editionTitle, int editionCopyId, String dateReceived) {
 		this.readingId = readingId;
 		this.readerId = readerId;
 		this.readerLastName = readerLastName;

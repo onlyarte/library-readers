@@ -1,3 +1,7 @@
+package ui;
+
+import dao.DbAccess;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -12,12 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class InsertSeriesWindow {
+public class InsertBookWindow {
 	private JFrame frame;
 	private LibraryWindow mainWindow;
 	private DbAccess db;
 
-	public InsertSeriesWindow(LibraryWindow mainWindow, DbAccess db) {
+	public InsertBookWindow(LibraryWindow mainWindow, DbAccess db) {
 		this.mainWindow = mainWindow;
 		this.db = db;
 		initialize();
@@ -25,8 +29,8 @@ public class InsertSeriesWindow {
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("Додати збірник");
-		frame.setSize(400, 270);
+		frame.setTitle("Додати книгу");
+		frame.setSize(400, 240);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
 		
@@ -46,17 +50,19 @@ public class InsertSeriesWindow {
 		JTextField titleField = new JTextField();
 		panel.add(titleField);
 		
-		JLabel numOfPublLbl = new JLabel("Кількість публ.:");
-		panel.add(numOfPublLbl);
+		JLabel typeLbl = new JLabel("Тип:");
+		panel.add(typeLbl);
 		
-		JTextField numOfPublField = new JTextField();
-		panel.add(numOfPublField);
+		JComboBox<String> typeField = new JComboBox<String>();
+		typeField.addItem("посібник");
+		typeField.addItem("підручник");
+		panel.add(typeField);
 		
-		JLabel publNamesLbl = new JLabel("Публікації (через кому):");
-		panel.add(publNamesLbl);
+		JLabel sizeLbl = new JLabel("Об'єм:");
+		panel.add(sizeLbl);
 		
-		JTextField authorField = new JTextField();
-		panel.add(authorField);
+		JTextField sizeField = new JTextField();
+		panel.add(sizeField);
 		
 		JLabel eVersionLbl = new JLabel("Е-копія:");
 		panel.add(eVersionLbl);

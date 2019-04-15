@@ -1,3 +1,8 @@
+package ui;
+
+import dao.*;
+import models.*;
+
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -48,7 +53,7 @@ public class LibraryWindow {
 		initialize();
 
 		db = new DbAccess();
-		db.connect("Library", "root", "12345");
+		db.connect();
 
 		fillReaderReaderTable();
 		fillReaderDebtorTable();
@@ -110,7 +115,7 @@ public class LibraryWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 //				int selectedReaderId = Integer.parseInt(readerReaderTable.getValueAt(readerReaderTable.getSelectedRow(), 0).toString());
-//				new TakeBookWindow(window, db, selectedReaderId);
+//				new ui.TakeBookWindow(window, db, selectedReaderId);
 			}
 		});
 		actionPanel.add(readerReaderTakeCopyBtn);
@@ -511,9 +516,9 @@ public class LibraryWindow {
 //		DefaultTableModel bookTableModel = (DefaultTableModel) bookTable.getModel();
 //		bookTableModel.setRowCount(0);
 //
-//		ArrayList<Book> books = db.getBooks(bookSearchQuery);
+//		ArrayList<models.Book> books = db.getBooks(bookSearchQuery);
 //
-//		for (Book book: books) {
+//		for (models.Book book: books) {
 //			String[] tableRow = new String[6];
 //        	tableRow[0] = Integer.toString(book.getBookId());
 //        	tableRow[1] = book.getDateOfPublication();
@@ -526,16 +531,5 @@ public class LibraryWindow {
 //		
 //		bookTable.setModel(bookTableModel);
 //	}
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LibraryWindow window = new LibraryWindow();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 }

@@ -1,3 +1,8 @@
+package ui;
+
+import dao.DbAccess;
+import models.Reader;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,20 +15,26 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class InsertReaderWindow {
+public class EditReaderWindow {
 	private JFrame frame;
 	private LibraryWindow mainWindow;
 	private DbAccess db;
+	private int readerId;
+	private Reader reader;
 
-	public InsertReaderWindow(LibraryWindow mainWindow, DbAccess db) {
-		this.mainWindow = mainWindow;
+	public EditReaderWindow(LibraryWindow mainWindow, DbAccess db, int readerId) {
 		this.db = db;
+		this.mainWindow = mainWindow;
+		this.readerId = readerId;
+		
+		reader = db.getReader(readerId);
+		
 		initialize();
 	}
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("Додати читача");
+		frame.setTitle("Редагувати читача");
 		frame.setSize(400, 160);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
@@ -39,24 +50,26 @@ public class InsertReaderWindow {
 		panel.add(surnameLbl);
 		
 		JTextField surnameField = new JTextField();
+		surnameField.setText(reader.getLastName());
 		panel.add(surnameField);
 		
 		JLabel phoneLbl = new JLabel("Номер телефону:");
 		panel.add(phoneLbl);
 		
 		JTextField phoneField = new JTextField();
+		phoneField.setText(reader.getPhoneNumber());
 		panel.add(phoneField);
 		
 		JLabel bonusLbl = new JLabel("Бонуси:");
 		panel.add(bonusLbl);
 		
 		JTextField bonusField = new JTextField();
-		bonusField.setText("5");
+		bonusField.setText(String.valueOf(reader.getBonusPoints()));
 		panel.add(bonusField);
 		
 		panel.add(message);
 		
-		JButton submitBtn = new JButton("Додати");
+		JButton submitBtn = new JButton("Зберегти");
 		submitBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -65,13 +78,13 @@ public class InsertReaderWindow {
 					String phoneNumber = phoneField.getText();
 					int bonusPoints = Integer.parseInt(bonusField.getText());
 
-					if (lastName.length() < 2) throw new Exception("Прізвище має мати щонайменше 2 символи");
-					if (phoneNumber.length() < 5) throw new Exception("Номер телефону має мати щонайменше 5 символів");
-					if (bonusPoints < 0) throw new Exception("Бонуси мають бути натуральним числом");
+					if (lastName.length() < 2) throw new Exception("Прізвище закоротке");
+					if (phoneNumber.length() < 5) throw new Exception("Телефон закороткий");
+					if (bonusPoints < 0) throw new Exception("Бонуси ненатуральне число");
 
-					db.insertReader(lastName, phoneNumber, bonusPoints);
+					db.updateReader(readerId, lastName, phoneNumber, bonusPoints);
 
-					message.setText("Додано!");
+					message.setText("Збережено!");
 
 					surnameField.setEditable(false);
 					phoneField.setEditable(false);

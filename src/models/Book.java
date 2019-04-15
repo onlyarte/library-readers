@@ -1,3 +1,4 @@
+package models;
 
 public class Book {
 	private int bookId;
@@ -7,7 +8,7 @@ public class Book {
 	private int size;
 	private int hasElectronicCopy;
 	
-	Book(int bookId, String dateOfPublication, String title, String type, int size, int hasElectronicCopy) {
+	public Book(int bookId, String dateOfPublication, String title, String type, int size, int hasElectronicCopy) {
 		this.bookId = bookId;
 		this.dateOfPublication = dateOfPublication;
 		this.title = title;

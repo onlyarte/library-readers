@@ -1,3 +1,4 @@
+package models;
 
 public class Reader {
 	private int readerId;
@@ -5,7 +6,7 @@ public class Reader {
 	private String phoneNumber;
 	private int bonusPoints;
 	
-	Reader(int readerId, String lastName, String phoneNumber, int bonusPoints) {
+	public Reader(int readerId, String lastName, String phoneNumber, int bonusPoints) {
 		this.readerId = readerId;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
