@@ -289,6 +289,28 @@ public class DbAccess {
 		return authors;
 	}
 
+	public ArrayList<Theme> getThemes(String query) {
+		ArrayList<Theme> themes = new ArrayList<Theme>();
+		try {
+			sql = SqlQueries.GetThemesQuery;
+			if (query != null && !query.equals("")) {
+				sql += " WHERE title LIKE '%" + query + "%' OR topic like '%"+ query +"%' OR type like '%"+ query+"%'";
+			}
+			statement.execute(sql);
+			ResultSet resultSet = statement.getResultSet();
+			if (resultSet != null) {
+				while (resultSet.next()) {
+					themes.add(new Theme(
+							resultSet.getInt("themeId"),
+							resultSet.getString("name")));
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("getThemes> " + e.getMessage());
+		}
+		return themes;
+	}
+
     public ArrayList<Integer> getFreeEditionCopies(int bookId) {
     	ArrayList<Integer> freeCopies = new ArrayList<Integer>();
     	try {
