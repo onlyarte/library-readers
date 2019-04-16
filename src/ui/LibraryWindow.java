@@ -1,9 +1,6 @@
 package ui;
 import dao.DbAccess;
-import models.Author;
-import models.Debtor;
-import models.Reader;
-import models.Series;
+import models.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -733,11 +730,24 @@ public class LibraryWindow {
 			authorsTableModel.addRow(tableRow);
 		}
 
-		seriesTable.setModel(authorsTableModel);
+		authorTable.setModel(authorsTableModel);
 	}
 
 	public void fillThemesTable(String themeSearchQuery) {
-		//DefaultTableModel authorsTableModel = (DefaultTableModel)
+		DefaultTableModel themesTableModel = (DefaultTableModel) themeTable.getModel();
+		themesTableModel.setRowCount(0);
+
+		ArrayList<Theme> themes = null;
+		//ArrayList<Theme> themes = db.getThemes(themeSearchQuery);
+
+		for (Theme theme: themes) {
+			String[] tableRow = new String[6];
+			tableRow[0] = Integer.toString(theme.getThemeId());
+			tableRow[1] = theme.getName();
+			themesTableModel.addRow(tableRow);
+		}
+
+		themeTable.setModel(themesTableModel);
 	}
 
 }
