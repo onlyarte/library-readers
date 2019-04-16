@@ -279,7 +279,7 @@ public class LibraryWindow {
 		bookTable.setDefaultEditor(Object.class, null);
 		bookTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		String[] columnNames = { "ID", "Дата", "Тема", "Назва", "Тип", "Об'єм", "Електронна копія" };
+		String[] columnNames = { "ID", "Дата", "Тема", "Назва", "Тип", "Автори", "Об'єм", "Електронна копія" };
 		DefaultTableModel readerReaderTableModel = (DefaultTableModel) bookTable.getModel();
 		readerReaderTableModel.setColumnIdentifiers(columnNames);
 
@@ -620,14 +620,24 @@ public class LibraryWindow {
 		ArrayList<models.Book> books = db.getBooks(bookSearchQuery);
 
 		for (models.Book book: books) {
-			String[] tableRow = new String[7];
+			ArrayList<Author> authors = db.getAuthorsOfPublication(
+					db.getPublicationIdOfBook(book.getBookId()));
+			StringBuilder stringBuilder = new StringBuilder();
+			boolean firstInsert = true;
+			for (Author author : authors) {
+				stringBuilder.append(firstInsert ? author.getFullName()
+						: ", " + author.getFullName());
+				firstInsert = false;
+			}
+			String[] tableRow = new String[8];
         	tableRow[0] = Integer.toString(book.getBookId());
         	tableRow[1] = book.getDateOfPublication();
 			tableRow[2] = book.getTopic();
         	tableRow[3] = book.getTitle();
         	tableRow[4] = book.getType();
-        	tableRow[5] = Integer.toString(book.getSize());
-        	tableRow[6] = book.getHasElectronicCopy() == 1 ? "Так" : "Ні";
+        	tableRow[5] = stringBuilder.toString();
+        	tableRow[6] = Integer.toString(book.getSize());
+        	tableRow[7] = book.getHasElectronicCopy() == 1 ? "Так" : "Ні";
         	bookTableModel.addRow(tableRow);
 		}
 

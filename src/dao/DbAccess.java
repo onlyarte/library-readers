@@ -210,6 +210,21 @@ public class DbAccess {
             System.out.println(e.getMessage());
         }
     }
+
+    public int getPublicationIdOfBook(int bookId) {
+    	int pubId = 0;
+    	try {
+			preparedStatement = connection.prepareStatement(SqlQueries.GetPublicationOfBook
+					+ " WHERE bookId = " + bookId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt("publicationId");
+			}
+		} catch (SQLException e) {
+			System.out.println("getPublicationsOfBook> " + e.getMessage());
+		}
+    	return pubId;
+	}
     
     public ArrayList<Book> getBooks(String query) {
     	ArrayList<Book> books = new ArrayList<Book>();
@@ -287,6 +302,24 @@ public class DbAccess {
 			System.out.println("getAuthors> " + e.getMessage());
 		}
 		return authors;
+	}
+
+	public ArrayList<Author> getAuthorsOfPublication(int pubId) {
+		ArrayList<Author> authors = new ArrayList<>();
+		try {
+			preparedStatement = connection.prepareStatement(SqlQueries.GetAuthorsOfPublication
+					+ "WHERE publicationId = " + pubId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet != null) {
+				while (resultSet.next()) {
+					authors.add(new Author(0, resultSet.getString("name")));
+				}
+			}
+			return authors;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
     public ArrayList<Integer> getFreeEditionCopies(int bookId) {

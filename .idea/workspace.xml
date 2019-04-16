@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c272c0bf-215f-40a0-bc24-903fa0a0563b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/dao/DbAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DbAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/InsertBookWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/InsertBookWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/SqlQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/SqlQueries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/LibraryWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/LibraryWindow.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,8 +36,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/LibraryWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="377" column="51" lean-forward="true" selection-start-line="377" selection-start-column="51" selection-end-line="377" selection-end-column="51" />
+            <state relative-caret-position="443">
+              <caret line="636" column="41" lean-forward="true" selection-start-line="636" selection-start-column="41" selection-end-line="636" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2237#2238#0" expanded="true" />
@@ -49,6 +50,15 @@
                 <element signature="e#11821#11822#0" expanded="true" />
                 <element signature="e#14481#14492#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dao/SqlQueries.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -77,8 +87,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dao/DbAccess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="367" column="13" selection-start-line="367" selection-start-column="13" selection-end-line="367" selection-end-column="13" />
+            <state relative-caret-position="305">
+              <caret line="314" column="46" selection-start-line="314" selection-start-column="46" selection-end-line="314" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#disconnect#0;class#DbAccess#0" />
@@ -159,12 +169,12 @@
         <option value="$PROJECT_DIR$/src/models/Series.java" />
         <option value="$PROJECT_DIR$/src/ui/SearchResult.java" />
         <option value="$PROJECT_DIR$/src/models/Theme.java" />
-        <option value="$PROJECT_DIR$/src/dao/SqlQueries.java" />
         <option value="$PROJECT_DIR$/src/models/Author.java" />
-        <option value="$PROJECT_DIR$/src/ui/LibraryWindow.java" />
         <option value="$PROJECT_DIR$/src/ui/InsertAuthorWindow.java" />
-        <option value="$PROJECT_DIR$/src/dao/DbAccess.java" />
         <option value="$PROJECT_DIR$/src/ui/InsertBookWindow.java" />
+        <option value="$PROJECT_DIR$/src/ui/LibraryWindow.java" />
+        <option value="$PROJECT_DIR$/src/dao/DbAccess.java" />
+        <option value="$PROJECT_DIR$/src/dao/SqlQueries.java" />
       </list>
     </option>
   </component>
@@ -469,25 +479,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/LibraryWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="377" column="51" lean-forward="true" selection-start-line="377" selection-start-column="51" selection-end-line="377" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2237#2238#0" expanded="true" />
-            <element signature="e#2282#2283#0" expanded="true" />
-            <element signature="e#8228#8229#0" expanded="true" />
-            <element signature="e#8271#8272#0" expanded="true" />
-            <element signature="e#10000#10001#0" expanded="true" />
-            <element signature="e#10045#10046#0" expanded="true" />
-            <element signature="e#11778#11779#0" expanded="true" />
-            <element signature="e#11821#11822#0" expanded="true" />
-            <element signature="e#14481#14492#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/InsertAuthorWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87">
@@ -529,13 +520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/SqlQueries.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/InsertReaderWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-258">
@@ -550,10 +534,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/LibraryWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="636" column="41" lean-forward="true" selection-start-line="636" selection-start-column="41" selection-end-line="636" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2237#2238#0" expanded="true" />
+            <element signature="e#2282#2283#0" expanded="true" />
+            <element signature="e#8228#8229#0" expanded="true" />
+            <element signature="e#8271#8272#0" expanded="true" />
+            <element signature="e#10000#10001#0" expanded="true" />
+            <element signature="e#10045#10046#0" expanded="true" />
+            <element signature="e#11778#11779#0" expanded="true" />
+            <element signature="e#11821#11822#0" expanded="true" />
+            <element signature="e#14481#14492#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/SqlQueries.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/DbAccess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="367" column="13" selection-start-line="367" selection-start-column="13" selection-end-line="367" selection-end-column="13" />
+        <state relative-caret-position="305">
+          <caret line="314" column="46" selection-start-line="314" selection-start-column="46" selection-end-line="314" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#disconnect#0;class#DbAccess#0" />
