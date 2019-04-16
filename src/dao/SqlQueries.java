@@ -15,6 +15,4 @@ public class SqlQueries {
             "INNER JOIN EditionTopics T4 ON T1.editionId = T4.editionId\n";
 
     public static String GetAuthorsQuery = "SELECT * FROM authors";
-
-    public static String GetThemesQuery = "SELECT * FROM themes";
 }

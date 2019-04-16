@@ -2,13 +2,13 @@ package models;
 
 public class Author {
     private int authorId;
-    private String surname;
+    private String fullName;
 
-    public Author(int authorId, String surname) {
+    public Author(int authorId, String fullName) {
         this.authorId = authorId;
-        this.surname = surname;
+        this.fullName = fullName;
     }
 
     public int getAuthorId() { return authorId; }
-    public String getSurname() { return surname; }
+    public String getFullName() { return fullName; }
 }

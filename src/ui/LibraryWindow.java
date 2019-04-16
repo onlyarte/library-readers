@@ -27,7 +27,6 @@ public class LibraryWindow {
 	private JTable bookTable;
 	private JTable seriesTable;
 	private JTable authorTable;
-	private JTable themeTable;
 	private JTable searchTable;
 	
 	private JButton readerReaderEditBtn;
@@ -50,6 +49,7 @@ public class LibraryWindow {
 		fillReaderDebtorTable();
 		fillBookTable("");
 		fillSeriesTable("");
+		fillAuthorsTable("");
 	}
 	
 	JComponent makeReaderReaderPanel() {
@@ -127,7 +127,7 @@ public class LibraryWindow {
 		String[] columnNames = { "ID", "Прізвище", "Номер телефону", "Бонуси" };
 		DefaultTableModel readerReaderTableModel = (DefaultTableModel) readerReaderTable.getModel();
 		readerReaderTableModel.setColumnIdentifiers(columnNames);
-		
+
 		readerReaderTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -140,7 +140,7 @@ public class LibraryWindow {
 
 		JScrollPane scrollPane = new JScrollPane(readerReaderTable);
 		tablePanel.add(scrollPane);
-	
+
 		readerReaderPanel.add(tablePanel, BorderLayout.CENTER);
 
 		return readerReaderPanel;
@@ -149,16 +149,16 @@ public class LibraryWindow {
 	JComponent makeReaderDebtorPanel() {
 		JPanel readerDebtorPanel = new JPanel(false);
 		readerDebtorPanel.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel controlPanel = new JPanel();
 		controlPanel.setLayout(new BorderLayout());
-		
+
 		JPanel searchPanel = new JPanel();
 		controlPanel.add(searchPanel, BorderLayout.LINE_START);
-		
+
 		JTextField searchField = new JTextField(20);
 		searchPanel.add(searchField);
-		
+
 		JButton searchBtn = new JButton("Шукати");
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
@@ -185,22 +185,22 @@ public class LibraryWindow {
 		actionPanel.add(readerDebtorReturnCopyBtn);
 
 		readerDebtorPanel.add(controlPanel, BorderLayout.NORTH);
-		
+
 		JPanel listPanel = new JPanel();
 		listPanel.setLayout(new GridLayout());
-		
+
 		JPanel tablePanel = new JPanel();
 		tablePanel.setLayout(new GridLayout());
-		
+
 		readerDebtorTable = new JTable();
 		readerDebtorTable.setFillsViewportHeight(true);
 		readerDebtorTable.setDefaultEditor(Object.class, null);
 		readerDebtorTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+
 		String[] columnNames = { "ID транзакції", "ID читача", "Прізвище", "Видання", "Примірник", "Видано" };
 		DefaultTableModel readerDebtorTableModel = (DefaultTableModel) readerDebtorTable.getModel();
 		readerDebtorTableModel.setColumnIdentifiers(columnNames);
-		
+
 		readerDebtorTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -212,12 +212,12 @@ public class LibraryWindow {
 
 		JScrollPane scrollPane = new JScrollPane(readerDebtorTable);
 		tablePanel.add(scrollPane);
-		
+
 		readerDebtorPanel.add(tablePanel, BorderLayout.CENTER);
 
 		return readerDebtorPanel;
 	}
-	
+
 	JComponent makeReaderPanel() {
 		JPanel readerPanel = new JPanel(false);
 
@@ -232,20 +232,20 @@ public class LibraryWindow {
 
 		return readerPanel;
 	}
-	
+
 	JComponent makeBookPanel() {
 		JPanel bookPanel = new JPanel(false);
 		bookPanel.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel controlPanel = new JPanel();
 		controlPanel.setLayout(new BorderLayout());
-		
+
 		JPanel searchPanel = new JPanel();
 		controlPanel.add(searchPanel, BorderLayout.LINE_START);
-		
+
 		JTextField searchField = new JTextField(20);
 		searchPanel.add(searchField);
-		
+
 		JButton searchBtn = new JButton("Шукати");
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
@@ -269,41 +269,41 @@ public class LibraryWindow {
 		actionPanel.add(insertBookBtn);
 
 		bookPanel.add(controlPanel, BorderLayout.NORTH);
-		
-		
+
+
 		JPanel tablePanel = new JPanel();
 		tablePanel.setLayout(new GridLayout());
-		
+
 		bookTable = new JTable();
 		bookTable.setFillsViewportHeight(true);
 		bookTable.setDefaultEditor(Object.class, null);
 		bookTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+
 		String[] columnNames = { "ID", "Дата", "Тема", "Назва", "Тип", "Об'єм", "Електронна копія" };
 		DefaultTableModel readerReaderTableModel = (DefaultTableModel) bookTable.getModel();
 		readerReaderTableModel.setColumnIdentifiers(columnNames);
 
 		JScrollPane scrollPane = new JScrollPane(bookTable);
 		tablePanel.add(scrollPane);
-	
+
 		bookPanel.add(tablePanel, BorderLayout.CENTER);
 
 		return bookPanel;
 	}
-	
+
 	JComponent makeSeriesPanel() {
 		JPanel seriesPanel = new JPanel(false);
 		seriesPanel.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel controlPanel = new JPanel();
 		controlPanel.setLayout(new BorderLayout());
-		
+
 		JPanel searchPanel = new JPanel();
 		controlPanel.add(searchPanel, BorderLayout.LINE_START);
-		
+
 		JTextField searchField = new JTextField(20);
 		searchPanel.add(searchField);
-		
+
 		JButton searchBtn = new JButton("Шукати");
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
@@ -327,23 +327,23 @@ public class LibraryWindow {
 		actionPanel.add(insertSeriesBtn);
 
 		seriesPanel.add(controlPanel, BorderLayout.NORTH);
-		
-		
+
+
 		JPanel tablePanel = new JPanel();
 		tablePanel.setLayout(new GridLayout());
-		
+
 		seriesTable = new JTable();
 		seriesTable.setFillsViewportHeight(true);
 		seriesTable.setDefaultEditor(Object.class, null);
 		seriesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+
 		String[] columnNames = { "ID", "Дата", "Назва", "Кількість публ.", "Публікації", "Електр. копія" };
 		DefaultTableModel seariesTableModel = (DefaultTableModel) seriesTable.getModel();
 		seariesTableModel.setColumnIdentifiers(columnNames);
 
 		JScrollPane scrollPane = new JScrollPane(seriesTable);
 		tablePanel.add(scrollPane);
-	
+
 		seriesPanel.add(tablePanel, BorderLayout.CENTER);
 
 		return seriesPanel;
@@ -395,7 +395,7 @@ public class LibraryWindow {
 		authorTable.setDefaultEditor(Object.class, null);
 		authorTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		String[] columnNames = { "ID", "Прізвище" };
+		String[] columnNames = { "ID", "Повне ім'я" };
 		DefaultTableModel readerReaderTableModel = (DefaultTableModel) authorTable.getModel();
 		readerReaderTableModel.setColumnIdentifiers(columnNames);
 
@@ -407,109 +407,51 @@ public class LibraryWindow {
 		return authorPanel;
 	}
 
-	JComponent makeThemePanel() {
-		JPanel themePanel = new JPanel(false);
-		themePanel.setLayout(new BorderLayout(0, 0));
-
-		JPanel controlPanel = new JPanel();
-		controlPanel.setLayout(new BorderLayout());
-
-		JPanel searchPanel = new JPanel();
-		controlPanel.add(searchPanel, BorderLayout.LINE_START);
-
-		JTextField searchField = new JTextField(20);
-		searchPanel.add(searchField);
-
-		JButton searchBtn = new JButton("Шукати");
-		searchBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String themeSearchQuery = searchField.getText();
-				fillThemesTable(themeSearchQuery);
-			}
-		});
-		searchPanel.add(searchBtn);
-
-		JPanel actionPanel = new JPanel();
-		controlPanel.add(actionPanel, BorderLayout.LINE_END);
-
-		JButton insertBookBtn = new JButton("Додати");
-		insertBookBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new InsertBookWindow(window, db);
-			}
-		});
-		actionPanel.add(insertBookBtn);
-
-		themePanel.add(controlPanel, BorderLayout.NORTH);
-
-
-		JPanel tablePanel = new JPanel();
-		tablePanel.setLayout(new GridLayout());
-
-		themeTable = new JTable();
-		themeTable.setFillsViewportHeight(true);
-		themeTable.setDefaultEditor(Object.class, null);
-		themeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-		String[] columnNames = { "ID", "Назва" };
-		DefaultTableModel readerReaderTableModel = (DefaultTableModel) themeTable.getModel();
-		readerReaderTableModel.setColumnIdentifiers(columnNames);
-
-		JScrollPane scrollPane = new JScrollPane(themeTable);
-		tablePanel.add(scrollPane);
-
-		themePanel.add(tablePanel, BorderLayout.CENTER);
-
-		return themePanel;
-	}
-	
 	JComponent makeSearchPanel() {
 		JPanel searchPanel = new JPanel(false);
 		searchPanel.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel controlPanel = new JPanel();
 		controlPanel.setLayout(new GridLayout(7,2));
 		controlPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-		
+
 		JLabel authorLbl = new JLabel("Автор:");
 		controlPanel.add(authorLbl);
-		
+
 		JTextField authorField = new JTextField();
 		controlPanel.add(authorField);
-		
+
 		JLabel topicLbl = new JLabel("Тема:");
 		controlPanel.add(topicLbl);
-		
+
 		JTextField topicField = new JTextField();
 		controlPanel.add(topicField);
-		
+
 		JLabel typeLbl = new JLabel("Тип:");
 		controlPanel.add(typeLbl);
-		
+
 		JTextField typeField = new JTextField();
 		controlPanel.add(typeField);
-		
+
 		JLabel keyWordLbl = new JLabel("Ключове слово:");
 		controlPanel.add(keyWordLbl);
-		
+
 		JTextField keyWordField = new JTextField();
 		controlPanel.add(keyWordField);
-		
+
 		JLabel fromLbl = new JLabel("З:");
 		controlPanel.add(fromLbl);
 		DateFormatter dateFormatter=new DateFormatter(new SimpleDateFormat("yyyy-mm-dd"));
 
 		JFormattedTextField fromField = new JFormattedTextField(dateFormatter);
 		controlPanel.add(fromField);
-		
+
 		JLabel toLbl = new JLabel("До:");
 		controlPanel.add(toLbl);
-		
+
 		JFormattedTextField toField= new JFormattedTextField(dateFormatter);
 		controlPanel.add(toField);
-		
+
 		JButton searchBtn = new JButton("Шукати");
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
@@ -562,7 +504,7 @@ public class LibraryWindow {
 		controlPanel.add(rateBtn);
 
 		searchPanel.add(controlPanel, BorderLayout.NORTH);
-		
+
 
 
 		return searchPanel;
@@ -606,10 +548,10 @@ public class LibraryWindow {
 		frame.setTitle("Бібліотека");
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
-		
+
 		JComponent panel1 = makeReaderPanel();
 		tabbedPane.addTab("Читачі", panel1);
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
@@ -617,24 +559,20 @@ public class LibraryWindow {
 		JComponent panel2 = makeBookPanel();
 		tabbedPane.addTab("Книжки", panel2);
 		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
-		
+
 		JComponent panel3 = makeSeriesPanel();
 		tabbedPane.addTab("Збірники", panel3);
 		tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
 
 		JComponent panel4 = makeAuthorPanel();
-		tabbedPane.addTab("Збірники", panel4);
+		tabbedPane.addTab("Автори", panel4);
 		tabbedPane.setMnemonicAt(2, KeyEvent.VK_4);
-
-		JComponent panel5 = makeSeriesPanel();
-		tabbedPane.addTab("Збірники", panel5);
-		tabbedPane.setMnemonicAt(2, KeyEvent.VK_5);
 	}
-	
+
 	public void fillReaderReaderTable() {
 		readerReaderEditBtn.setVisible(false);
 		readerReaderTakeCopyBtn.setVisible(false);
-		
+
 		DefaultTableModel readerReaderTableModel = (DefaultTableModel) readerReaderTable.getModel();
 		readerReaderTableModel.setRowCount(0);
 
@@ -648,13 +586,13 @@ public class LibraryWindow {
         	tableRow[3] = Integer.toString(reader.getBonusPoints());
         	readerReaderTableModel.addRow(tableRow);
 		}
-		
+
 		readerReaderTable.setModel(readerReaderTableModel);
 	}
-	
+
 	public void fillReaderDebtorTable() {
 		readerDebtorReturnCopyBtn.setVisible(false);
-		
+
 		DefaultTableModel readerDebtorTableModel = (DefaultTableModel) readerDebtorTable.getModel();
 		readerDebtorTableModel.setRowCount(0);
 
@@ -720,34 +658,15 @@ public class LibraryWindow {
 		DefaultTableModel authorsTableModel = (DefaultTableModel) authorTable.getModel();
 		authorsTableModel.setRowCount(0);
 
-		ArrayList<Author> authors = null;
-		//ArrayList<Author> authors = db.getAuthors(authorSearchQuery);
+		ArrayList<Author> authors = db.getAuthors(authorSearchQuery);
 
 		for (Author author: authors) {
 			String[] tableRow = new String[6];
 			tableRow[0] = Integer.toString(author.getAuthorId());
-			tableRow[1] = author.getSurname();
+			tableRow[1] = author.getFullName();
 			authorsTableModel.addRow(tableRow);
 		}
 
 		authorTable.setModel(authorsTableModel);
 	}
-
-	public void fillThemesTable(String themeSearchQuery) {
-		DefaultTableModel themesTableModel = (DefaultTableModel) themeTable.getModel();
-		themesTableModel.setRowCount(0);
-
-		ArrayList<Theme> themes = null;
-		//ArrayList<Theme> themes = db.getThemes(themeSearchQuery);
-
-		for (Theme theme: themes) {
-			String[] tableRow = new String[6];
-			tableRow[0] = Integer.toString(theme.getThemeId());
-			tableRow[1] = theme.getName();
-			themesTableModel.addRow(tableRow);
-		}
-
-		themeTable.setModel(themesTableModel);
-	}
-
 }
