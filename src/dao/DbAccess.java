@@ -2,19 +2,20 @@ package dao;
 
 import models.*;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.*;
-import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.Date;
+
 public class DbAccess {
 	private static String DB_URL = "";
-	private static  String DB_USER = "";
-	private static  String DB_PASSWD = "";
+	private static String DB_USER = "";
+	private static String DB_PASSWD = "";
 
 	private static String databasePropPath = "./database.properties";
 
@@ -266,6 +267,27 @@ public class DbAccess {
 		return series;
 	}
 
+	public ArrayList<Author> getAuthors(String query) {
+		ArrayList<Author> authors = new ArrayList<Author>();
+		try {
+			sql = SqlQueries.GetAuthorsQuery;
+			if (query != null && !query.equals("")) {
+				sql += " WHERE title LIKE '%" + query + "%' OR topic like '%"+ query +"%' OR type like '%"+ query+"%'";
+			}
+			statement.execute(sql);
+			ResultSet resultSet = statement.getResultSet();
+			if (resultSet != null) {
+				while (resultSet.next()) {
+					authors.add(new Author(
+							resultSet.getInt("authorId"),
+							resultSet.getString("name")));
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("getAuthors> " + e.getMessage());
+		}
+		return authors;
+	}
 
     public ArrayList<Integer> getFreeEditionCopies(int bookId) {
     	ArrayList<Integer> freeCopies = new ArrayList<Integer>();

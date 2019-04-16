@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c272c0bf-215f-40a0-bc24-903fa0a0563b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/models/Theme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/LibraryWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/LibraryWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/DbAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DbAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/SqlQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/SqlQueries.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,10 +42,35 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/dao/DbAccess.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="124">
+              <caret line="272" column="44" selection-start-line="272" selection-start-column="44" selection-end-line="272" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#disconnect#0;class#DbAccess#0" />
+                <element signature="method#getReader#0;class#DbAccess#0" />
+                <element signature="method#isStringNumeric#0;class#DbAccess#0" />
+                <element signature="method#getDebtors#0;class#DbAccess#0" />
+                <element signature="method#insertReader#0;class#DbAccess#0" />
+                <element signature="method#updateReader#0;class#DbAccess#0" />
+                <element signature="method#deleteReader#0;class#DbAccess#0" />
+                <element signature="e#9133#9141#0" expanded="true" />
+                <element signature="method#getFreeEditionCopies#0;class#DbAccess#0" />
+                <element signature="method#insertBook#0;class#DbAccess#0" />
+                <element signature="method#insertReading#0;class#DbAccess#0" />
+                <element signature="method#setReadingReturnDate#0;class#DbAccess#0" />
+                <element signature="method#initDatabaseCredentials#0;class#DbAccess#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/LibraryWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="740" column="25" selection-start-line="740" selection-start-column="25" selection-end-line="740" selection-end-column="25" />
+            <state relative-caret-position="179">
+              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2237#2238#0" expanded="true" />
@@ -125,13 +150,13 @@
         <option value="$PROJECT_DIR$/database.properties" />
         <option value="$PROJECT_DIR$/src/ui/InsertBookWindow.java" />
         <option value="$PROJECT_DIR$/Dump20190415.sql" />
-        <option value="$PROJECT_DIR$/src/dao/SqlQueries.java" />
         <option value="$PROJECT_DIR$/src/models/Series.java" />
         <option value="$PROJECT_DIR$/src/ui/SearchResult.java" />
-        <option value="$PROJECT_DIR$/src/dao/DbAccess.java" />
         <option value="$PROJECT_DIR$/src/models/Author.java" />
         <option value="$PROJECT_DIR$/src/models/Theme.java" />
         <option value="$PROJECT_DIR$/src/ui/LibraryWindow.java" />
+        <option value="$PROJECT_DIR$/src/dao/SqlQueries.java" />
+        <option value="$PROJECT_DIR$/src/dao/DbAccess.java" />
       </list>
     </option>
   </component>
@@ -347,19 +372,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dao/DbAccess.java</url>
-          <line>304</line>
+          <line>326</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dao/DbAccess.java</url>
-          <line>349</line>
+          <line>371</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dao/DbAccess.java</url>
-          <line>330</line>
+          <line>352</line>
           <properties />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
@@ -398,13 +423,6 @@
         <state relative-caret-position="34">
           <caret line="2" column="15" lean-forward="true" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/SqlQueries.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="74" selection-start-line="14" selection-start-column="74" selection-end-line="14" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -488,29 +506,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/DbAccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1265">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#disconnect#0;class#DbAccess#0" />
-            <element signature="method#getReader#0;class#DbAccess#0" />
-            <element signature="method#isStringNumeric#0;class#DbAccess#0" />
-            <element signature="method#getDebtors#0;class#DbAccess#0" />
-            <element signature="method#insertReader#0;class#DbAccess#0" />
-            <element signature="method#updateReader#0;class#DbAccess#0" />
-            <element signature="method#deleteReader#0;class#DbAccess#0" />
-            <element signature="method#getBooks#0;class#DbAccess#0" />
-            <element signature="method#getFreeEditionCopies#0;class#DbAccess#0" />
-            <element signature="method#insertBook#0;class#DbAccess#0" />
-            <element signature="method#insertReading#0;class#DbAccess#0" />
-            <element signature="method#setReadingReturnDate#0;class#DbAccess#0" />
-            <element signature="method#initDatabaseCredentials#0;class#DbAccess#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -537,8 +532,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/LibraryWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="740" column="25" selection-start-line="740" selection-start-column="25" selection-end-line="740" selection-end-column="25" />
+        <state relative-caret-position="179">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2237#2238#0" expanded="true" />
@@ -552,6 +547,36 @@
             <element signature="e#13567#13568#0" expanded="true" />
             <element signature="e#13610#13611#0" expanded="true" />
             <element signature="method#fillReaderDebtorTable#0;class#LibraryWindow#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/SqlQueries.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="63" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/DbAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="272" column="44" selection-start-line="272" selection-start-column="44" selection-end-line="272" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#disconnect#0;class#DbAccess#0" />
+            <element signature="method#getReader#0;class#DbAccess#0" />
+            <element signature="method#isStringNumeric#0;class#DbAccess#0" />
+            <element signature="method#getDebtors#0;class#DbAccess#0" />
+            <element signature="method#insertReader#0;class#DbAccess#0" />
+            <element signature="method#updateReader#0;class#DbAccess#0" />
+            <element signature="method#deleteReader#0;class#DbAccess#0" />
+            <element signature="e#9133#9141#0" expanded="true" />
+            <element signature="method#getFreeEditionCopies#0;class#DbAccess#0" />
+            <element signature="method#insertBook#0;class#DbAccess#0" />
+            <element signature="method#insertReading#0;class#DbAccess#0" />
+            <element signature="method#setReadingReturnDate#0;class#DbAccess#0" />
+            <element signature="method#initDatabaseCredentials#0;class#DbAccess#0" />
           </folding>
         </state>
       </provider>
