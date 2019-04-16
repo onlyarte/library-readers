@@ -371,6 +371,23 @@ public class DbAccess {
         }
         return bookId;
     }
+
+	public int insertAuthor(String fullName) {
+		int authorId = getNextId("Authors", "authorId");
+		int rows = 0;
+		try {
+			preparedStatement = connection.prepareStatement(
+					"INSERT INTO Authors (name) VALUES (?)"
+			);
+			preparedStatement.setString(1, fullName);
+			rows = preparedStatement.executeUpdate();
+			if (rows == 0) authorId = 0;
+			rows = 0;
+		} catch (SQLException e) {
+			System.out.println("insertBook> " + e.getMessage());
+		}
+		return authorId;
+	}
     
     public int insertReading(int readerId, int editionCopyId) {
     	int readingId = getNextId("Readings", "readingId");

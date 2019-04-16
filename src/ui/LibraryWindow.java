@@ -379,7 +379,7 @@ public class LibraryWindow {
 		insertBookBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new InsertBookWindow(window, db);
+				new InsertAuthorWindow(window, db);
 			}
 		});
 		actionPanel.add(insertBookBtn);
