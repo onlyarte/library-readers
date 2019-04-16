@@ -314,7 +314,7 @@ public class DbAccess {
     	return freeCopies;
     }
 
-    public int insertBook(String dateOfPublication, String topic, String title, String type, int size, int hasElectronicCopy, int numberOfCopies) {
+    public int insertBook(String dateOfPublication, String topic, String title, String type, String[] authors, int size, int hasElectronicCopy, int numberOfCopies) {
     	int editionId = getNextId("Editions", "editionId");
 		int editionTopicId = getNextId("EditionTopics", "editionTopicId");
 		int publicationId = getNextId("Publications", "publicationId");
@@ -366,6 +366,15 @@ public class DbAccess {
             	preparedStatement.setInt(1, editionId);
             	preparedStatement.executeUpdate();
             }
+
+            for (String authorName : authors) {
+            	ArrayList<Author> author = getAuthors(authorName);
+            	preparedStatement = connection.prepareStatement(
+            			"INSERT INTO publicationauthors (publicationId, authorId) VALUES " +
+								"(" + publicationId + ", " + author.get(0).getAuthorId() + ")"
+				);
+            	preparedStatement.executeUpdate();
+			}
         } catch (SQLException e) {
             System.out.println("insertBook> " + e.getMessage());
         }

@@ -1,21 +1,12 @@
 package ui;
 
 import dao.DbAccess;
-import models.Book;
 
-import java.awt.Color;
-import java.awt.GridLayout;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 
 public class InsertBookWindow {
 	private JFrame frame;
@@ -36,7 +27,7 @@ public class InsertBookWindow {
 		frame.setVisible(true);
 		
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(8,2));
+		panel.setLayout(new GridLayout(9,2));
 		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		JLabel dateLbl = new JLabel("Дата (yyyy-mm-dd):");
@@ -83,6 +74,12 @@ public class InsertBookWindow {
 	    
 	    JTextField copiesField = new JTextField();
 	    panel.add(copiesField);
+
+		JLabel authorsLbl = new JLabel("Автори:");
+		panel.add(authorsLbl);
+
+		JTextField authorsField = new JTextField();
+		panel.add(authorsField);
 		
 	    JLabel message = new JLabel();
 		message.setForeground(Color.red);
@@ -97,6 +94,7 @@ public class InsertBookWindow {
 					String topic = topicField.getText();
 					String title = titleField.getText();
 					String type = typeField.getSelectedItem().toString();
+					String[] authors = authorsField.getText().split(", ");
 					int size = Integer.parseInt(sizeField.getText());
 					int hasElectronicCopy = eVersion.isSelected() ? 1 : 0;
 					int numberOfCopies = Integer.parseInt(copiesField.getText());
@@ -105,7 +103,7 @@ public class InsertBookWindow {
 					if (size < 1) throw new Exception("Неправильний розмір");
 					if (numberOfCopies < 1) throw new Exception("Щонайменше одна копія");
 
-					db.insertBook(dateOfPublication,topic, title, type, size, hasElectronicCopy, numberOfCopies);
+					db.insertBook(dateOfPublication,topic, title, type, authors, size, hasElectronicCopy, numberOfCopies);
 
 					message.setText("Додано!");
 
