@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import javax.swing.JOptionPane;
 public class DbAccess {
 	private static String DB_URL = "";
 	private static  String DB_USER = "";
@@ -369,7 +369,32 @@ public class DbAccess {
         }
         return readingId;
     }
-    
+	public ArrayList getResultOfSearch(ArrayList searchRes) throws SQLException {
+		ArrayList id=new ArrayList();
+		if(!searchRes.isEmpty()){
+			for(int i=0;i<searchRes.size();i++){
+				String que="Select editionCopyId FROM editioncopies "
+						+ "Where editionId IN(SELECT editionId from books"
+						+ " WHERE bookId IN(SELECT bookId FROM publications WHERE title='"+(searchRes.get(i))+"'))";
+
+				String que1="Select editionCopyId FROM editioncopies "
+						+ "Where editionId IN(SELECT editionId from series"
+						+ " WHERE seriesId IN(SELECT bookId FROM publications WHERE title='"+(searchRes.get(i))+"'))";
+				ResultSet res=statement.executeQuery(que);
+				while(res.next()){
+					id.add(res.getInt(1));
+					if(res.isLast())break;
+				}
+				res=statement.executeQuery(que1);
+				while(res.next()){
+					id.add(res.getInt(1));
+					if(res.isLast())break;
+				}
+			}
+			return id;}
+		else
+			return null;
+	}
     public void setReadingReturnDate(int readingId) {
     	try {
     		String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
@@ -379,8 +404,170 @@ public class DbAccess {
             System.out.println(e.getMessage());
     	}
     }
+	public ArrayList<ArrayList> getRating() throws SQLException{
+		ArrayList result=new ArrayList();
+		ArrayList result1=new ArrayList();
+		String que="Select editioncopies.editionCopyId,publications.title,COUNT(readings.editionCopyId) as num,MAX(readings.dateReceived) as dates FROM editioncopies,publications,books,readings "
+				+ " WHERE books.editionId=editioncopies.editionId"
+				+ " AND readings.editionCopyId=editioncopies.editionCopyId "
+				+ " AND publications.bookId=books.bookId "
+				+ " GROUP BY readings.editionCopyId "
+				+ " Order BY num desc,dates desc;";
+
+		ResultSet res=statement.executeQuery(que);
+
+		while(res.next()){
+			result=new ArrayList();
+			result.add(res.getInt(1));
+			result.add(res.getString(2));
+			result.add(res.getInt(3));
+			result.add(res.getDate(4));
+			result1.add(result);
+		}
+		return result1;
+	}
+	public ArrayList searchData(String auther,String word,String topic,String type,String dateFieldf,String dateFieldt) throws SQLException{
+		ArrayList result=new ArrayList();
+		ArrayList result1=new ArrayList();
+		ArrayList result2=new ArrayList();
+		ArrayList result3=new ArrayList();
+		ArrayList result4=new ArrayList();
+		ArrayList result5=new ArrayList();
+		ArrayList result6=new ArrayList();
+		if(!auther.isEmpty()){
+			String que="Select title FROM publications "
+					+ "Where publicationId IN(SELECT publicationId from publicationauthors"
+					+ " WHERE publicationAuthorId IN(SELECT authorId from authors "
+					+ "WHERE name='"+auther+"'))";
+			resultSet=statement.executeQuery(que);
+			while(resultSet.next()){
+				result.add(resultSet.getString(1));
+				if(resultSet.isLast())break;
+			}
+			if(result.isEmpty()){JOptionPane.showMessageDialog(null, "Your data is wrong!");
+				return null;
+			}
+		}
+		if(!word.isEmpty()){
+			String que1="Select title FROM publications"
+					+ " Where publicationId IN(SELECT publicationId from publicationkeywords"
+					+ " WHERE keyWord='"+word+"')";
+			resultSet=statement.executeQuery(que1);
+			while(resultSet.next()){
+				result1.add(resultSet.getString(1));
+				if(resultSet.isLast())break;
+			}
+
+			if(result1.isEmpty()) {JOptionPane.showMessageDialog(null, "Your data is wrong!");
+				return null;
+			}}
+		if(!topic.isEmpty()){String que2="Select title FROM publications"
+				+" Where bookId IN(SELECT bookId from books"
+				+ " WHERE editionId in (SELECT editionId from editiontopics"
+				+ " WHERE topic='"+topic+"'))";
+			String que21="Select title FROM publications"
+					+" Where seriesId IN(SELECT seriesId from series"
+					+ " WHERE editionId in (SELECT editionId from editiontopics"
+					+ " WHERE topic='"+topic+"'))";
+			resultSet=statement.executeQuery(que2);
+
+			while(resultSet.next()){
+				result2.add(resultSet.getString(1));
+				if(resultSet.isLast())break;
+			}
+			resultSet=statement.executeQuery(que21);
+			while(resultSet.next()){
+				result2.add(resultSet.getString(1));
+				if(resultSet.isLast())break;
+			}
+			if(result2.isEmpty()) {JOptionPane.showMessageDialog(null, "Your data is wrong!");
+				return null;
+			}
+		}
+		if(!type.isEmpty()){
+			String que3="SELECT title FROM publications"
+					+ " WHERE bookId IN(SELECT bookId from books"
+					+ " WHERE type='"+type+"')";
+			resultSet=statement.executeQuery(que3);
+			while(resultSet.next()){
+				result4.add(resultSet.getString(1));
+				if(resultSet.isLast())break;
+			}
+			if(result4.isEmpty()){JOptionPane.showMessageDialog(null, "Your data is wrong!");
+				return null;
+			}
+		}
+		if(!dateFieldf.isEmpty()&&!dateFieldt.isEmpty()){String que4="SELECT title FROM publications "
+				+ " WHERE bookId IN(SELECT bookId from books"
+				+ " WHERE editionId in (SELECT editionId from editions"
+				+ " WHERE dateOfPublication between '"+dateFieldf +"' and '"+dateFieldt+"'))";
+			resultSet=statement.executeQuery(que4);
+			while(resultSet.next()){
+				result5.add(resultSet.getString(1));
+				if(resultSet.isLast())break;
+			}
+			String que41="SELECT title FROM publications "
+					+ " WHERE seriesId IN(SELECT seriesId from series"
+					+ " WHERE editionId in (SELECT editionId from editions"
+					+ " WHERE dateOfPublication between '"+dateFieldf +"' and '"+dateFieldt+"'))";
+			resultSet=statement.executeQuery(que41);
+			while(resultSet.next()){
+				result5.add(resultSet.getString(1));
+				if(resultSet.isLast())break;
+			}
+			if(result5.isEmpty()) {JOptionPane.showMessageDialog(null, "Your data is wrong!");
+				return null;
+			}
+		}
+		ArrayList resultAll=new ArrayList();
+		if(!result.isEmpty()){
+			resultAll.add(result);
+		}
+		if(!result1.isEmpty()){
+			resultAll.add(result1);
+		}
+		if(!result2.isEmpty()){
+			resultAll.add(result2);
+		}
+		if(!result3.isEmpty()){
+			resultAll.add(result3);
+		}
+		if(!result4.isEmpty()){
+			resultAll.add(result4);
+		}
+		if(!result5.isEmpty()){
+			resultAll.add(result5);
+		}
+		if(!result6.isEmpty()){
+			resultAll.add(result6);
+		}
+		result=new ArrayList();
+		if(resultAll.isEmpty())return null;
+		else
+			return result=takeRes(resultAll);
+	}
+	public ArrayList takeRes(ArrayList<ArrayList> res){
+		ArrayList result=new ArrayList();
+		if(res.size()>1){
+			for(int i=0;i<res.size();i++){
+				for(int c=0;c<res.get(i).size();c++){
+					boolean  isd=true;
+					for(int m=0;m<res.size();m++){
+						if(!res.get(m).contains(res.get(i).get(c))){
+							isd=false;
+							break;
+						}
 
 
+					}
+					if(isd && !result.contains(res.get(i).get(c)))result.add(res.get(i).get(c));
+				}
+			}
+			return result;
+		}
+		else return res.get(0);
+
+	}
 
 
     private void initDatabaseCredentials(){

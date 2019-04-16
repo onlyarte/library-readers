@@ -1,15 +1,16 @@
 package ui;
-
+import java.sql.Date;
+import java.sql.SQLException;
 import dao.*;
 import models.*;
-
-import java.awt.EventQueue;
+import javax.swing.text.DateFormatter;
+import javax.swing.JOptionPane;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
+import java.text.SimpleDateFormat;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -21,7 +22,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
-
+import  javax.swing.*;
 import java.awt.BorderLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -390,57 +391,107 @@ public class LibraryWindow {
 		
 		JLabel fromLbl = new JLabel("З:");
 		controlPanel.add(fromLbl);
-		
-		JTextField fromField = new JTextField();
+		DateFormatter dateFormatter=new DateFormatter(new SimpleDateFormat("yyyy-mm-dd"));
+
+		JFormattedTextField fromField = new JFormattedTextField(dateFormatter);
 		controlPanel.add(fromField);
 		
 		JLabel toLbl = new JLabel("До:");
 		controlPanel.add(toLbl);
 		
-		JTextField toField = new JTextField();
+		JFormattedTextField toField= new JFormattedTextField(dateFormatter);
 		controlPanel.add(toField);
 		
 		JButton searchBtn = new JButton("Шукати");
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// see examples in the reader table
+				ArrayList id=null;
+				try {
+					ArrayList name=new ArrayList();
+					name=db.searchData(authorField.getText(),keyWordField.getText(),topicField.getText(),typeField.getText(),fromField.getText(),toField.getText());
+					if(name==null)JOptionPane.showMessageDialog(null, "Your data is wrong!");
+					else{
+						id= db.getResultOfSearch(name);
+						ArrayList oneRow=new ArrayList();
+						ArrayList<ArrayList> all=new ArrayList<ArrayList>();
+						for(int i=0;i<name.size();i++){
+							oneRow=new ArrayList();
+							oneRow.add(id.get(i));
+							oneRow.add(name.get(i));
+
+							all.add(oneRow);
+
+						}
+
+
+						String[] names={ "ID","Назва" };
+						searchPanel.add(addTable(names,all), BorderLayout.CENTER);
+					}
+				} catch (SQLException e1) {
+
+					e1.printStackTrace();
+				}
+
 			}
 		});
 		controlPanel.add(searchBtn);
-		
 		JButton rateBtn = new JButton("Рейтинг");
 		rateBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				ArrayList<ArrayList> id;
+				try {
+					id = db.getRating();
+					String[] names={ "ID","Назва","Кількість","Дата" };
+					searchPanel.add(addTable(names,id), BorderLayout.CENTER);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
 			}
 		});
 		controlPanel.add(rateBtn);
 
 		searchPanel.add(controlPanel, BorderLayout.NORTH);
 		
-		
+
+
+		return searchPanel;
+	}
+	private JPanel addTable(String[] columnNames,ArrayList<ArrayList> data){
 		JPanel tablePanel = new JPanel();
 		tablePanel.setLayout(new GridLayout());
-		
+		tablePanel.setVisible(true);
 		searchTable = new JTable();
 		searchTable.setFillsViewportHeight(true);
 		searchTable.setDefaultEditor(Object.class, null);
 		searchTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
-		String[] columnNames = { "ID", "Дата", "Назва" };
+
 		DefaultTableModel searchTableModel = (DefaultTableModel) searchTable.getModel();
 		searchTableModel.setColumnIdentifiers(columnNames);
+	/*	for(int i=0;i<data.size();i++) {
+			searchTableModel.addRow((data.get(i).toArray()));
+		}
 
+	*/
+			searchTableModel.setRowCount(0);
+
+			for (int i=0;i<data.size();i++) {
+				String[] tableRow = new String[columnNames.length];
+				tableRow[0] = Integer.toString((Integer) data.get(i).get(0));
+				for(int s=1;s<columnNames.length;s++){
+					if(s==2 )tableRow[s] = Integer.toString((Integer) data.get(i).get(s));
+					else if(s==3)tableRow[s] = ((Date) data.get(i).get(s)).toString();
+				else tableRow[s] = (String)data.get(i).get(s);}
+				searchTableModel.addRow(tableRow);
+			}
+
+			searchTable.setModel(searchTableModel);
 		JScrollPane scrollPane = new JScrollPane(searchTable);
 		tablePanel.add(scrollPane);
-	
-		searchPanel.add(tablePanel, BorderLayout.CENTER);
-
-		return searchPanel;
+		return tablePanel;
 	}
-
 	private void initialize() {
 		frame = new JFrame();
 		frame.setSize(900, 600);
