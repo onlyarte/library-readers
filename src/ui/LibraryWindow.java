@@ -1,32 +1,24 @@
 package ui;
-import java.sql.Date;
-import java.sql.SQLException;
-import dao.*;
-import models.*;
-import javax.swing.text.DateFormatter;
-import javax.swing.JOptionPane;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.text.SimpleDateFormat;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
+import dao.DbAccess;
+import models.Author;
+import models.Debtor;
+import models.Reader;
+import models.Series;
+
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import  javax.swing.*;
-import java.awt.BorderLayout;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.DateFormatter;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class LibraryWindow {
 	private LibraryWindow window;
@@ -37,6 +29,8 @@ public class LibraryWindow {
 	private JTable readerDebtorTable;
 	private JTable bookTable;
 	private JTable seriesTable;
+	private JTable authorTable;
+	private JTable themeTable;
 	private JTable searchTable;
 	
 	private JButton readerReaderEditBtn;
@@ -57,7 +51,8 @@ public class LibraryWindow {
 
 		fillReaderReaderTable();
 		fillReaderDebtorTable();
-		//fillBookTable();
+		fillBookTable("");
+		fillSeriesTable("");
 	}
 	
 	JComponent makeReaderReaderPanel() {
@@ -153,7 +148,7 @@ public class LibraryWindow {
 
 		return readerReaderPanel;
 	}
-	
+
 	JComponent makeReaderDebtorPanel() {
 		JPanel readerDebtorPanel = new JPanel(false);
 		readerDebtorPanel.setLayout(new BorderLayout(0, 0));
@@ -356,6 +351,122 @@ public class LibraryWindow {
 
 		return seriesPanel;
 	}
+
+	JComponent makeAuthorPanel() {
+		JPanel authorPanel = new JPanel(false);
+		authorPanel.setLayout(new BorderLayout(0, 0));
+
+		JPanel controlPanel = new JPanel();
+		controlPanel.setLayout(new BorderLayout());
+
+		JPanel searchPanel = new JPanel();
+		controlPanel.add(searchPanel, BorderLayout.LINE_START);
+
+		JTextField searchField = new JTextField(20);
+		searchPanel.add(searchField);
+
+		JButton searchBtn = new JButton("Шукати");
+		searchBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String authorSearchQuery = searchField.getText();
+				fillAuthorsTable(authorSearchQuery);
+			}
+		});
+		searchPanel.add(searchBtn);
+
+		JPanel actionPanel = new JPanel();
+		controlPanel.add(actionPanel, BorderLayout.LINE_END);
+
+		JButton insertBookBtn = new JButton("Додати");
+		insertBookBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new InsertBookWindow(window, db);
+			}
+		});
+		actionPanel.add(insertBookBtn);
+
+		authorPanel.add(controlPanel, BorderLayout.NORTH);
+
+
+		JPanel tablePanel = new JPanel();
+		tablePanel.setLayout(new GridLayout());
+
+		authorTable = new JTable();
+		authorTable.setFillsViewportHeight(true);
+		authorTable.setDefaultEditor(Object.class, null);
+		authorTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+		String[] columnNames = { "ID", "Прізвище" };
+		DefaultTableModel readerReaderTableModel = (DefaultTableModel) authorTable.getModel();
+		readerReaderTableModel.setColumnIdentifiers(columnNames);
+
+		JScrollPane scrollPane = new JScrollPane(authorTable);
+		tablePanel.add(scrollPane);
+
+		authorPanel.add(tablePanel, BorderLayout.CENTER);
+
+		return authorPanel;
+	}
+
+	JComponent makeThemePanel() {
+		JPanel themePanel = new JPanel(false);
+		themePanel.setLayout(new BorderLayout(0, 0));
+
+		JPanel controlPanel = new JPanel();
+		controlPanel.setLayout(new BorderLayout());
+
+		JPanel searchPanel = new JPanel();
+		controlPanel.add(searchPanel, BorderLayout.LINE_START);
+
+		JTextField searchField = new JTextField(20);
+		searchPanel.add(searchField);
+
+		JButton searchBtn = new JButton("Шукати");
+		searchBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String themeSearchQuery = searchField.getText();
+				fillThemesTable(themeSearchQuery);
+			}
+		});
+		searchPanel.add(searchBtn);
+
+		JPanel actionPanel = new JPanel();
+		controlPanel.add(actionPanel, BorderLayout.LINE_END);
+
+		JButton insertBookBtn = new JButton("Додати");
+		insertBookBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new InsertBookWindow(window, db);
+			}
+		});
+		actionPanel.add(insertBookBtn);
+
+		themePanel.add(controlPanel, BorderLayout.NORTH);
+
+
+		JPanel tablePanel = new JPanel();
+		tablePanel.setLayout(new GridLayout());
+
+		themeTable = new JTable();
+		themeTable.setFillsViewportHeight(true);
+		themeTable.setDefaultEditor(Object.class, null);
+		themeTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+		String[] columnNames = { "ID", "Назва" };
+		DefaultTableModel readerReaderTableModel = (DefaultTableModel) themeTable.getModel();
+		readerReaderTableModel.setColumnIdentifiers(columnNames);
+
+		JScrollPane scrollPane = new JScrollPane(themeTable);
+		tablePanel.add(scrollPane);
+
+		themePanel.add(tablePanel, BorderLayout.CENTER);
+
+		return themePanel;
+	}
 	
 	JComponent makeSearchPanel() {
 		JPanel searchPanel = new JPanel(false);
@@ -513,10 +624,14 @@ public class LibraryWindow {
 		JComponent panel3 = makeSeriesPanel();
 		tabbedPane.addTab("Збірники", panel3);
 		tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
-		
-		JComponent panel4 = makeSearchPanel();
-		tabbedPane.addTab("Пошук", panel4);
-		tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
+
+		JComponent panel4 = makeAuthorPanel();
+		tabbedPane.addTab("Збірники", panel4);
+		tabbedPane.setMnemonicAt(2, KeyEvent.VK_4);
+
+		JComponent panel5 = makeSeriesPanel();
+		tabbedPane.addTab("Збірники", panel5);
+		tabbedPane.setMnemonicAt(2, KeyEvent.VK_5);
 	}
 	
 	public void fillReaderReaderTable() {
@@ -602,6 +717,27 @@ public class LibraryWindow {
 		}
 
 		seriesTable.setModel(seriesTableModel);
+	}
+
+	public void fillAuthorsTable(String authorSearchQuery) {
+		DefaultTableModel authorsTableModel = (DefaultTableModel) authorTable.getModel();
+		authorsTableModel.setRowCount(0);
+
+		ArrayList<Author> authors = null;
+		//ArrayList<Author> authors = db.getAuthors(authorSearchQuery);
+
+		for (Author author: authors) {
+			String[] tableRow = new String[6];
+			tableRow[0] = Integer.toString(author.getAuthorId());
+			tableRow[1] = author.getSurname();
+			authorsTableModel.addRow(tableRow);
+		}
+
+		seriesTable.setModel(authorsTableModel);
+	}
+
+	public void fillThemesTable(String themeSearchQuery) {
+		//DefaultTableModel authorsTableModel = (DefaultTableModel)
 	}
 
 }
