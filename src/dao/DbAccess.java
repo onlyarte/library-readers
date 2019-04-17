@@ -346,6 +346,21 @@ public class DbAccess {
     	return publications;
 	}
 
+	public String getKeywords(int publicationId) {
+    	String keywords = "";
+		try {
+			preparedStatement = connection.prepareStatement(SqlQueries.GetKeywords
+					+ " WHERE publicationId = " + publicationId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet != null && resultSet.next()) {
+				keywords = resultSet.getString("keyWord");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return keywords;
+	}
+
     public ArrayList<Integer> getFreeEditionCopies(int bookId) {
     	ArrayList<Integer> freeCopies = new ArrayList<Integer>();
     	try {

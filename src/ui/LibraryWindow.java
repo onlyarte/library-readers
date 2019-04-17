@@ -741,11 +741,12 @@ public class LibraryWindow {
 		ArrayList<Publication> publications = db.getPublications(publicationSearchQuery);
 
 		for (Publication publication: publications) {
-			String[] tableRow = new String[4];
+			String[] tableRow = new String[5];
 			tableRow[0] = Integer.toString(publication.getPublicationId());
 			tableRow[1] = publication.getTitle();
 			tableRow[2] = publication.isBookSeries() ? "Ні" : "Так";
 			tableRow[3] = publication.isBookSeries() ? "Так" : "Ні";
+			tableRow[4] = db.getKeywords(publication.getPublicationId());
 			publicationsTableModel.addRow(tableRow);
 		}
 

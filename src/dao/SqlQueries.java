@@ -21,5 +21,7 @@ public class SqlQueries {
 
     public static String GetPublicationOfBook = "SELECT publicationId FROM publications ";
 
-    public static String GetPublications = "SELECT * FROM publications";
+    public static String GetPublications = "SELECT * FROM publications ";
+
+    public static String GetKeywords = "SELECT keyWord FROM publicationkeywords ";
 }
