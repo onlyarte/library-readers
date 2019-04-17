@@ -621,6 +621,10 @@ public class LibraryWindow {
 		JComponent panel5 = makePublicationPanel();
 		tabbedPane.addTab("Публікації", panel5);
 		tabbedPane.setMnemonicAt(4, KeyEvent.VK_5);
+
+		JComponent panel6 = makeSearchPanel();
+		tabbedPane.addTab("Пошук", panel6);
+		tabbedPane.setMnemonicAt(3, KeyEvent.VK_6);
 	}
 
 	public void fillReaderReaderTable() {

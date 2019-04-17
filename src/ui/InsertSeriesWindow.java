@@ -2,18 +2,11 @@ package ui;
 
 import dao.DbAccess;
 
-import java.awt.Color;
-import java.awt.GridLayout;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 
 public class InsertSeriesWindow {
 	private JFrame frame;
@@ -34,7 +27,7 @@ public class InsertSeriesWindow {
 		frame.setVisible(true);
 		
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(7,2));
+		panel.setLayout(new GridLayout(8,2));
 		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		JLabel dateLbl = new JLabel("Дата (yyyy-mm-dd):");
@@ -60,6 +53,12 @@ public class InsertSeriesWindow {
 		
 		JTextField authorField = new JTextField();
 		panel.add(authorField);
+
+		JLabel keywordsLbl = new JLabel("Ключові слова (через кому):");
+		panel.add(keywordsLbl);
+
+		JTextField keywordsField = new JTextField();
+		panel.add(keywordsField);
 		
 		JLabel eVersionLbl = new JLabel("Е-копія:");
 		panel.add(eVersionLbl);
