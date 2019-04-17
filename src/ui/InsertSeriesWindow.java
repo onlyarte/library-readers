@@ -27,7 +27,7 @@ public class InsertSeriesWindow {
 		frame.setVisible(true);
 		
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(8,2));
+		panel.setLayout(new GridLayout(9,2));
 		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		JLabel dateLbl = new JLabel("Дата (yyyy-mm-dd):");
@@ -41,6 +41,12 @@ public class InsertSeriesWindow {
 		
 		JTextField titleField = new JTextField();
 		panel.add(titleField);
+
+		JLabel topicLbl = new JLabel("Тема:");
+		panel.add(topicLbl);
+
+		JTextField topicField = new JTextField();
+		panel.add(topicField);
 		
 		JLabel numOfPublLbl = new JLabel("Кількість публ.:");
 		panel.add(numOfPublLbl);
@@ -83,6 +89,7 @@ public class InsertSeriesWindow {
 				try {
 					String dateOfPublication = dateField.getText();
 					String title = titleField.getText();
+					String topic = topicField.getText();
 					int numOfPublications = Integer.parseInt(numOfPublField.getText());
 					String publicationsName = publicationsNameField.getText();
 					String publicationsKeywords = keywordsField.getText();
@@ -93,7 +100,7 @@ public class InsertSeriesWindow {
 					if (numOfPublications < 1) throw new Exception("Неправильний розмір");
 					if (numberOfCopies < 1) throw new Exception("Щонайменше одна копія");
 
-					db.insertSeries(dateOfPublication, title, numOfPublications, publicationsName, publicationsKeywords, hasElectronicCopy, numberOfCopies);
+					db.insertSeries(dateOfPublication, title, topic, numOfPublications, publicationsName, publicationsKeywords, hasElectronicCopy, numberOfCopies);
 
 					message.setText("Додано!");
 

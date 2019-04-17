@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c272c0bf-215f-40a0-bc24-903fa0a0563b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database.properties" afterPath="$PROJECT_DIR$/database.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Dump20190415.sql" afterPath="$PROJECT_DIR$/Dump20190415.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dao/DbAccess.java" afterPath="$PROJECT_DIR$/src/dao/DbAccess.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dao/SqlQueries.java" afterPath="$PROJECT_DIR$/src/dao/SqlQueries.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ui/InsertSeriesWindow.java" afterPath="$PROJECT_DIR$/src/ui/InsertSeriesWindow.java" />
@@ -15,6 +15,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/LibraryReaders$Main.coverage" NAME="Main Coverage Results" MODIFIED="1555483343363" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -39,7 +42,7 @@
       <file leaf-file-name="LibraryWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/LibraryWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
+            <state relative-caret-position="388">
               <caret line="704" column="16" lean-forward="false" selection-start-line="704" selection-start-column="16" selection-end-line="704" selection-end-column="16" />
               <folding>
                 <element signature="method#fillBookTable#0;class#LibraryWindow#0" expanded="false" />
@@ -51,8 +54,8 @@
       <file leaf-file-name="InsertSeriesWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ui/InsertSeriesWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="95" column="37" lean-forward="false" selection-start-line="95" selection-start-column="37" selection-end-line="95" selection-end-column="37" />
+            <state relative-caret-position="51">
+              <caret line="42" column="28" lean-forward="false" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -61,66 +64,89 @@
       <file leaf-file-name="DbAccess.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dao/DbAccess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="505" column="0" lean-forward="true" selection-start-line="505" selection-start-column="0" selection-end-line="505" selection-end-column="0" />
+            <state relative-caret-position="104">
+              <caret line="523" column="0" lean-forward="true" selection-start-line="523" selection-start-column="0" selection-end-line="523" selection-end-column="0" />
               <folding>
-                <element signature="e#7725#7731#0" expanded="true" />
-                <element signature="method#insertAuthor#0;class#DbAccess#0" expanded="false" />
-                <element signature="method#insertReading#0;class#DbAccess#0" expanded="false" />
-                <element signature="method#initDatabaseCredentials#0;class#DbAccess#0" expanded="false" />
-                <marker date="1555482257207" expanded="true" signature="1600:1637" ph="SELECT MAX(m... missingValue" />
-                <marker date="1555482257207" expanded="true" signature="2055:2137" ph="SELECT reade... Readers" />
-                <marker date="1555482257207" expanded="true" signature="2788:2852" ph="SELECT reade... Readers" />
-                <marker date="1555482257207" expanded="true" signature="3825:4533" ph="SELECT Readi... Readings" />
-                <marker date="1555482257207" expanded="true" signature="5572:5669" ph="INSERT INTO Readers... " />
-                <marker date="1555482257207" expanded="true" signature="6205:6223" ph="UPDATE Reade... " />
-                <marker date="1555482257207" expanded="true" signature="6980:7017" ph="delete from " />
-                <marker date="1555482257207" expanded="true" signature="11956:12381" ph="SELECT EC.ed... Books" />
-                <marker date="1555482257207" expanded="true" signature="12211:12371" ph="SELECT EC1.e... EditionCopies" />
-                <marker date="1555482257207" expanded="true" signature="13258:13342" ph="INSERT INTO Editions... " />
-                <marker date="1555482257207" expanded="true" signature="13740:13814" ph="INSERT INTO EditionTopics... " />
-                <marker date="1555482257207" expanded="true" signature="14083:14152" ph="INSERT INTO Publications... " />
-                <marker date="1555482257207" expanded="true" signature="14400:14465" ph="INSERT INTO Books... " />
-                <marker date="1555482257207" expanded="true" signature="14891:14938" ph="INSERT INTO EditionCopies... " />
-                <marker date="1555482257207" expanded="true" signature="15262:15399" ph="INSERT INTO publicationauthors... " />
-                <marker date="1555482257207" expanded="true" signature="15538:15657" ph="INSERT INTO publicationkeywords... " />
-                <marker date="1555482257207" expanded="true" signature="16360:16444" ph="INSERT INTO Editions... " />
-                <marker date="1555482257207" expanded="true" signature="16782:16856" ph="INSERT INTO EditionTopics... " />
-                <marker date="1555482257207" expanded="true" signature="17125:17196" ph="INSERT INTO Publications... " />
-                <marker date="1555482257207" expanded="true" signature="17432:17510" ph="INSERT INTO Books... " />
-                <marker date="1555482257207" expanded="true" signature="17880:17927" ph="INSERT INTO EditionCopies... " />
-                <marker date="1555482257207" expanded="true" signature="18179:18316" ph="INSERT INTO publicationauthors... " />
-                <marker date="1555482257207" expanded="true" signature="18428:18547" ph="INSERT INTO publicationkeywords... " />
-                <marker date="1555482257207" expanded="true" signature="18880:18917" ph="INSERT INTO Authors... " />
-                <marker date="1555482257207" expanded="true" signature="19477:19564" ph="INSERT INTO Readings... " />
-                <marker date="1555482257207" expanded="true" signature="20210:20405" ph="Select editi... editioncopies" />
-                <marker date="1555482257207" expanded="true" signature="20280:20404" ph="SELECT editi... books" />
-                <marker date="1555482257207" expanded="true" signature="20335:20403" ph="SELECT bookI... publications" />
-                <marker date="1555482257207" expanded="true" signature="20426:20624" ph="Select editi... editioncopies" />
-                <marker date="1555482257207" expanded="true" signature="20496:20623" ph="SELECT editi... series" />
-                <marker date="1555482257207" expanded="true" signature="20554:20622" ph="SELECT bookI... publications" />
-                <marker date="1555482257207" expanded="true" signature="21081:21149" ph="UPDATE Readi... " />
-                <marker date="1555482257207" expanded="true" signature="21442:21863" ph="Select editi... editioncopies" />
-                <marker date="1555482257207" expanded="true" signature="22571:22783" ph="Select title... publications" />
-                <marker date="1555482257207" expanded="true" signature="22635:22782" ph="SELECT publi... publicationauthors" />
-                <marker date="1555482257207" expanded="true" signature="22719:22781" ph="SELECT autho... authors" />
-                <marker date="1555482257207" expanded="true" signature="23083:23228" ph="Select title... publications" />
-                <marker date="1555482257207" expanded="true" signature="23147:23227" ph="SELECT publi... publicationkeywords" />
-                <marker date="1555482257207" expanded="true" signature="23527:23706" ph="Select title... publications" />
-                <marker date="1555482257207" expanded="true" signature="23582:23705" ph="SELECT bookI... books" />
-                <marker date="1555482257207" expanded="true" signature="23636:23704" ph="SELECT editi... editiontopics" />
-                <marker date="1555482257207" expanded="true" signature="23726:23913" ph="Select title... publications" />
-                <marker date="1555482257207" expanded="true" signature="23784:23912" ph="SELECT serie... series" />
-                <marker date="1555482257207" expanded="true" signature="23842:23911" ph="SELECT editi... editiontopics" />
-                <marker date="1555482257207" expanded="true" signature="24369:24483" ph="SELECT title... publications" />
-                <marker date="1555482257207" expanded="true" signature="24426:24482" ph="SELECT bookI... books" />
-                <marker date="1555482257207" expanded="true" signature="24811:25034" ph="SELECT title... publications" />
-                <marker date="1555482257207" expanded="true" signature="24868:25033" ph="SELECT bookI... books" />
-                <marker date="1555482257207" expanded="true" signature="24922:25032" ph="SELECT editi... editions" />
-                <marker date="1555482257207" expanded="true" signature="25204:25435" ph="SELECT title... publications" />
-                <marker date="1555482257207" expanded="true" signature="25264:25434" ph="SELECT serie... series" />
-                <marker date="1555482257207" expanded="true" signature="25322:25433" ph="SELECT editi... editions" />
+                <element signature="e#7781#7787#0" expanded="true" />
+                <marker date="1555483340261" expanded="true" signature="1600:1637" ph="SELECT MAX(m... missingValue" />
+                <marker date="1555483340261" expanded="true" signature="2055:2137" ph="SELECT reade... Readers" />
+                <marker date="1555483340261" expanded="true" signature="2788:2852" ph="SELECT reade... Readers" />
+                <marker date="1555483340261" expanded="true" signature="3825:4533" ph="SELECT Readi... Readings" />
+                <marker date="1555483340261" expanded="true" signature="5628:5725" ph="INSERT INTO Readers... " />
+                <marker date="1555483340261" expanded="true" signature="6261:6279" ph="UPDATE Reade... " />
+                <marker date="1555483340261" expanded="true" signature="7036:7073" ph="delete from " />
+                <marker date="1555483340261" expanded="false" signature="8716:8724" ph="&lt;~&gt;" />
+                <marker date="1555483340261" expanded="false" signature="9652:9660" ph="&lt;~&gt;" />
+                <marker date="1555483340261" expanded="false" signature="11975:11984" ph="&lt;~&gt;" />
+                <marker date="1555483340261" expanded="true" signature="12012:12437" ph="SELECT EC.ed... Books" />
+                <marker date="1555483340261" expanded="true" signature="12267:12427" ph="SELECT EC1.e... EditionCopies" />
+                <marker date="1555483340261" expanded="true" signature="13314:13398" ph="INSERT INTO Editions... " />
+                <marker date="1555483340261" expanded="true" signature="13796:13870" ph="INSERT INTO EditionTopics... " />
+                <marker date="1555483340261" expanded="true" signature="14139:14208" ph="INSERT INTO Publications... " />
+                <marker date="1555483340261" expanded="true" signature="14456:14521" ph="INSERT INTO Books... " />
+                <marker date="1555483340261" expanded="true" signature="14947:14994" ph="INSERT INTO EditionCopies... " />
+                <marker date="1555483340261" expanded="true" signature="15318:15455" ph="INSERT INTO publicationauthors... " />
+                <marker date="1555483340261" expanded="true" signature="15594:15713" ph="INSERT INTO publicationkeywords... " />
+                <marker date="1555483340261" expanded="true" signature="16430:16514" ph="INSERT INTO Editions... " />
+                <marker date="1555483340261" expanded="true" signature="16852:16926" ph="INSERT INTO EditionTopics... " />
+                <marker date="1555483340261" expanded="true" signature="17195:17266" ph="INSERT INTO Publications... " />
+                <marker date="1555483340261" expanded="true" signature="17527:17605" ph="INSERT INTO Books... " />
+                <marker date="1555483340261" expanded="true" signature="17975:18022" ph="INSERT INTO EditionCopies... " />
+                <marker date="1555483340261" expanded="true" signature="18282:18421" ph="INSERT INTO publicationauthors... " />
+                <marker date="1555483340261" expanded="true" signature="18543:18677" ph="INSERT INTO publicationkeywords... " />
+                <marker date="1555483340261" expanded="false" signature="18881:19306" ph="{...}" />
+                <marker date="1555483340261" expanded="true" signature="19016:19053" ph="INSERT INTO Authors... " />
+                <marker date="1555483340261" expanded="false" signature="19374:20150" ph="{...}" />
+                <marker date="1555483340261" expanded="true" signature="19613:19700" ph="INSERT INTO Readings... " />
+                <marker date="1555483340261" expanded="true" signature="20346:20541" ph="Select editi... editioncopies" />
+                <marker date="1555483340261" expanded="true" signature="20416:20540" ph="SELECT editi... books" />
+                <marker date="1555483340261" expanded="true" signature="20471:20539" ph="SELECT bookI... publications" />
+                <marker date="1555483340261" expanded="true" signature="20562:20760" ph="Select editi... editioncopies" />
+                <marker date="1555483340261" expanded="true" signature="20632:20759" ph="SELECT editi... series" />
+                <marker date="1555483340261" expanded="true" signature="20690:20758" ph="SELECT bookI... publications" />
+                <marker date="1555483340261" expanded="true" signature="21217:21285" ph="UPDATE Readi... " />
+                <marker date="1555483340261" expanded="true" signature="21578:21999" ph="Select editi... editioncopies" />
+                <marker date="1555483340261" expanded="true" signature="22707:22919" ph="Select title... publications" />
+                <marker date="1555483340261" expanded="true" signature="22771:22918" ph="SELECT publi... publicationauthors" />
+                <marker date="1555483340261" expanded="true" signature="22855:22917" ph="SELECT autho... authors" />
+                <marker date="1555483340261" expanded="true" signature="23219:23364" ph="Select title... publications" />
+                <marker date="1555483340261" expanded="true" signature="23283:23363" ph="SELECT publi... publicationkeywords" />
+                <marker date="1555483340261" expanded="true" signature="23663:23842" ph="Select title... publications" />
+                <marker date="1555483340261" expanded="true" signature="23718:23841" ph="SELECT bookI... books" />
+                <marker date="1555483340261" expanded="true" signature="23772:23840" ph="SELECT editi... editiontopics" />
+                <marker date="1555483340261" expanded="true" signature="23862:24049" ph="Select title... publications" />
+                <marker date="1555483340261" expanded="true" signature="23920:24048" ph="SELECT serie... series" />
+                <marker date="1555483340261" expanded="true" signature="23978:24047" ph="SELECT editi... editiontopics" />
+                <marker date="1555483340261" expanded="true" signature="24505:24619" ph="SELECT title... publications" />
+                <marker date="1555483340261" expanded="true" signature="24562:24618" ph="SELECT bookI... books" />
+                <marker date="1555483340261" expanded="true" signature="24947:25170" ph="SELECT title... publications" />
+                <marker date="1555483340261" expanded="true" signature="25004:25169" ph="SELECT bookI... books" />
+                <marker date="1555483340261" expanded="true" signature="25058:25168" ph="SELECT editi... editions" />
+                <marker date="1555483340261" expanded="true" signature="25340:25571" ph="SELECT title... publications" />
+                <marker date="1555483340261" expanded="true" signature="25400:25570" ph="SELECT serie... series" />
+                <marker date="1555483340261" expanded="true" signature="25458:25569" ph="SELECT editi... editions" />
+                <marker date="1555483340261" expanded="false" signature="26918:27662" ph="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dump20190415.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dump20190415.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SqlQueries.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dao/SqlQueries.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="117">
+              <caret line="25" column="75" lean-forward="false" selection-start-line="25" selection-start-column="75" selection-end-line="25" selection-end-column="75" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -136,7 +162,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getbook</find>
       <find>connection</find>
       <find>bookSearchQuery</find>
       <find>Електро</find>
@@ -164,7 +189,9 @@
       <find>publicationkey</find>
       <find>series</find>
       <find>insertBoo</find>
+      <find>foreign</find>
       <find>insertSeri</find>
+      <find>CONSTRAINT</find>
     </findStrings>
     <replaceStrings>
       <replace>Повне ім'я</replace>
@@ -190,7 +217,6 @@
         <option value="$PROJECT_DIR$/src/models/Reader.java" />
         <option value="$PROJECT_DIR$/src/models/Debtor.java" />
         <option value="$PROJECT_DIR$/src/models/Book.java" />
-        <option value="$PROJECT_DIR$/Dump20190415.sql" />
         <option value="$PROJECT_DIR$/src/models/Series.java" />
         <option value="$PROJECT_DIR$/src/ui/SearchResult.java" />
         <option value="$PROJECT_DIR$/src/models/Theme.java" />
@@ -199,9 +225,10 @@
         <option value="$PROJECT_DIR$/src/models/Publication.java" />
         <option value="$PROJECT_DIR$/src/ui/InsertBookWindow.java" />
         <option value="$PROJECT_DIR$/src/ui/LibraryWindow.java" />
-        <option value="$PROJECT_DIR$/src/dao/SqlQueries.java" />
         <option value="$PROJECT_DIR$/database.properties" />
+        <option value="$PROJECT_DIR$/src/dao/SqlQueries.java" />
         <option value="$PROJECT_DIR$/src/ui/InsertSeriesWindow.java" />
+        <option value="$PROJECT_DIR$/Dump20190415.sql" />
         <option value="$PROJECT_DIR$/src/dao/DbAccess.java" />
       </list>
     </option>
@@ -446,12 +473,12 @@
       <workItem from="1555353414182" duration="503000" />
       <workItem from="1555353944825" duration="15704000" />
       <workItem from="1555407601527" duration="11689000" />
-      <workItem from="1555479775712" duration="2472000" />
+      <workItem from="1555479775712" duration="3574000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30368000" />
+    <option name="totallyTimeSpent" value="31470000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
@@ -459,7 +486,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -467,6 +494,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.024271844" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -477,7 +505,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52427185" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24757281" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -497,12 +525,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/dao/DbAccess.java</url>
-          <line>307</line>
+          <line>462</line>
           <properties />
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/dao/DbAccess.java</url>
+          <line>524</line>
+          <properties />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -532,62 +566,65 @@
         <state relative-caret-position="3774">
           <caret line="420" column="1" lean-forward="true" selection-start-line="420" selection-start-column="1" selection-end-line="420" selection-end-column="1" />
           <folding>
-            <element signature="e#7725#7731#0" expanded="true" />
-            <element signature="method#insertAuthor#0;class#DbAccess#0" expanded="false" />
-            <element signature="method#insertReading#0;class#DbAccess#0" expanded="false" />
-            <element signature="method#initDatabaseCredentials#0;class#DbAccess#0" expanded="false" />
-            <marker date="1555482257207" expanded="true" signature="1600:1637" ph="SELECT MAX(m... missingValue" />
-            <marker date="1555482257207" expanded="true" signature="2055:2137" ph="SELECT reade... Readers" />
-            <marker date="1555482257207" expanded="true" signature="2788:2852" ph="SELECT reade... Readers" />
-            <marker date="1555482257207" expanded="true" signature="3825:4533" ph="SELECT Readi... Readings" />
-            <marker date="1555482257207" expanded="true" signature="5572:5669" ph="INSERT INTO Readers... " />
-            <marker date="1555482257207" expanded="true" signature="6205:6223" ph="UPDATE Reade... " />
-            <marker date="1555482257207" expanded="true" signature="6980:7017" ph="delete from " />
-            <marker date="1555482257207" expanded="true" signature="11956:12381" ph="SELECT EC.ed... Books" />
-            <marker date="1555482257207" expanded="true" signature="12211:12371" ph="SELECT EC1.e... EditionCopies" />
-            <marker date="1555482257207" expanded="true" signature="13258:13342" ph="INSERT INTO Editions... " />
-            <marker date="1555482257207" expanded="true" signature="13740:13814" ph="INSERT INTO EditionTopics... " />
-            <marker date="1555482257207" expanded="true" signature="14083:14152" ph="INSERT INTO Publications... " />
-            <marker date="1555482257207" expanded="true" signature="14400:14465" ph="INSERT INTO Books... " />
-            <marker date="1555482257207" expanded="true" signature="14891:14938" ph="INSERT INTO EditionCopies... " />
-            <marker date="1555482257207" expanded="true" signature="15262:15399" ph="INSERT INTO publicationauthors... " />
-            <marker date="1555482257207" expanded="true" signature="15538:15657" ph="INSERT INTO publicationkeywords... " />
-            <marker date="1555482257207" expanded="true" signature="16360:16444" ph="INSERT INTO Editions... " />
-            <marker date="1555482257207" expanded="true" signature="16782:16856" ph="INSERT INTO EditionTopics... " />
-            <marker date="1555482257207" expanded="true" signature="17125:17196" ph="INSERT INTO Publications... " />
-            <marker date="1555482257207" expanded="true" signature="17432:17510" ph="INSERT INTO Books... " />
-            <marker date="1555482257207" expanded="true" signature="17880:17927" ph="INSERT INTO EditionCopies... " />
-            <marker date="1555482257207" expanded="true" signature="18179:18316" ph="INSERT INTO publicationauthors... " />
-            <marker date="1555482257207" expanded="true" signature="18428:18547" ph="INSERT INTO publicationkeywords... " />
-            <marker date="1555482257207" expanded="true" signature="18880:18917" ph="INSERT INTO Authors... " />
-            <marker date="1555482257207" expanded="true" signature="19477:19564" ph="INSERT INTO Readings... " />
-            <marker date="1555482257207" expanded="true" signature="20210:20405" ph="Select editi... editioncopies" />
-            <marker date="1555482257207" expanded="true" signature="20280:20404" ph="SELECT editi... books" />
-            <marker date="1555482257207" expanded="true" signature="20335:20403" ph="SELECT bookI... publications" />
-            <marker date="1555482257207" expanded="true" signature="20426:20624" ph="Select editi... editioncopies" />
-            <marker date="1555482257207" expanded="true" signature="20496:20623" ph="SELECT editi... series" />
-            <marker date="1555482257207" expanded="true" signature="20554:20622" ph="SELECT bookI... publications" />
-            <marker date="1555482257207" expanded="true" signature="21081:21149" ph="UPDATE Readi... " />
-            <marker date="1555482257207" expanded="true" signature="21442:21863" ph="Select editi... editioncopies" />
-            <marker date="1555482257207" expanded="true" signature="22571:22783" ph="Select title... publications" />
-            <marker date="1555482257207" expanded="true" signature="22635:22782" ph="SELECT publi... publicationauthors" />
-            <marker date="1555482257207" expanded="true" signature="22719:22781" ph="SELECT autho... authors" />
-            <marker date="1555482257207" expanded="true" signature="23083:23228" ph="Select title... publications" />
-            <marker date="1555482257207" expanded="true" signature="23147:23227" ph="SELECT publi... publicationkeywords" />
-            <marker date="1555482257207" expanded="true" signature="23527:23706" ph="Select title... publications" />
-            <marker date="1555482257207" expanded="true" signature="23582:23705" ph="SELECT bookI... books" />
-            <marker date="1555482257207" expanded="true" signature="23636:23704" ph="SELECT editi... editiontopics" />
-            <marker date="1555482257207" expanded="true" signature="23726:23913" ph="Select title... publications" />
-            <marker date="1555482257207" expanded="true" signature="23784:23912" ph="SELECT serie... series" />
-            <marker date="1555482257207" expanded="true" signature="23842:23911" ph="SELECT editi... editiontopics" />
-            <marker date="1555482257207" expanded="true" signature="24369:24483" ph="SELECT title... publications" />
-            <marker date="1555482257207" expanded="true" signature="24426:24482" ph="SELECT bookI... books" />
-            <marker date="1555482257207" expanded="true" signature="24811:25034" ph="SELECT title... publications" />
-            <marker date="1555482257207" expanded="true" signature="24868:25033" ph="SELECT bookI... books" />
-            <marker date="1555482257207" expanded="true" signature="24922:25032" ph="SELECT editi... editions" />
-            <marker date="1555482257207" expanded="true" signature="25204:25435" ph="SELECT title... publications" />
-            <marker date="1555482257207" expanded="true" signature="25264:25434" ph="SELECT serie... series" />
-            <marker date="1555482257207" expanded="true" signature="25322:25433" ph="SELECT editi... editions" />
+            <element signature="e#7781#7787#0" expanded="true" />
+            <marker date="1555483340261" expanded="true" signature="1600:1637" ph="SELECT MAX(m... missingValue" />
+            <marker date="1555483340261" expanded="true" signature="2055:2137" ph="SELECT reade... Readers" />
+            <marker date="1555483340261" expanded="true" signature="2788:2852" ph="SELECT reade... Readers" />
+            <marker date="1555483340261" expanded="true" signature="3825:4533" ph="SELECT Readi... Readings" />
+            <marker date="1555483340261" expanded="true" signature="5628:5725" ph="INSERT INTO Readers... " />
+            <marker date="1555483340261" expanded="true" signature="6261:6279" ph="UPDATE Reade... " />
+            <marker date="1555483340261" expanded="true" signature="7036:7073" ph="delete from " />
+            <marker date="1555483340261" expanded="false" signature="8716:8724" ph="&lt;~&gt;" />
+            <marker date="1555483340261" expanded="false" signature="9652:9660" ph="&lt;~&gt;" />
+            <marker date="1555483340261" expanded="false" signature="11975:11984" ph="&lt;~&gt;" />
+            <marker date="1555483340261" expanded="true" signature="12012:12437" ph="SELECT EC.ed... Books" />
+            <marker date="1555483340261" expanded="true" signature="12267:12427" ph="SELECT EC1.e... EditionCopies" />
+            <marker date="1555483340261" expanded="true" signature="13314:13398" ph="INSERT INTO Editions... " />
+            <marker date="1555483340261" expanded="true" signature="13796:13870" ph="INSERT INTO EditionTopics... " />
+            <marker date="1555483340261" expanded="true" signature="14139:14208" ph="INSERT INTO Publications... " />
+            <marker date="1555483340261" expanded="true" signature="14456:14521" ph="INSERT INTO Books... " />
+            <marker date="1555483340261" expanded="true" signature="14947:14994" ph="INSERT INTO EditionCopies... " />
+            <marker date="1555483340261" expanded="true" signature="15318:15455" ph="INSERT INTO publicationauthors... " />
+            <marker date="1555483340261" expanded="true" signature="15594:15713" ph="INSERT INTO publicationkeywords... " />
+            <marker date="1555483340261" expanded="true" signature="16430:16514" ph="INSERT INTO Editions... " />
+            <marker date="1555483340261" expanded="true" signature="16852:16926" ph="INSERT INTO EditionTopics... " />
+            <marker date="1555483340261" expanded="true" signature="17195:17266" ph="INSERT INTO Publications... " />
+            <marker date="1555483340261" expanded="true" signature="17527:17605" ph="INSERT INTO Books... " />
+            <marker date="1555483340261" expanded="true" signature="17975:18022" ph="INSERT INTO EditionCopies... " />
+            <marker date="1555483340261" expanded="true" signature="18282:18421" ph="INSERT INTO publicationauthors... " />
+            <marker date="1555483340261" expanded="true" signature="18543:18677" ph="INSERT INTO publicationkeywords... " />
+            <marker date="1555483340261" expanded="false" signature="18881:19306" ph="{...}" />
+            <marker date="1555483340261" expanded="true" signature="19016:19053" ph="INSERT INTO Authors... " />
+            <marker date="1555483340261" expanded="false" signature="19374:20150" ph="{...}" />
+            <marker date="1555483340261" expanded="true" signature="19613:19700" ph="INSERT INTO Readings... " />
+            <marker date="1555483340261" expanded="true" signature="20346:20541" ph="Select editi... editioncopies" />
+            <marker date="1555483340261" expanded="true" signature="20416:20540" ph="SELECT editi... books" />
+            <marker date="1555483340261" expanded="true" signature="20471:20539" ph="SELECT bookI... publications" />
+            <marker date="1555483340261" expanded="true" signature="20562:20760" ph="Select editi... editioncopies" />
+            <marker date="1555483340261" expanded="true" signature="20632:20759" ph="SELECT editi... series" />
+            <marker date="1555483340261" expanded="true" signature="20690:20758" ph="SELECT bookI... publications" />
+            <marker date="1555483340261" expanded="true" signature="21217:21285" ph="UPDATE Readi... " />
+            <marker date="1555483340261" expanded="true" signature="21578:21999" ph="Select editi... editioncopies" />
+            <marker date="1555483340261" expanded="true" signature="22707:22919" ph="Select title... publications" />
+            <marker date="1555483340261" expanded="true" signature="22771:22918" ph="SELECT publi... publicationauthors" />
+            <marker date="1555483340261" expanded="true" signature="22855:22917" ph="SELECT autho... authors" />
+            <marker date="1555483340261" expanded="true" signature="23219:23364" ph="Select title... publications" />
+            <marker date="1555483340261" expanded="true" signature="23283:23363" ph="SELECT publi... publicationkeywords" />
+            <marker date="1555483340261" expanded="true" signature="23663:23842" ph="Select title... publications" />
+            <marker date="1555483340261" expanded="true" signature="23718:23841" ph="SELECT bookI... books" />
+            <marker date="1555483340261" expanded="true" signature="23772:23840" ph="SELECT editi... editiontopics" />
+            <marker date="1555483340261" expanded="true" signature="23862:24049" ph="Select title... publications" />
+            <marker date="1555483340261" expanded="true" signature="23920:24048" ph="SELECT serie... series" />
+            <marker date="1555483340261" expanded="true" signature="23978:24047" ph="SELECT editi... editiontopics" />
+            <marker date="1555483340261" expanded="true" signature="24505:24619" ph="SELECT title... publications" />
+            <marker date="1555483340261" expanded="true" signature="24562:24618" ph="SELECT bookI... books" />
+            <marker date="1555483340261" expanded="true" signature="24947:25170" ph="SELECT title... publications" />
+            <marker date="1555483340261" expanded="true" signature="25004:25169" ph="SELECT bookI... books" />
+            <marker date="1555483340261" expanded="true" signature="25058:25168" ph="SELECT editi... editions" />
+            <marker date="1555483340261" expanded="true" signature="25340:25571" ph="SELECT title... publications" />
+            <marker date="1555483340261" expanded="true" signature="25400:25570" ph="SELECT serie... series" />
+            <marker date="1555483340261" expanded="true" signature="25458:25569" ph="SELECT editi... editions" />
+            <marker date="1555483340261" expanded="false" signature="26918:27662" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -699,26 +736,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dump20190415.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="171" column="29" lean-forward="true" selection-start-line="171" selection-start-column="29" selection-end-line="171" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/Book.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/SqlQueries.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="25" column="74" lean-forward="false" selection-start-line="25" selection-start-column="60" selection-end-line="25" selection-end-column="74" />
           <folding />
         </state>
       </provider>
@@ -731,9 +752,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/SqlQueries.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="25" column="75" lean-forward="false" selection-start-line="25" selection-start-column="75" selection-end-line="25" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ui/InsertSeriesWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="42" column="28" lean-forward="false" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/LibraryWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
+        <state relative-caret-position="388">
           <caret line="704" column="16" lean-forward="false" selection-start-line="704" selection-start-column="16" selection-end-line="704" selection-end-column="16" />
           <folding>
             <element signature="method#fillBookTable#0;class#LibraryWindow#0" expanded="false" />
@@ -741,75 +778,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/InsertSeriesWindow.java">
+    <entry file="file://$PROJECT_DIR$/Dump20190415.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="95" column="37" lean-forward="false" selection-start-line="95" selection-start-column="37" selection-end-line="95" selection-end-column="37" />
+        <state relative-caret-position="68">
+          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/DbAccess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="505" column="0" lean-forward="true" selection-start-line="505" selection-start-column="0" selection-end-line="505" selection-end-column="0" />
+        <state relative-caret-position="104">
+          <caret line="523" column="0" lean-forward="true" selection-start-line="523" selection-start-column="0" selection-end-line="523" selection-end-column="0" />
           <folding>
-            <element signature="e#7725#7731#0" expanded="true" />
-            <element signature="method#insertAuthor#0;class#DbAccess#0" expanded="false" />
-            <element signature="method#insertReading#0;class#DbAccess#0" expanded="false" />
-            <element signature="method#initDatabaseCredentials#0;class#DbAccess#0" expanded="false" />
-            <marker date="1555482257207" expanded="true" signature="1600:1637" ph="SELECT MAX(m... missingValue" />
-            <marker date="1555482257207" expanded="true" signature="2055:2137" ph="SELECT reade... Readers" />
-            <marker date="1555482257207" expanded="true" signature="2788:2852" ph="SELECT reade... Readers" />
-            <marker date="1555482257207" expanded="true" signature="3825:4533" ph="SELECT Readi... Readings" />
-            <marker date="1555482257207" expanded="true" signature="5572:5669" ph="INSERT INTO Readers... " />
-            <marker date="1555482257207" expanded="true" signature="6205:6223" ph="UPDATE Reade... " />
-            <marker date="1555482257207" expanded="true" signature="6980:7017" ph="delete from " />
-            <marker date="1555482257207" expanded="true" signature="11956:12381" ph="SELECT EC.ed... Books" />
-            <marker date="1555482257207" expanded="true" signature="12211:12371" ph="SELECT EC1.e... EditionCopies" />
-            <marker date="1555482257207" expanded="true" signature="13258:13342" ph="INSERT INTO Editions... " />
-            <marker date="1555482257207" expanded="true" signature="13740:13814" ph="INSERT INTO EditionTopics... " />
-            <marker date="1555482257207" expanded="true" signature="14083:14152" ph="INSERT INTO Publications... " />
-            <marker date="1555482257207" expanded="true" signature="14400:14465" ph="INSERT INTO Books... " />
-            <marker date="1555482257207" expanded="true" signature="14891:14938" ph="INSERT INTO EditionCopies... " />
-            <marker date="1555482257207" expanded="true" signature="15262:15399" ph="INSERT INTO publicationauthors... " />
-            <marker date="1555482257207" expanded="true" signature="15538:15657" ph="INSERT INTO publicationkeywords... " />
-            <marker date="1555482257207" expanded="true" signature="16360:16444" ph="INSERT INTO Editions... " />
-            <marker date="1555482257207" expanded="true" signature="16782:16856" ph="INSERT INTO EditionTopics... " />
-            <marker date="1555482257207" expanded="true" signature="17125:17196" ph="INSERT INTO Publications... " />
-            <marker date="1555482257207" expanded="true" signature="17432:17510" ph="INSERT INTO Books... " />
-            <marker date="1555482257207" expanded="true" signature="17880:17927" ph="INSERT INTO EditionCopies... " />
-            <marker date="1555482257207" expanded="true" signature="18179:18316" ph="INSERT INTO publicationauthors... " />
-            <marker date="1555482257207" expanded="true" signature="18428:18547" ph="INSERT INTO publicationkeywords... " />
-            <marker date="1555482257207" expanded="true" signature="18880:18917" ph="INSERT INTO Authors... " />
-            <marker date="1555482257207" expanded="true" signature="19477:19564" ph="INSERT INTO Readings... " />
-            <marker date="1555482257207" expanded="true" signature="20210:20405" ph="Select editi... editioncopies" />
-            <marker date="1555482257207" expanded="true" signature="20280:20404" ph="SELECT editi... books" />
-            <marker date="1555482257207" expanded="true" signature="20335:20403" ph="SELECT bookI... publications" />
-            <marker date="1555482257207" expanded="true" signature="20426:20624" ph="Select editi... editioncopies" />
-            <marker date="1555482257207" expanded="true" signature="20496:20623" ph="SELECT editi... series" />
-            <marker date="1555482257207" expanded="true" signature="20554:20622" ph="SELECT bookI... publications" />
-            <marker date="1555482257207" expanded="true" signature="21081:21149" ph="UPDATE Readi... " />
-            <marker date="1555482257207" expanded="true" signature="21442:21863" ph="Select editi... editioncopies" />
-            <marker date="1555482257207" expanded="true" signature="22571:22783" ph="Select title... publications" />
-            <marker date="1555482257207" expanded="true" signature="22635:22782" ph="SELECT publi... publicationauthors" />
-            <marker date="1555482257207" expanded="true" signature="22719:22781" ph="SELECT autho... authors" />
-            <marker date="1555482257207" expanded="true" signature="23083:23228" ph="Select title... publications" />
-            <marker date="1555482257207" expanded="true" signature="23147:23227" ph="SELECT publi... publicationkeywords" />
-            <marker date="1555482257207" expanded="true" signature="23527:23706" ph="Select title... publications" />
-            <marker date="1555482257207" expanded="true" signature="23582:23705" ph="SELECT bookI... books" />
-            <marker date="1555482257207" expanded="true" signature="23636:23704" ph="SELECT editi... editiontopics" />
-            <marker date="1555482257207" expanded="true" signature="23726:23913" ph="Select title... publications" />
-            <marker date="1555482257207" expanded="true" signature="23784:23912" ph="SELECT serie... series" />
-            <marker date="1555482257207" expanded="true" signature="23842:23911" ph="SELECT editi... editiontopics" />
-            <marker date="1555482257207" expanded="true" signature="24369:24483" ph="SELECT title... publications" />
-            <marker date="1555482257207" expanded="true" signature="24426:24482" ph="SELECT bookI... books" />
-            <marker date="1555482257207" expanded="true" signature="24811:25034" ph="SELECT title... publications" />
-            <marker date="1555482257207" expanded="true" signature="24868:25033" ph="SELECT bookI... books" />
-            <marker date="1555482257207" expanded="true" signature="24922:25032" ph="SELECT editi... editions" />
-            <marker date="1555482257207" expanded="true" signature="25204:25435" ph="SELECT title... publications" />
-            <marker date="1555482257207" expanded="true" signature="25264:25434" ph="SELECT serie... series" />
-            <marker date="1555482257207" expanded="true" signature="25322:25433" ph="SELECT editi... editions" />
+            <element signature="e#7781#7787#0" expanded="true" />
+            <marker date="1555483340261" expanded="true" signature="1600:1637" ph="SELECT MAX(m... missingValue" />
+            <marker date="1555483340261" expanded="true" signature="2055:2137" ph="SELECT reade... Readers" />
+            <marker date="1555483340261" expanded="true" signature="2788:2852" ph="SELECT reade... Readers" />
+            <marker date="1555483340261" expanded="true" signature="3825:4533" ph="SELECT Readi... Readings" />
+            <marker date="1555483340261" expanded="true" signature="5628:5725" ph="INSERT INTO Readers... " />
+            <marker date="1555483340261" expanded="true" signature="6261:6279" ph="UPDATE Reade... " />
+            <marker date="1555483340261" expanded="true" signature="7036:7073" ph="delete from " />
+            <marker date="1555483340261" expanded="false" signature="8716:8724" ph="&lt;~&gt;" />
+            <marker date="1555483340261" expanded="false" signature="9652:9660" ph="&lt;~&gt;" />
+            <marker date="1555483340261" expanded="false" signature="11975:11984" ph="&lt;~&gt;" />
+            <marker date="1555483340261" expanded="true" signature="12012:12437" ph="SELECT EC.ed... Books" />
+            <marker date="1555483340261" expanded="true" signature="12267:12427" ph="SELECT EC1.e... EditionCopies" />
+            <marker date="1555483340261" expanded="true" signature="13314:13398" ph="INSERT INTO Editions... " />
+            <marker date="1555483340261" expanded="true" signature="13796:13870" ph="INSERT INTO EditionTopics... " />
+            <marker date="1555483340261" expanded="true" signature="14139:14208" ph="INSERT INTO Publications... " />
+            <marker date="1555483340261" expanded="true" signature="14456:14521" ph="INSERT INTO Books... " />
+            <marker date="1555483340261" expanded="true" signature="14947:14994" ph="INSERT INTO EditionCopies... " />
+            <marker date="1555483340261" expanded="true" signature="15318:15455" ph="INSERT INTO publicationauthors... " />
+            <marker date="1555483340261" expanded="true" signature="15594:15713" ph="INSERT INTO publicationkeywords... " />
+            <marker date="1555483340261" expanded="true" signature="16430:16514" ph="INSERT INTO Editions... " />
+            <marker date="1555483340261" expanded="true" signature="16852:16926" ph="INSERT INTO EditionTopics... " />
+            <marker date="1555483340261" expanded="true" signature="17195:17266" ph="INSERT INTO Publications... " />
+            <marker date="1555483340261" expanded="true" signature="17527:17605" ph="INSERT INTO Books... " />
+            <marker date="1555483340261" expanded="true" signature="17975:18022" ph="INSERT INTO EditionCopies... " />
+            <marker date="1555483340261" expanded="true" signature="18282:18421" ph="INSERT INTO publicationauthors... " />
+            <marker date="1555483340261" expanded="true" signature="18543:18677" ph="INSERT INTO publicationkeywords... " />
+            <marker date="1555483340261" expanded="false" signature="18881:19306" ph="{...}" />
+            <marker date="1555483340261" expanded="true" signature="19016:19053" ph="INSERT INTO Authors... " />
+            <marker date="1555483340261" expanded="false" signature="19374:20150" ph="{...}" />
+            <marker date="1555483340261" expanded="true" signature="19613:19700" ph="INSERT INTO Readings... " />
+            <marker date="1555483340261" expanded="true" signature="20346:20541" ph="Select editi... editioncopies" />
+            <marker date="1555483340261" expanded="true" signature="20416:20540" ph="SELECT editi... books" />
+            <marker date="1555483340261" expanded="true" signature="20471:20539" ph="SELECT bookI... publications" />
+            <marker date="1555483340261" expanded="true" signature="20562:20760" ph="Select editi... editioncopies" />
+            <marker date="1555483340261" expanded="true" signature="20632:20759" ph="SELECT editi... series" />
+            <marker date="1555483340261" expanded="true" signature="20690:20758" ph="SELECT bookI... publications" />
+            <marker date="1555483340261" expanded="true" signature="21217:21285" ph="UPDATE Readi... " />
+            <marker date="1555483340261" expanded="true" signature="21578:21999" ph="Select editi... editioncopies" />
+            <marker date="1555483340261" expanded="true" signature="22707:22919" ph="Select title... publications" />
+            <marker date="1555483340261" expanded="true" signature="22771:22918" ph="SELECT publi... publicationauthors" />
+            <marker date="1555483340261" expanded="true" signature="22855:22917" ph="SELECT autho... authors" />
+            <marker date="1555483340261" expanded="true" signature="23219:23364" ph="Select title... publications" />
+            <marker date="1555483340261" expanded="true" signature="23283:23363" ph="SELECT publi... publicationkeywords" />
+            <marker date="1555483340261" expanded="true" signature="23663:23842" ph="Select title... publications" />
+            <marker date="1555483340261" expanded="true" signature="23718:23841" ph="SELECT bookI... books" />
+            <marker date="1555483340261" expanded="true" signature="23772:23840" ph="SELECT editi... editiontopics" />
+            <marker date="1555483340261" expanded="true" signature="23862:24049" ph="Select title... publications" />
+            <marker date="1555483340261" expanded="true" signature="23920:24048" ph="SELECT serie... series" />
+            <marker date="1555483340261" expanded="true" signature="23978:24047" ph="SELECT editi... editiontopics" />
+            <marker date="1555483340261" expanded="true" signature="24505:24619" ph="SELECT title... publications" />
+            <marker date="1555483340261" expanded="true" signature="24562:24618" ph="SELECT bookI... books" />
+            <marker date="1555483340261" expanded="true" signature="24947:25170" ph="SELECT title... publications" />
+            <marker date="1555483340261" expanded="true" signature="25004:25169" ph="SELECT bookI... books" />
+            <marker date="1555483340261" expanded="true" signature="25058:25168" ph="SELECT editi... editions" />
+            <marker date="1555483340261" expanded="true" signature="25340:25571" ph="SELECT title... publications" />
+            <marker date="1555483340261" expanded="true" signature="25400:25570" ph="SELECT serie... series" />
+            <marker date="1555483340261" expanded="true" signature="25458:25569" ph="SELECT editi... editions" />
+            <marker date="1555483340261" expanded="false" signature="26918:27662" ph="{...}" />
           </folding>
         </state>
       </provider>

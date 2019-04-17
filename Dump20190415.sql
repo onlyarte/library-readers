@@ -16,9 +16,9 @@ SET NAMES utf8 ;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-CREATE DATABASE if not exists LibraryTest1;
+CREATE DATABASE if not exists Library;
 
-use LibraryTest1;
+use Library;
 --
 -- Table structure for table `Authors`
 --

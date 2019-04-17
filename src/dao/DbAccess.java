@@ -459,11 +459,11 @@ public class DbAccess {
         return bookId;
     }
 
-	public int insertSeries(String dateOfPublication, String title, int numOfPublications, String publicationsName, String publicationsKeywords, int hasElectronicCopy, int numberOfCopies) {
+	public int insertSeries(String dateOfPublication, String title, String topic, int numOfPublications, String publicationsName, String publicationsKeywords, int hasElectronicCopy, int numberOfCopies) {
 		int editionId = getNextId("Editions", "editionId");
 		int editionTopicId = getNextId("EditionTopics", "editionTopicId");
 		int publicationId = getNextId("Publications", "publicationId");
-		int seriesID = getNextId("Series", "seriesId");
+		int seriesId = getNextId("Series", "seriesId");
 		int rows = 0;
 		try {
 			preparedStatement = connection.prepareStatement(
@@ -494,6 +494,7 @@ public class DbAccess {
 			preparedStatement.setInt(3, seriesId);
 			preparedStatement.executeUpdate();
 
+			// insert into Series
 			preparedStatement = connection.prepareStatement(
 					"INSERT INTO Series (seriesId, title, numberOfBooks, editionId) VALUES(?,?,?,?)"
 			);
@@ -512,24 +513,24 @@ public class DbAccess {
 				preparedStatement.executeUpdate();
 			}
 
-			for (String authorName : authors) {
-				ArrayList<Author> author = getAuthors(authorName);
-				preparedStatement = connection.prepareStatement(
-						"INSERT INTO publicationauthors (publicationId, authorId) VALUES " +
-								"(" + publicationId + ", " + author.get(0).getAuthorId() + ")"
-				);
-				preparedStatement.executeUpdate();
-			}
+//			for (String authorName : authors) {
+//				ArrayList<Author> author = getAuthors(authorName);
+//				preparedStatement = connection.prepareStatement(
+//						"INSERT INTO PublicationAuthors (publicationId, authorId) VALUES " +
+//								"(" + publicationId + ", " + author.get(0).getAuthorId() + ")"
+//				);
+//				preparedStatement.executeUpdate();
+//			}
 
-			preparedStatement = connection.prepareStatement(
-					"INSERT INTO publicationkeywords (publicationId, keyWord) VALUES " +
-							"(" + publicationId + ", '" + keywords + "')"
-			);
-			preparedStatement.executeUpdate();
+//			preparedStatement = connection.prepareStatement(
+//					"INSERT INTO PublicationsKeyWords (publicationId, keyWord) VALUES " +
+//							"(" + publicationId + ", '" + publicationsKeywords + "')"
+//			);
+//			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("insertBook> " + e.getMessage());
 		}
-		return bookId;
+		return seriesId;
 	}
 
 	public int insertAuthor(String fullName) {

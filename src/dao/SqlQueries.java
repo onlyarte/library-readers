@@ -23,5 +23,5 @@ public class SqlQueries {
 
     public static String GetPublications = "SELECT * FROM Publications ";
 
-    public static String GetKeywords = "SELECT keyWord FROM PublicationKeywords ";
+    public static String GetKeywords = "SELECT keyWord FROM PublicationKeyWords ";
 }
