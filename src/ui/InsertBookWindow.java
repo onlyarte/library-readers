@@ -27,9 +27,9 @@ public class InsertBookWindow {
 		frame.setVisible(true);
 		
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(9,2));
+		panel.setLayout(new GridLayout(10,2));
 		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-		
+
 		JLabel dateLbl = new JLabel("Дата (yyyy-mm-dd):");
 		panel.add(dateLbl);
 		
@@ -56,6 +56,12 @@ public class InsertBookWindow {
 		typeField.addItem("posibnyk");
 		typeField.addItem("pidruchnyk");
 		panel.add(typeField);
+
+		JLabel keywordsLbl = new JLabel("Ключові слова (через кому):");
+		panel.add(keywordsLbl);
+
+		JTextField keywordsField = new JTextField();
+		panel.add(keywordsField);
 		
 		JLabel sizeLbl = new JLabel("Об'єм:");
 		panel.add(sizeLbl);
@@ -94,16 +100,18 @@ public class InsertBookWindow {
 					String topic = topicField.getText();
 					String title = titleField.getText();
 					String type = typeField.getSelectedItem().toString();
+					String keywords = keywordsField.getText();
 					String[] authors = authorsField.getText().split(", ");
 					int size = Integer.parseInt(sizeField.getText());
 					int hasElectronicCopy = eVersion.isSelected() ? 1 : 0;
 					int numberOfCopies = Integer.parseInt(copiesField.getText());
 
 					if (title.length() < 1) throw new Exception("Назва закоротка");
+					if (keywords.length() < 1) throw new Exception("Невідповідні ключові слова");
 					if (size < 1) throw new Exception("Неправильний розмір");
 					if (numberOfCopies < 1) throw new Exception("Щонайменше одна копія");
 
-					db.insertBook(dateOfPublication,topic, title, type, authors, size, hasElectronicCopy, numberOfCopies);
+					db.insertBook(dateOfPublication,topic, title, type, keywords, authors, size, hasElectronicCopy, numberOfCopies);
 
 					message.setText("Додано!");
 
