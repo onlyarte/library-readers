@@ -135,7 +135,7 @@ public class DbAccess {
     			if (isStringNumeric(query)) {
     				sql += " AND YEAR(dateReceived) = " + query;
     			} else {
-    				sql += " AND (R.lastName LIKE '%" + query + "%' OR B.title LIKE '%" + query + "%')";
+    				sql += " AND (Readers.lastName LIKE '%" + query + "%' OR Publications.title LIKE '%" + query + "%' OR Series.title LIKE '%" + query + "%')";
     			}
     		}
     		statement.execute(sql);
