@@ -51,8 +51,8 @@ public class InsertSeriesWindow {
 		JLabel publNamesLbl = new JLabel("Публікації (через кому):");
 		panel.add(publNamesLbl);
 		
-		JTextField authorField = new JTextField();
-		panel.add(authorField);
+		JTextField publicationsNameField = new JTextField();
+		panel.add(publicationsNameField);
 
 		JLabel keywordsLbl = new JLabel("Ключові слова (через кому):");
 		panel.add(keywordsLbl);
@@ -81,30 +81,32 @@ public class InsertSeriesWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-//					String dateOfPublication = dateField.getText();
-//					String title = titleField.getText();
-//					String type = typeField.getSelectedItem().toString();
-//					int size = Integer.parseInt(sizeField.getText());
-//					int hasElectronicCopy = eVersion.isSelected() ? 1 : 0;
-//					int numberOfCopies = Integer.parseInt(copiesField.getText());
-//
-//					if (title.length() < 1) throw new Exception("Назва закоротка");
-//					if (size < 1) throw new Exception("Неправильний розмір");
-//					if (numberOfCopies < 1) throw new Exception("Щонайменше одна копія");
-//
-//					db.insertBook(dateOfPublication, title, type, size, hasElectronicCopy, numberOfCopies);
-//
-//					message.setText("Додано!");
-//
-//					dateField.setEditable(false);
-//					titleField.setEditable(false);
-//					typeField.setEnabled(false);
-//					sizeField.setEditable(false);
-//					eVersion.setEnabled(false);
-//					copiesField.setEditable(false);
-//					submitBtn.setEnabled(false);
-//
-//					mainWindow.fillBookTable();
+					String dateOfPublication = dateField.getText();
+					String title = titleField.getText();
+					int numOfPublications = Integer.parseInt(numOfPublField.getText());
+					String publicationsName = publicationsNameField.getText();
+					String publicationsKeywords = keywordsField.getText();
+					int hasElectronicCopy = eVersion.isSelected() ? 1 : 0;
+					int numberOfCopies = Integer.parseInt(copiesField.getText());
+
+					if (title.length() < 1) throw new Exception("Назва закоротка");
+					if (numOfPublications < 1) throw new Exception("Неправильний розмір");
+					if (numberOfCopies < 1) throw new Exception("Щонайменше одна копія");
+
+					db.insertSeries(dateOfPublication, title, numOfPublications, publicationsName, publicationsKeywords, hasElectronicCopy, numberOfCopies);
+
+					message.setText("Додано!");
+
+					dateField.setEditable(false);
+					titleField.setEditable(false);
+					numOfPublField.setEnabled(false);
+					publicationsNameField.setEditable(false);
+					keywordsField.setEditable(false);
+					eVersion.setEnabled(false);
+					copiesField.setEditable(false);
+					submitBtn.setEnabled(false);
+
+					mainWindow.fillSeriesTable(title);
 				} catch (Exception exc) {
 					message.setText("Щось неправильно!");
 				}

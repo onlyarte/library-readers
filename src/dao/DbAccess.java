@@ -308,7 +308,7 @@ public class DbAccess {
 		ArrayList<Author> authors = new ArrayList<>();
 		try {
 			preparedStatement = connection.prepareStatement(SqlQueries.GetAuthorsOfPublication
-					+ "WHERE publicationId = " + pubId);
+					+ "WHERE PublicationId = " + pubId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet != null) {
 				while (resultSet.next()) {
@@ -458,6 +458,79 @@ public class DbAccess {
         }
         return bookId;
     }
+
+	public int insertSeries(String dateOfPublication, String title, int numOfPublications, String publicationsName, String publicationsKeywords, int hasElectronicCopy, int numberOfCopies) {
+		int editionId = getNextId("Editions", "editionId");
+		int editionTopicId = getNextId("EditionTopics", "editionTopicId");
+		int publicationId = getNextId("Publications", "publicationId");
+		int seriesID = getNextId("Series", "seriesId");
+		int rows = 0;
+		try {
+			preparedStatement = connection.prepareStatement(
+					"INSERT INTO Editions (editionId, dateOfPublication, hasElectronicCopy) VALUES(?,?,?)"
+			);
+			preparedStatement.setInt(1, editionId);
+			preparedStatement.setString(2, dateOfPublication);
+			preparedStatement.setInt(3, hasElectronicCopy);
+			rows = preparedStatement.executeUpdate();
+			if (rows == 0) editionId = 0;
+			rows = 0;
+
+			// Insert into EditionTopics
+			preparedStatement = connection.prepareStatement(
+					"INSERT INTO EditionTopics (editionTopicId, editionId, topic) VALUES(?,?,?)"
+			);
+			preparedStatement.setInt(1, editionTopicId);
+			preparedStatement.setInt(2, editionId);
+			preparedStatement.setString(3, topic);
+			preparedStatement.executeUpdate();
+
+			// Insert into Publications
+			preparedStatement = connection.prepareStatement(
+					"INSERT INTO Publications (publicationId, title, seriesId) VALUES(?,?,?)"
+			);
+			preparedStatement.setInt(1, publicationId);
+			preparedStatement.setString(2, title);
+			preparedStatement.setInt(3, seriesId);
+			preparedStatement.executeUpdate();
+
+			preparedStatement = connection.prepareStatement(
+					"INSERT INTO Series (seriesId, title, numberOfBooks, editionId) VALUES(?,?,?,?)"
+			);
+			preparedStatement.setInt(1, seriesId);
+			preparedStatement.setString(2, title);
+			preparedStatement.setInt(3, numOfPublications);
+			preparedStatement.setInt(4, editionId);
+			rows = preparedStatement.executeUpdate();
+			if (rows == 0) seriesId = 0;
+
+			for (int i = 0; i < numberOfCopies; i++) {
+				preparedStatement = connection.prepareStatement(
+						"INSERT INTO EditionCopies (editionId) VALUES(?)"
+				);
+				preparedStatement.setInt(1, editionId);
+				preparedStatement.executeUpdate();
+			}
+
+			for (String authorName : authors) {
+				ArrayList<Author> author = getAuthors(authorName);
+				preparedStatement = connection.prepareStatement(
+						"INSERT INTO publicationauthors (publicationId, authorId) VALUES " +
+								"(" + publicationId + ", " + author.get(0).getAuthorId() + ")"
+				);
+				preparedStatement.executeUpdate();
+			}
+
+			preparedStatement = connection.prepareStatement(
+					"INSERT INTO publicationkeywords (publicationId, keyWord) VALUES " +
+							"(" + publicationId + ", '" + keywords + "')"
+			);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("insertBook> " + e.getMessage());
+		}
+		return bookId;
+	}
 
 	public int insertAuthor(String fullName) {
 		int authorId = getNextId("Authors", "authorId");
@@ -731,4 +804,5 @@ public class DbAccess {
 
 		}
 	}
+
 }
