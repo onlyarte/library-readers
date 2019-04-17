@@ -28,6 +28,7 @@ public class LibraryWindow {
 	private JTable seriesTable;
 	private JTable authorTable;
 	private JTable searchTable;
+	private JTable publicationsTable;
 	
 	private JButton readerReaderEditBtn;
 	private JButton readerReaderTakeCopyBtn;
@@ -50,6 +51,7 @@ public class LibraryWindow {
 		fillBookTable("");
 		fillSeriesTable("");
 		fillAuthorsTable("");
+		fillPublicationsTable("");
 	}
 	
 	JComponent makeReaderReaderPanel() {
@@ -407,6 +409,54 @@ public class LibraryWindow {
 		return authorPanel;
 	}
 
+	JComponent makePublicationPanel() {
+		JPanel publicationPanel = new JPanel(false);
+		publicationPanel.setLayout(new BorderLayout(0, 0));
+
+		JPanel controlPanel = new JPanel();
+		controlPanel.setLayout(new BorderLayout());
+
+		JPanel searchPanel = new JPanel();
+		controlPanel.add(searchPanel, BorderLayout.LINE_START);
+
+		JTextField searchField = new JTextField(20);
+		searchPanel.add(searchField);
+
+		JButton searchBtn = new JButton("Шукати");
+		searchBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String publicationSearchQuery = searchField.getText();
+				fillPublicationsTable(publicationSearchQuery);
+			}
+		});
+		searchPanel.add(searchBtn);
+
+		JPanel actionPanel = new JPanel();
+		controlPanel.add(actionPanel, BorderLayout.LINE_END);
+
+		publicationPanel.add(controlPanel, BorderLayout.NORTH);
+
+		JPanel tablePanel = new JPanel();
+		tablePanel.setLayout(new GridLayout());
+
+		publicationsTable = new JTable();
+		publicationsTable.setFillsViewportHeight(true);
+		publicationsTable.setDefaultEditor(Object.class, null);
+		publicationsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+		String[] columnNames = { "ID", "Назва", "Книга", "Збірник", "Ключові слова" };
+		DefaultTableModel readerReaderTableModel = (DefaultTableModel) publicationsTable.getModel();
+		readerReaderTableModel.setColumnIdentifiers(columnNames);
+
+		JScrollPane scrollPane = new JScrollPane(publicationsTable);
+		tablePanel.add(scrollPane);
+
+		publicationPanel.add(tablePanel, BorderLayout.CENTER);
+
+		return publicationPanel;
+	}
+
 	JComponent makeSearchPanel() {
 		JPanel searchPanel = new JPanel(false);
 		searchPanel.setLayout(new BorderLayout(0, 0));
@@ -566,7 +616,11 @@ public class LibraryWindow {
 
 		JComponent panel4 = makeAuthorPanel();
 		tabbedPane.addTab("Автори", panel4);
-		tabbedPane.setMnemonicAt(2, KeyEvent.VK_4);
+		tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
+
+		JComponent panel5 = makePublicationPanel();
+		tabbedPane.addTab("Публікації", panel5);
+		tabbedPane.setMnemonicAt(4, KeyEvent.VK_5);
 	}
 
 	public void fillReaderReaderTable() {
@@ -671,12 +725,30 @@ public class LibraryWindow {
 		ArrayList<Author> authors = db.getAuthors(authorSearchQuery);
 
 		for (Author author: authors) {
-			String[] tableRow = new String[6];
+			String[] tableRow = new String[2];
 			tableRow[0] = Integer.toString(author.getAuthorId());
 			tableRow[1] = author.getFullName();
 			authorsTableModel.addRow(tableRow);
 		}
 
 		authorTable.setModel(authorsTableModel);
+	}
+
+	public void fillPublicationsTable(String publicationSearchQuery) {
+		DefaultTableModel publicationsTableModel = (DefaultTableModel) publicationsTable.getModel();
+		publicationsTableModel.setRowCount(0);
+
+		ArrayList<Publication> publications = db.getPublications(publicationSearchQuery);
+
+		for (Publication publication: publications) {
+			String[] tableRow = new String[4];
+			tableRow[0] = Integer.toString(publication.getPublicationId());
+			tableRow[1] = publication.getTitle();
+			tableRow[2] = publication.isBookSeries() ? "Ні" : "Так";
+			tableRow[3] = publication.isBookSeries() ? "Так" : "Ні";
+			publicationsTableModel.addRow(tableRow);
+		}
+
+		authorTable.setModel(publicationsTableModel);
 	}
 }

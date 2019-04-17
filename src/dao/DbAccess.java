@@ -322,6 +322,30 @@ public class DbAccess {
 		}
 	}
 
+	public ArrayList<Publication> getPublications(String query) {
+    	ArrayList<Publication> publications = new ArrayList<>();
+    	try {
+    		sql = SqlQueries.GetPublications;
+			if (query != null && !query.equals("")) {
+				sql += " WHERE name LIKE '%" + query + "%'";
+			}
+			statement.executeQuery(sql);
+    		ResultSet resultSet = statement.getResultSet();
+    		if (resultSet != null) {
+    			while (resultSet.next()) {
+    				publications.add(new Publication(
+    						resultSet.getInt("publicationId"),
+							resultSet.getString("title"),
+							resultSet.getObject("seriesId") != null
+					));
+				}
+			}
+		} catch (SQLException e) {
+    		e.printStackTrace();
+		}
+    	return publications;
+	}
+
     public ArrayList<Integer> getFreeEditionCopies(int bookId) {
     	ArrayList<Integer> freeCopies = new ArrayList<Integer>();
     	try {

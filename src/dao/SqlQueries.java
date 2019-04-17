@@ -20,4 +20,6 @@ public class SqlQueries {
             "authors INNER JOIN publicationauthors ON authors.authorId = publicationauthors.authorId ";
 
     public static String GetPublicationOfBook = "SELECT publicationId FROM publications ";
+
+    public static String GetPublications = "SELECT * FROM publications";
 }
